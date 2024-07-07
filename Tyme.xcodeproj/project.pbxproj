@@ -1,0 +1,1026 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4A7F11F72C3AE282005200F2 /* TymeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F11F62C3AE282005200F2 /* TymeApp.swift */; };
+		4A7F11F92C3AE282005200F2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F11F82C3AE282005200F2 /* ContentView.swift */; };
+		4A7F11FB2C3AE283005200F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A7F11FA2C3AE283005200F2 /* Assets.xcassets */; };
+		4A7F11FE2C3AE283005200F2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A7F11FD2C3AE283005200F2 /* Preview Assets.xcassets */; };
+		4A7F12082C3AE283005200F2 /* TymeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12072C3AE283005200F2 /* TymeTests.swift */; };
+		4A7F12122C3AE283005200F2 /* TymeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12112C3AE283005200F2 /* TymeUITests.swift */; };
+		4A7F12142C3AE283005200F2 /* TymeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12132C3AE283005200F2 /* TymeUITestsLaunchTests.swift */; };
+		4A7F121A2C3AE283005200F2 /* Tyme Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 4A7F12192C3AE283005200F2 /* Tyme Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4A7F121F2C3AE283005200F2 /* TymeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F121E2C3AE283005200F2 /* TymeApp.swift */; };
+		4A7F12212C3AE283005200F2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12202C3AE283005200F2 /* ContentView.swift */; };
+		4A7F12232C3AE284005200F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A7F12222C3AE284005200F2 /* Assets.xcassets */; };
+		4A7F12262C3AE284005200F2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A7F12252C3AE284005200F2 /* Preview Assets.xcassets */; };
+		4A7F12302C3AE284005200F2 /* Tyme_Watch_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F122F2C3AE284005200F2 /* Tyme_Watch_AppTests.swift */; };
+		4A7F123A2C3AE284005200F2 /* Tyme_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12392C3AE284005200F2 /* Tyme_Watch_AppUITests.swift */; };
+		4A7F123C2C3AE284005200F2 /* Tyme_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F123B2C3AE284005200F2 /* Tyme_Watch_AppUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4A7F12042C3AE283005200F2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A7F11EB2C3AE282005200F2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4A7F11F22C3AE282005200F2;
+			remoteInfo = Tyme;
+		};
+		4A7F120E2C3AE283005200F2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A7F11EB2C3AE282005200F2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4A7F11F22C3AE282005200F2;
+			remoteInfo = Tyme;
+		};
+		4A7F121B2C3AE283005200F2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A7F11EB2C3AE282005200F2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4A7F12182C3AE283005200F2;
+			remoteInfo = "Tyme Watch App";
+		};
+		4A7F122C2C3AE284005200F2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A7F11EB2C3AE282005200F2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4A7F12182C3AE283005200F2;
+			remoteInfo = "Tyme Watch App";
+		};
+		4A7F12362C3AE284005200F2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A7F11EB2C3AE282005200F2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4A7F12182C3AE283005200F2;
+			remoteInfo = "Tyme Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4A7F12422C3AE284005200F2 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				4A7F121A2C3AE283005200F2 /* Tyme Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		4A7F11F32C3AE282005200F2 /* Tyme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tyme.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A7F11F62C3AE282005200F2 /* TymeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TymeApp.swift; sourceTree = "<group>"; };
+		4A7F11F82C3AE282005200F2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4A7F11FA2C3AE283005200F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4A7F11FD2C3AE283005200F2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4A7F12032C3AE283005200F2 /* TymeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TymeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A7F12072C3AE283005200F2 /* TymeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TymeTests.swift; sourceTree = "<group>"; };
+		4A7F120D2C3AE283005200F2 /* TymeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TymeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A7F12112C3AE283005200F2 /* TymeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TymeUITests.swift; sourceTree = "<group>"; };
+		4A7F12132C3AE283005200F2 /* TymeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TymeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4A7F12192C3AE283005200F2 /* Tyme Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tyme Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A7F121E2C3AE283005200F2 /* TymeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TymeApp.swift; sourceTree = "<group>"; };
+		4A7F12202C3AE283005200F2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4A7F12222C3AE284005200F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4A7F12252C3AE284005200F2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4A7F122B2C3AE284005200F2 /* Tyme Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tyme Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A7F122F2C3AE284005200F2 /* Tyme_Watch_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tyme_Watch_AppTests.swift; sourceTree = "<group>"; };
+		4A7F12352C3AE284005200F2 /* Tyme Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tyme Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A7F12392C3AE284005200F2 /* Tyme_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tyme_Watch_AppUITests.swift; sourceTree = "<group>"; };
+		4A7F123B2C3AE284005200F2 /* Tyme_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tyme_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4A7F11F02C3AE282005200F2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4A7F12002C3AE283005200F2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4A7F120A2C3AE283005200F2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4A7F12162C3AE283005200F2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4A7F12282C3AE284005200F2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4A7F12322C3AE284005200F2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4A7F11EA2C3AE282005200F2 = {
+			isa = PBXGroup;
+			children = (
+				4A7F11F52C3AE282005200F2 /* Tyme */,
+				4A7F12062C3AE283005200F2 /* TymeTests */,
+				4A7F12102C3AE283005200F2 /* TymeUITests */,
+				4A7F121D2C3AE283005200F2 /* Tyme Watch App */,
+				4A7F122E2C3AE284005200F2 /* Tyme Watch AppTests */,
+				4A7F12382C3AE284005200F2 /* Tyme Watch AppUITests */,
+				4A7F11F42C3AE282005200F2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4A7F11F42C3AE282005200F2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4A7F11F32C3AE282005200F2 /* Tyme.app */,
+				4A7F12032C3AE283005200F2 /* TymeTests.xctest */,
+				4A7F120D2C3AE283005200F2 /* TymeUITests.xctest */,
+				4A7F12192C3AE283005200F2 /* Tyme Watch App.app */,
+				4A7F122B2C3AE284005200F2 /* Tyme Watch AppTests.xctest */,
+				4A7F12352C3AE284005200F2 /* Tyme Watch AppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4A7F11F52C3AE282005200F2 /* Tyme */ = {
+			isa = PBXGroup;
+			children = (
+				4A7F11F62C3AE282005200F2 /* TymeApp.swift */,
+				4A7F11F82C3AE282005200F2 /* ContentView.swift */,
+				4A7F11FA2C3AE283005200F2 /* Assets.xcassets */,
+				4A7F11FC2C3AE283005200F2 /* Preview Content */,
+			);
+			path = Tyme;
+			sourceTree = "<group>";
+		};
+		4A7F11FC2C3AE283005200F2 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				4A7F11FD2C3AE283005200F2 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4A7F12062C3AE283005200F2 /* TymeTests */ = {
+			isa = PBXGroup;
+			children = (
+				4A7F12072C3AE283005200F2 /* TymeTests.swift */,
+			);
+			path = TymeTests;
+			sourceTree = "<group>";
+		};
+		4A7F12102C3AE283005200F2 /* TymeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				4A7F12112C3AE283005200F2 /* TymeUITests.swift */,
+				4A7F12132C3AE283005200F2 /* TymeUITestsLaunchTests.swift */,
+			);
+			path = TymeUITests;
+			sourceTree = "<group>";
+		};
+		4A7F121D2C3AE283005200F2 /* Tyme Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				4A7F121E2C3AE283005200F2 /* TymeApp.swift */,
+				4A7F12202C3AE283005200F2 /* ContentView.swift */,
+				4A7F12222C3AE284005200F2 /* Assets.xcassets */,
+				4A7F12242C3AE284005200F2 /* Preview Content */,
+			);
+			path = "Tyme Watch App";
+			sourceTree = "<group>";
+		};
+		4A7F12242C3AE284005200F2 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				4A7F12252C3AE284005200F2 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4A7F122E2C3AE284005200F2 /* Tyme Watch AppTests */ = {
+			isa = PBXGroup;
+			children = (
+				4A7F122F2C3AE284005200F2 /* Tyme_Watch_AppTests.swift */,
+			);
+			path = "Tyme Watch AppTests";
+			sourceTree = "<group>";
+		};
+		4A7F12382C3AE284005200F2 /* Tyme Watch AppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				4A7F12392C3AE284005200F2 /* Tyme_Watch_AppUITests.swift */,
+				4A7F123B2C3AE284005200F2 /* Tyme_Watch_AppUITestsLaunchTests.swift */,
+			);
+			path = "Tyme Watch AppUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4A7F11F22C3AE282005200F2 /* Tyme */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4A7F12432C3AE284005200F2 /* Build configuration list for PBXNativeTarget "Tyme" */;
+			buildPhases = (
+				4A7F11EF2C3AE282005200F2 /* Sources */,
+				4A7F11F02C3AE282005200F2 /* Frameworks */,
+				4A7F11F12C3AE282005200F2 /* Resources */,
+				4A7F12422C3AE284005200F2 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4A7F121C2C3AE283005200F2 /* PBXTargetDependency */,
+			);
+			name = Tyme;
+			productName = Tyme;
+			productReference = 4A7F11F32C3AE282005200F2 /* Tyme.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4A7F12022C3AE283005200F2 /* TymeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4A7F12462C3AE284005200F2 /* Build configuration list for PBXNativeTarget "TymeTests" */;
+			buildPhases = (
+				4A7F11FF2C3AE283005200F2 /* Sources */,
+				4A7F12002C3AE283005200F2 /* Frameworks */,
+				4A7F12012C3AE283005200F2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4A7F12052C3AE283005200F2 /* PBXTargetDependency */,
+			);
+			name = TymeTests;
+			productName = TymeTests;
+			productReference = 4A7F12032C3AE283005200F2 /* TymeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		4A7F120C2C3AE283005200F2 /* TymeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4A7F12492C3AE284005200F2 /* Build configuration list for PBXNativeTarget "TymeUITests" */;
+			buildPhases = (
+				4A7F12092C3AE283005200F2 /* Sources */,
+				4A7F120A2C3AE283005200F2 /* Frameworks */,
+				4A7F120B2C3AE283005200F2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4A7F120F2C3AE283005200F2 /* PBXTargetDependency */,
+			);
+			name = TymeUITests;
+			productName = TymeUITests;
+			productReference = 4A7F120D2C3AE283005200F2 /* TymeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		4A7F12182C3AE283005200F2 /* Tyme Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4A7F123F2C3AE284005200F2 /* Build configuration list for PBXNativeTarget "Tyme Watch App" */;
+			buildPhases = (
+				4A7F12152C3AE283005200F2 /* Sources */,
+				4A7F12162C3AE283005200F2 /* Frameworks */,
+				4A7F12172C3AE283005200F2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Tyme Watch App";
+			productName = "Tyme Watch App";
+			productReference = 4A7F12192C3AE283005200F2 /* Tyme Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4A7F122A2C3AE284005200F2 /* Tyme Watch AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4A7F124C2C3AE284005200F2 /* Build configuration list for PBXNativeTarget "Tyme Watch AppTests" */;
+			buildPhases = (
+				4A7F12272C3AE284005200F2 /* Sources */,
+				4A7F12282C3AE284005200F2 /* Frameworks */,
+				4A7F12292C3AE284005200F2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4A7F122D2C3AE284005200F2 /* PBXTargetDependency */,
+			);
+			name = "Tyme Watch AppTests";
+			productName = "Tyme Watch AppTests";
+			productReference = 4A7F122B2C3AE284005200F2 /* Tyme Watch AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		4A7F12342C3AE284005200F2 /* Tyme Watch AppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4A7F124F2C3AE284005200F2 /* Build configuration list for PBXNativeTarget "Tyme Watch AppUITests" */;
+			buildPhases = (
+				4A7F12312C3AE284005200F2 /* Sources */,
+				4A7F12322C3AE284005200F2 /* Frameworks */,
+				4A7F12332C3AE284005200F2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4A7F12372C3AE284005200F2 /* PBXTargetDependency */,
+			);
+			name = "Tyme Watch AppUITests";
+			productName = "Tyme Watch AppUITests";
+			productReference = 4A7F12352C3AE284005200F2 /* Tyme Watch AppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4A7F11EB2C3AE282005200F2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					4A7F11F22C3AE282005200F2 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					4A7F12022C3AE283005200F2 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 4A7F11F22C3AE282005200F2;
+					};
+					4A7F120C2C3AE283005200F2 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 4A7F11F22C3AE282005200F2;
+					};
+					4A7F12182C3AE283005200F2 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					4A7F122A2C3AE284005200F2 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 4A7F12182C3AE283005200F2;
+					};
+					4A7F12342C3AE284005200F2 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 4A7F12182C3AE283005200F2;
+					};
+				};
+			};
+			buildConfigurationList = 4A7F11EE2C3AE282005200F2 /* Build configuration list for PBXProject "Tyme" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4A7F11EA2C3AE282005200F2;
+			productRefGroup = 4A7F11F42C3AE282005200F2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4A7F11F22C3AE282005200F2 /* Tyme */,
+				4A7F12022C3AE283005200F2 /* TymeTests */,
+				4A7F120C2C3AE283005200F2 /* TymeUITests */,
+				4A7F12182C3AE283005200F2 /* Tyme Watch App */,
+				4A7F122A2C3AE284005200F2 /* Tyme Watch AppTests */,
+				4A7F12342C3AE284005200F2 /* Tyme Watch AppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4A7F11F12C3AE282005200F2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A7F11FE2C3AE283005200F2 /* Preview Assets.xcassets in Resources */,
+				4A7F11FB2C3AE283005200F2 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4A7F12012C3AE283005200F2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4A7F120B2C3AE283005200F2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4A7F12172C3AE283005200F2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A7F12262C3AE284005200F2 /* Preview Assets.xcassets in Resources */,
+				4A7F12232C3AE284005200F2 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4A7F12292C3AE284005200F2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4A7F12332C3AE284005200F2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4A7F11EF2C3AE282005200F2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A7F11F92C3AE282005200F2 /* ContentView.swift in Sources */,
+				4A7F11F72C3AE282005200F2 /* TymeApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4A7F11FF2C3AE283005200F2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A7F12082C3AE283005200F2 /* TymeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4A7F12092C3AE283005200F2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A7F12122C3AE283005200F2 /* TymeUITests.swift in Sources */,
+				4A7F12142C3AE283005200F2 /* TymeUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4A7F12152C3AE283005200F2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A7F12212C3AE283005200F2 /* ContentView.swift in Sources */,
+				4A7F121F2C3AE283005200F2 /* TymeApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4A7F12272C3AE284005200F2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A7F12302C3AE284005200F2 /* Tyme_Watch_AppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4A7F12312C3AE284005200F2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A7F123A2C3AE284005200F2 /* Tyme_Watch_AppUITests.swift in Sources */,
+				4A7F123C2C3AE284005200F2 /* Tyme_Watch_AppUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4A7F12052C3AE283005200F2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4A7F11F22C3AE282005200F2 /* Tyme */;
+			targetProxy = 4A7F12042C3AE283005200F2 /* PBXContainerItemProxy */;
+		};
+		4A7F120F2C3AE283005200F2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4A7F11F22C3AE282005200F2 /* Tyme */;
+			targetProxy = 4A7F120E2C3AE283005200F2 /* PBXContainerItemProxy */;
+		};
+		4A7F121C2C3AE283005200F2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4A7F12182C3AE283005200F2 /* Tyme Watch App */;
+			targetProxy = 4A7F121B2C3AE283005200F2 /* PBXContainerItemProxy */;
+		};
+		4A7F122D2C3AE284005200F2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4A7F12182C3AE283005200F2 /* Tyme Watch App */;
+			targetProxy = 4A7F122C2C3AE284005200F2 /* PBXContainerItemProxy */;
+		};
+		4A7F12372C3AE284005200F2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4A7F12182C3AE283005200F2 /* Tyme Watch App */;
+			targetProxy = 4A7F12362C3AE284005200F2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		4A7F123D2C3AE284005200F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4A7F123E2C3AE284005200F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		4A7F12402C3AE284005200F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Tyme Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 9T9NWZ3C4S;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Tyme;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.sebagu.Tyme;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sebagu.Tyme.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.5;
+			};
+			name = Debug;
+		};
+		4A7F12412C3AE284005200F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Tyme Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 9T9NWZ3C4S;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Tyme;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.sebagu.Tyme;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sebagu.Tyme.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 10.5;
+			};
+			name = Release;
+		};
+		4A7F12442C3AE284005200F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Tyme/Preview Content\"";
+				DEVELOPMENT_TEAM = 9T9NWZ3C4S;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Tyme;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sebagu.Tyme;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4A7F12452C3AE284005200F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Tyme/Preview Content\"";
+				DEVELOPMENT_TEAM = 9T9NWZ3C4S;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Tyme;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sebagu.Tyme;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4A7F12472C3AE284005200F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9T9NWZ3C4S;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sebagu.TymeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tyme.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Tyme";
+			};
+			name = Debug;
+		};
+		4A7F12482C3AE284005200F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9T9NWZ3C4S;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sebagu.TymeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tyme.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Tyme";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4A7F124A2C3AE284005200F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9T9NWZ3C4S;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sebagu.TymeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Tyme;
+			};
+			name = Debug;
+		};
+		4A7F124B2C3AE284005200F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9T9NWZ3C4S;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sebagu.TymeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Tyme;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4A7F124D2C3AE284005200F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9T9NWZ3C4S;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sebagu.Tyme-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tyme Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Tyme Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 10.5;
+			};
+			name = Debug;
+		};
+		4A7F124E2C3AE284005200F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9T9NWZ3C4S;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sebagu.Tyme-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tyme Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Tyme Watch App";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 10.5;
+			};
+			name = Release;
+		};
+		4A7F12502C3AE284005200F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9T9NWZ3C4S;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sebagu.Tyme-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "Tyme Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 10.5;
+			};
+			name = Debug;
+		};
+		4A7F12512C3AE284005200F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9T9NWZ3C4S;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sebagu.Tyme-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "Tyme Watch App";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 10.5;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4A7F11EE2C3AE282005200F2 /* Build configuration list for PBXProject "Tyme" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A7F123D2C3AE284005200F2 /* Debug */,
+				4A7F123E2C3AE284005200F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4A7F123F2C3AE284005200F2 /* Build configuration list for PBXNativeTarget "Tyme Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A7F12402C3AE284005200F2 /* Debug */,
+				4A7F12412C3AE284005200F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4A7F12432C3AE284005200F2 /* Build configuration list for PBXNativeTarget "Tyme" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A7F12442C3AE284005200F2 /* Debug */,
+				4A7F12452C3AE284005200F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4A7F12462C3AE284005200F2 /* Build configuration list for PBXNativeTarget "TymeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A7F12472C3AE284005200F2 /* Debug */,
+				4A7F12482C3AE284005200F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4A7F12492C3AE284005200F2 /* Build configuration list for PBXNativeTarget "TymeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A7F124A2C3AE284005200F2 /* Debug */,
+				4A7F124B2C3AE284005200F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4A7F124C2C3AE284005200F2 /* Build configuration list for PBXNativeTarget "Tyme Watch AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A7F124D2C3AE284005200F2 /* Debug */,
+				4A7F124E2C3AE284005200F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4A7F124F2C3AE284005200F2 /* Build configuration list for PBXNativeTarget "Tyme Watch AppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A7F12502C3AE284005200F2 /* Debug */,
+				4A7F12512C3AE284005200F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4A7F11EB2C3AE282005200F2 /* Project object */;
+}
