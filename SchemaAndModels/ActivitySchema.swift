@@ -37,13 +37,21 @@ enum Activity0_0_0: VersionedSchema {
         init(
             next: Activity? = nil,
             subActivities: [Activity]? = [],
-            timeToComplete: TimeInterval? = nil
+            timeToComplete: TimeInterval? = nil,
+            name: String? = nil,
+            detail: String? = nil,
+            creationDate: Date? = nil,
+            completionDate: Date? = nil,
+            onOffTimes: [TimeRange]? = []
         ){
+            self.name = name
+            self.detail = detail
             self.next = next
             self.subActivities = subActivities
             self.creationDate = Date()
             self.timeToComplete = timeToComplete
-            self.onOffTimes = [TimeRange]()
+            self.completionDate = completionDate
+            self.onOffTimes = onOffTimes
         }
     }
 }
