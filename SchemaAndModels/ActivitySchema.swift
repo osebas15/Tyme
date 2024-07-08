@@ -16,7 +16,10 @@ enum Activity0_0_0: VersionedSchema {
     static var versionIdentifier: Schema.Version = Schema.Version(0,0,0)
     
     @Model
-    class Activity{
+    class Activity: Identifiable{
+        
+        let id = UUID()
+        
         @Relationship(deleteRule: .noAction, inverse: \Activity.previous)
         var next: Activity?
         var previous: Activity?
