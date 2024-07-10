@@ -13,9 +13,13 @@ struct HomeView: View {
     var body: some View {
         VStack{
             Text("Start")
-            List(activities){ activity in
-                NavigationLink(value: activity.name) {
-                    ActiveScreen()
+            NavigationStack{
+                List{
+                    ForEach(activities){ activity in
+                        NavigationLink(destination: ActiveScreen(activity: activity)) {
+                            Text(activity.name!)
+                        }
+                    }
                 }
             }
         }
