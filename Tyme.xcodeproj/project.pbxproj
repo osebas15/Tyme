@@ -26,6 +26,12 @@
 		4A7F12562C3AEB3F005200F2 /* TimeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12552C3AEB3F005200F2 /* TimeRange.swift */; };
 		4A7F12582C3C55A2005200F2 /* ActivityDummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12572C3C55A2005200F2 /* ActivityDummyData.swift */; };
 		4A7F125A2C3C9333005200F2 /* ActivityProtocolExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12592C3C9333005200F2 /* ActivityProtocolExtensions.swift */; };
+		4A7F125E2C3F1790005200F2 /* ActiveScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F125D2C3F1790005200F2 /* ActiveScreen.swift */; };
+		4A7F12602C3F17DF005200F2 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F125F2C3F17DF005200F2 /* HomeView.swift */; };
+		4A7F12612C3F18BF005200F2 /* TimeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12552C3AEB3F005200F2 /* TimeRange.swift */; };
+		4A7F12622C3F18BF005200F2 /* ActivitySchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12532C3AE30E005200F2 /* ActivitySchema.swift */; };
+		4A7F12632C3F18BF005200F2 /* ActivityDummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12572C3C55A2005200F2 /* ActivityDummyData.swift */; };
+		4A7F12642C3F18BF005200F2 /* ActivityProtocolExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12592C3C9333005200F2 /* ActivityProtocolExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +111,8 @@
 		4A7F12552C3AEB3F005200F2 /* TimeRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeRange.swift; sourceTree = "<group>"; };
 		4A7F12572C3C55A2005200F2 /* ActivityDummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDummyData.swift; sourceTree = "<group>"; };
 		4A7F12592C3C9333005200F2 /* ActivityProtocolExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityProtocolExtensions.swift; sourceTree = "<group>"; };
+		4A7F125D2C3F1790005200F2 /* ActiveScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveScreen.swift; sourceTree = "<group>"; };
+		4A7F125F2C3F17DF005200F2 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +231,8 @@
 				4A7F12202C3AE283005200F2 /* ContentView.swift */,
 				4A7F12222C3AE284005200F2 /* Assets.xcassets */,
 				4A7F12242C3AE284005200F2 /* Preview Content */,
+				4A7F125D2C3F1790005200F2 /* ActiveScreen.swift */,
+				4A7F125F2C3F17DF005200F2 /* HomeView.swift */,
 			);
 			path = "Tyme Watch App";
 			sourceTree = "<group>";
@@ -515,6 +525,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A7F12612C3F18BF005200F2 /* TimeRange.swift in Sources */,
+				4A7F12622C3F18BF005200F2 /* ActivitySchema.swift in Sources */,
+				4A7F12632C3F18BF005200F2 /* ActivityDummyData.swift in Sources */,
+				4A7F12642C3F18BF005200F2 /* ActivityProtocolExtensions.swift in Sources */,
+				4A7F125E2C3F1790005200F2 /* ActiveScreen.swift in Sources */,
+				4A7F12602C3F17DF005200F2 /* HomeView.swift in Sources */,
 				4A7F12212C3AE283005200F2 /* ContentView.swift in Sources */,
 				4A7F121F2C3AE283005200F2 /* TymeApp.swift in Sources */,
 			);
