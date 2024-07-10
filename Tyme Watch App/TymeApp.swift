@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct Tyme_Watch_AppApp: App {
@@ -14,5 +15,6 @@ struct Tyme_Watch_AppApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(ModelHelper.getBasicContainer())
     }
 }
