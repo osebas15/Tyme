@@ -54,5 +54,103 @@ extension Activity {
 
         return [activity1, activity2, activity3]
     }
+    
+    func swissBurgerRecepie() -> [Activity]{
+        // Create dummy data for making a Swiss burger activity
+        let swissBurger = Activity()
+        swissBurger.name = "Make Swiss Burger"
+
+        // Gather Ingredients
+        let gatherIngredients = Activity()
+        gatherIngredients.name = "Gather ingredients"
+        gatherIngredients.subActivities = [
+            Activity(name: "Buns"),
+            Activity(name: "Ground beef"),
+            Activity(name: "Mushrooms"),
+            Activity(name: "Swiss cheese"),
+            Activity(name: "Cooking wine"),
+            Activity(name: "Salt"),
+            Activity(name: "Pepper")
+        ]
+
+        // Form patty and season with salt and pepper
+        let formPatty = Activity()
+        formPatty.name = "Form patty and season with salt and pepper"
+        formPatty.timeToComplete = 60 // 1 minute
+
+        // Preheat pan
+        let preheatPan = Activity()
+        preheatPan.name = "Preheat pan"
+        preheatPan.detail = "Preheat on high"
+        preheatPan.timeToComplete = 180 // 3 minutes
+
+        // Clean mushrooms
+        let cleanMushrooms = Activity()
+        cleanMushrooms.name = "Clean mushrooms"
+        cleanMushrooms.detail = "Use a moist paper towel"
+        cleanMushrooms.timeToComplete = 150 // 2 minutes 30 seconds
+
+        // Place patty on pan
+        let placePatty = Activity()
+        placePatty.name = "Place patty on pan"
+        placePatty.detail = "Flip in 4 minutes"
+        placePatty.timeToComplete = 240 // 4 minutes
+
+        // Cut mushrooms
+        let cutMushrooms = Activity()
+        cutMushrooms.name = "Cut mushrooms"
+        cutMushrooms.timeToComplete = 300 // 5 minutes
+
+        // Flip patty
+        let flipPatty = Activity()
+        flipPatty.name = "Flip patty"
+        flipPatty.detail = "High priority"
+        flipPatty.timeToComplete = 30 // 30 seconds
+
+        // Fry patty
+        let fryPatty = Activity()
+        fryPatty.name = "Fry patty"
+        fryPatty.timeToComplete = 120 // 2 minutes
+
+        // Put cheese on patty
+        let putCheese = Activity()
+        putCheese.name = "Put cheese on patty"
+        putCheese.detail = "High priority"
+        putCheese.timeToComplete = 30 // 30 seconds
+
+        // Take burger from pan
+        let takeBurger = Activity()
+        takeBurger.name = "Take burger from pan"
+        takeBurger.detail = "High priority"
+        takeBurger.timeToComplete = 30 // 30 seconds
+
+        // Fry mushrooms with cooking wine
+        let fryMushrooms = Activity()
+        fryMushrooms.name = "Fry mushrooms with cooking wine"
+        fryMushrooms.detail = "High heat"
+        fryMushrooms.timeToComplete = 180 // 3 minutes
+
+        // Place mushrooms on burger, Enjoy!!!
+        let placeMushrooms = Activity()
+        placeMushrooms.name = "Place mushrooms on burger, Enjoy!!!"
+
+        // Set up the hierarchy
+        swissBurger.subActivities = [
+            gatherIngredients,
+            formPatty,
+            preheatPan,
+            cleanMushrooms,
+            placePatty,
+            cutMushrooms,
+            flipPatty,
+            fryPatty,
+            putCheese,
+            takeBurger,
+            fryMushrooms,
+            placeMushrooms
+        ]
+        
+        return [swissBurger]//, ...swissBurger.subActivities!]
+    }
 }
 
