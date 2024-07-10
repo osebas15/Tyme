@@ -8,11 +8,19 @@
 import SwiftUI
 
 struct ActiveScreen: View {
+    var activity: Activity
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            Text(activity.name!)
+            Spacer()
+            Text(activity.detail!)
+            Button("done"){
+                print("done")
+            }
+        }
     }
 }
 
 #Preview {
-    ActiveScreen()
+    ActiveScreen(activity: Activity.getDummyActivities()[0])
 }
