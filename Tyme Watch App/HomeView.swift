@@ -9,12 +9,14 @@ import SwiftUI
 
 struct HomeView: View {
     //Query with swiftdata use
-    var activities: [Activity]
+    var activities: [Activity] = Activity.getDummyActivities()
     var body: some View {
         VStack{
             Text("Start")
-            List(){
-                
+            List(activities){ activity in
+                NavigationLink(value: activity.name) {
+                    ActiveScreen()
+                }
             }
         }
     }
