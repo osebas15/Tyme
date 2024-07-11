@@ -8,7 +8,7 @@
 import Foundation
 import SwiftData
 
-
+@MainActor
 struct ModelHelper {
     static func getBasicContainer() -> ModelContainer {
         let schema = Schema([
@@ -32,6 +32,8 @@ struct ModelHelper {
         
         return modelContainer
     }
+    
+    
     
     static func getTestContainer() -> ModelContainer {
         return getBasicContainer()
