@@ -34,6 +34,7 @@
 		4A7F12642C3F18BF005200F2 /* ActivityProtocolExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12592C3C9333005200F2 /* ActivityProtocolExtensions.swift */; };
 		4A7F12662C3F29F9005200F2 /* ModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12652C3F29F9005200F2 /* ModelHelper.swift */; };
 		4A7F12672C3F29F9005200F2 /* ModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12652C3F29F9005200F2 /* ModelHelper.swift */; };
+		4A7F12692C3F33A7005200F2 /* PassiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12682C3F33A7005200F2 /* PassiveView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,8 @@
 		4A7F125D2C3F1790005200F2 /* ActiveScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveScreen.swift; sourceTree = "<group>"; };
 		4A7F125F2C3F17DF005200F2 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4A7F12652C3F29F9005200F2 /* ModelHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelHelper.swift; sourceTree = "<group>"; };
+		4A7F12682C3F33A7005200F2 /* PassiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassiveView.swift; sourceTree = "<group>"; };
+		4A7F126A2C3F3E34005200F2 /* WorkingArticle.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = WorkingArticle.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +170,7 @@
 		4A7F11EA2C3AE282005200F2 = {
 			isa = PBXGroup;
 			children = (
+				4A7F126A2C3F3E34005200F2 /* WorkingArticle.md */,
 				4A7F12522C3AE2E4005200F2 /* SchemaAndModels */,
 				4A7F11F52C3AE282005200F2 /* Tyme */,
 				4A7F12062C3AE283005200F2 /* TymeTests */,
@@ -236,6 +240,7 @@
 				4A7F12242C3AE284005200F2 /* Preview Content */,
 				4A7F125D2C3F1790005200F2 /* ActiveScreen.swift */,
 				4A7F125F2C3F17DF005200F2 /* HomeView.swift */,
+				4A7F12682C3F33A7005200F2 /* PassiveView.swift */,
 			);
 			path = "Tyme Watch App";
 			sourceTree = "<group>";
@@ -538,6 +543,7 @@
 				4A7F12602C3F17DF005200F2 /* HomeView.swift in Sources */,
 				4A7F12672C3F29F9005200F2 /* ModelHelper.swift in Sources */,
 				4A7F12212C3AE283005200F2 /* ContentView.swift in Sources */,
+				4A7F12692C3F33A7005200F2 /* PassiveView.swift in Sources */,
 				4A7F121F2C3AE283005200F2 /* TymeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
