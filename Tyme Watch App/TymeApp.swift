@@ -15,6 +15,6 @@ struct Tyme_Watch_AppApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(ModelHelper.getBasicContainer())
+        .modelContainer(ModelHelper.getTestContainer())
     }
 }
