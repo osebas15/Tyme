@@ -25,7 +25,7 @@ enum Activity0_0_0: VersionedSchema {
         var previous: Activity?
         
         @Relationship(deleteRule: .cascade, inverse: \Activity.parent)
-        var subActivities: [Activity]?
+        var subActivities: [Activity]
         var parent: Activity?
         
         var name: String?
@@ -39,7 +39,7 @@ enum Activity0_0_0: VersionedSchema {
         
         init(
             next: Activity? = nil,
-            subActivities: [Activity]? = [],
+            subActivities: [Activity] = [],
             timeToComplete: TimeInterval? = nil,
             name: String? = nil,
             detail: String? = nil,
