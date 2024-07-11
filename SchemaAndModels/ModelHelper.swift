@@ -36,6 +36,14 @@ struct ModelHelper {
     
     
     static func getTestContainer() -> ModelContainer {
-        return getBasicContainer()
+        var basicContainer = getBasicContainer()
+        
+        for activity in Activity.getDummyActivities(){
+            Task{
+                basicContainer.mainContext.insert(activity)
+            }
+        }
+        
+        return basicContainer
     }
 }
