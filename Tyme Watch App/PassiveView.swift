@@ -8,11 +8,23 @@
 import SwiftUI
 
 struct PassiveView: View {
+    var activity: Activity
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text("To Do")
+           // NavigationStack{
+                List{
+                    ForEach(activity.subActivities){ activity in
+                        //NavigationLink(destination: ActiveScreen(activity: activity)) {
+                            Text(activity.name!)
+                        //}
+                    }
+                }
+            //}
+        }
     }
 }
 
 #Preview {
-    PassiveView()
+    PassiveView(activity: Activity.getDummyActivities()[0])
 }
