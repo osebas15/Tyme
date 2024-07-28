@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct TymeApp: App {
+    var sharedModelContainer: ModelContainer = ModelHelper.getTestContainer()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(sharedModelContainer)
     }
 }

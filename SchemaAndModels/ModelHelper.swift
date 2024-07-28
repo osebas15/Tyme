@@ -8,13 +8,12 @@
 import Foundation
 import SwiftData
 
-@MainActor
 struct ModelHelper {
-    static func getBasicContainer() -> ModelContainer {
+    nonisolated static func getBasicContainer() -> ModelContainer {
         let schema = Schema([
-            Activity.self
+            ActivityClass.self
         ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
 
         var modelContainer: ModelContainer?
         do {
@@ -33,16 +32,10 @@ struct ModelHelper {
         return modelContainer
     }
     
-    
-    
-    static func getTestContainer() -> ModelContainer {
-        var basicContainer = getBasicContainer()
+    nonisolated static func getTestContainer() -> ModelContainer {
+        let basicContainer = getBasicContainer()
         
-        for activity in Activity.getDummyActivities(){
-            Task{
-                basicContainer.mainContext.insert(activity)
-            }
-        }
+        let _ = ActivityClass.getSwissBurgerRecepie(insertIntoContainer: basicContainer)
         
         return basicContainer
     }

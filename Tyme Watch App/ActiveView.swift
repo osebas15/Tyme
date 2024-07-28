@@ -7,13 +7,16 @@
 
 import SwiftUI
 
-struct ActiveScreen: View {
-    var activity: Activity
+struct ActiveView: View {
+    var activity: ActivityClass
     var body: some View {
         VStack{
             Text(activity.name!)
             Spacer()
-            Text(activity.detail!)
+            if let detail = activity.detail{
+                Text(detail)
+            }
+            
             Button("done"){
                 print("done")
             }
@@ -22,5 +25,5 @@ struct ActiveScreen: View {
 }
 
 #Preview {
-    ActiveScreen(activity: Activity.getDummyActivities()[0])
+    ActiveView(activity: ActivityClass.getDummyActivities()[0])
 }

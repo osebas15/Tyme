@@ -8,23 +8,14 @@
 import SwiftUI
 
 struct PassiveView: View {
-    var activity: Activity
+    var activity: ActivityClass
     var body: some View {
         VStack {
-            Text("To Do")
-           // NavigationStack{
-                List{
-                    ForEach(activity.subActivities){ activity in
-                        //NavigationLink(destination: ActiveScreen(activity: activity)) {
-                            Text(activity.name!)
-                        //}
-                    }
-                }
-            //}
+            Text("\(activity)")//.subActivities.count)")
         }
     }
 }
 
 #Preview {
-    PassiveView(activity: Activity.getDummyActivities()[0])
+    PassiveView(activity: ActivityClass.getDummyActivities()[0])
 }
