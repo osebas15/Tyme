@@ -9,16 +9,16 @@ import SwiftUI
 import SwiftData
 
 struct ListView: View {
-    @Query(filter: #Predicate<ActivityClass>{ act in
-        act.parent == nil
-    }) var activityClasses: [ActivityClass]
+    
+    let activityObjs : [ActivityObject]
+
     var body: some View {
         VStack{
             NavigationStack{
                 List{
-                    ForEach(activityClasses){ activity in
+                    ForEach(activityObjs){ activity in
                         NavigationLink(destination: ActiveView(activity: activity)) {
-                            Text(activity.name!)
+                            //Text(activity.name!)
                         }
                     }
                 }
@@ -31,7 +31,8 @@ struct ListView: View {
         <#function body#>
     }*/
 }
-
+/*
 #Preview {
     ListView()
 }
+*/

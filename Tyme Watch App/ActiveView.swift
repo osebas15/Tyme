@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct ActiveView: View {
-    var activity: ActivityClass
+    var activity: ActivityObject
     var body: some View {
         VStack{
-            Text(activity.name!)
+            Text(activity.activityClass.name!)
             Spacer()
-            if let detail = activity.detail{
+            if let detail = activity.activityClass.detail{
                 Text(detail)
             }
             
@@ -23,7 +23,8 @@ struct ActiveView: View {
         }
     }
 }
-
+/*
 #Preview {
     ActiveView(activity: ActivityClass.getDummyActivities()[0])
 }
+*/
