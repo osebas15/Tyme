@@ -28,7 +28,7 @@ enum ActivityClass0_0_0: VersionedSchema {
         var subActivities: [ActivityClass]
         var parent: ActivityClass?
         
-        //var objects: [Activi]
+        @Relationship(deleteRule: .cascade, inverse: \ActivityObject.activityClass) var objects: [ActivityObject] = []
         
         var name: String?
         var detail: String?

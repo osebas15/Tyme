@@ -18,17 +18,23 @@ enum ActivityObject0_0_0: VersionedSchema {
     @Model
     class ActivityObject: Identifiable {
         
+        @Attribute(.unique) let id = UUID()
+        
         @Transient var creationDate : Date? {
             get {
                 return onOffTimes?.first?.start
             }
         }
+        
         var completionDate: Date?
         var onOffTimes: [TimeRange]?
+        @Relationship var activityClass : ActivityClass
         
-        init(completionDate: Date? = nil, onOffTimes: [TimeRange]? = nil) {
+        
+        init(completionDate: Date? = nil, onOffTimes: [TimeRange]? = nil, activityClass: ActivityClass) {
             self.completionDate = completionDate
             self.onOffTimes = onOffTimes
+            self.activityClass = activityClass
         }
     }
 }

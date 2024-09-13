@@ -69,7 +69,7 @@ extension ActivityClass {
             // Gather Ingredients
             let gatherIngredients = ActivityClass()
             gatherIngredients.name = "Gather ingredients"
-            gatherIngredients.subActivities = [
+            /*gatherIngredients.subActivities = [
                 ActivityClass(name: "Buns"),
                 ActivityClass(name: "Ground beef"),
                 ActivityClass(name: "Mushrooms"),
@@ -78,7 +78,7 @@ extension ActivityClass {
                 ActivityClass(name: "Salt"),
                 ActivityClass(name: "Pepper")
             ]
-            
+            */
             // Form patty and season with salt and pepper
             let formPatty = ActivityClass()
             formPatty.name = "Form patty and season with salt and pepper"
@@ -140,7 +140,7 @@ extension ActivityClass {
             let placeMushrooms = ActivityClass()
             placeMushrooms.name = "Place mushrooms on burger, Enjoy!!!"
             
-            swissBurgerRecepie = [swissBurger] + swissBurger.subActivities
+            swissBurgerRecepie = [swissBurger]// + swissBurger.subActivities
             
             if let container = container {
                 ActivityClass.noDupInsert(container: container, toInsert: swissBurgerRecepie!)
