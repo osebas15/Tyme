@@ -189,6 +189,14 @@
 			path = ActivityClass;
 			sourceTree = "<group>";
 		};
+		4A44738D2CB7541D00C07982 /* ActivityObject */ = {
+			isa = PBXGroup;
+			children = (
+				4A44738A2CB74CAD00C07982 /* ActiveActivitiesView.swift */,
+			);
+			path = ActivityObject;
+			sourceTree = "<group>";
+		};
 		4A6366A62C8A42E300F372BF /* Activity */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,10 +238,10 @@
 		4A7F11F52C3AE282005200F2 /* Tyme */ = {
 			isa = PBXGroup;
 			children = (
+				4A44738D2CB7541D00C07982 /* ActivityObject */,
 				4A44738C2CB753D200C07982 /* ActivityClass */,
 				4A7F11F62C3AE282005200F2 /* TymeApp.swift */,
 				4A7F11F82C3AE282005200F2 /* ContentView.swift */,
-				4A44738A2CB74CAD00C07982 /* ActiveActivitiesView.swift */,
 				4A7F11FA2C3AE283005200F2 /* Assets.xcassets */,
 				4A7F11FC2C3AE283005200F2 /* Preview Content */,
 			);
