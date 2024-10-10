@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ActivityCellFull: View {
+    
     var activity: ActivityObject
     
     var totalTime: TimeInterval?{
@@ -26,7 +28,13 @@ struct ActivityCellFull: View {
         }
     }
 }
-
+/*
 #Preview {
-    ActivityCellFull()
+    let actClass = ActivityClass(name: "test")
+
+    let activity = ActivityObject(activityClass: actClass)
+    
+    return ActivityCellFull(activity: activity)
+
 }
+*/

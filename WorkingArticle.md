@@ -6,13 +6,17 @@ an app to make and use timed todo list and recepies
 
 ## Overview
 
-pattern for loading dummydata
-- create an in memory only container for preview data
-
-make workable state for my burger recepie
-
+- make workable state for my burger recepie
+    make small activity cells
+    add toggle to NewActivityListView for small vs full activity cells
+    add next functionality
+    timing functionality
+    draw multiple activities functionality
 
 ### Going through Swiss burger
+make next functionality for:
+- iOS
+- WatchOS
 
 #### Multi Selection Screen
 

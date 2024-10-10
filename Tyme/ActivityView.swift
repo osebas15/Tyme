@@ -4,15 +4,24 @@
 //
 //  Created by Sebastian Aguirre on 8/24/24.
 //
+// 
 
 import SwiftUI
+import SwiftData
 
 struct ActivityView: View {
+    @Query(filter: #Predicate<ActivityClass>{ act in
+        true//act.parent == nil
+    }) var activityClasses: [ActivityClass]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List(activityClasses){activity in
+            ActivityClassFullCellView(activity: activity)
+        }
     }
 }
-
+/*
 #Preview {
     ActivityView()
 }
+*/

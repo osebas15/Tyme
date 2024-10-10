@@ -18,28 +18,27 @@ enum ActivityClass0_0_0: VersionedSchema {
     @Model
     class ActivityClass: Identifiable{
         
-        @Attribute(.unique) let id = UUID()
+        @Attribute(.unique) var id = UUID()
         
         @Relationship(deleteRule: .noAction, inverse: \ActivityClass.previous)
         var next: ActivityClass?
         var previous: ActivityClass?
         
-        @Relationship(deleteRule: .cascade, inverse: \ActivityClass.parent)
         var subActivities: [ActivityClass]
-        var parent: ActivityClass?
         
         @Relationship(deleteRule: .cascade, inverse: \ActivityObject.activityClass) var objects: [ActivityObject] = []
         
-        var name: String?
+        var name: String
         var detail: String?
 
         var timeToComplete: TimeInterval?
         
         init(
+            name: String,
             next: ActivityClass? = nil,
             subActivities: [ActivityClass] = [],
+            parents: [ActivityClass] = [],
             timeToComplete: TimeInterval? = nil,
-            name: String? = nil,
             detail: String? = nil
         ){
             self.name = name

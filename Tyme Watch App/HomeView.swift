@@ -12,7 +12,7 @@ struct HomeView: View {
     @Environment(\.modelContext) private var context
     
     @Query(filter: #Predicate<ActivityClass>{ act in
-        act.parent == nil
+        true//act.parents == nil
     }) var activityClasses: [ActivityClass]
     
     var body: some View {
