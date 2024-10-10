@@ -11,6 +11,8 @@
 		4A4473872CAB3D8900C07982 /* ActivityClassFullCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4473862CAB3D8900C07982 /* ActivityClassFullCellView.swift */; };
 		4A4473892CB5AB1100C07982 /* ActivityClassSmallCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4473882CB5AB1100C07982 /* ActivityClassSmallCellView.swift */; };
 		4A44738B2CB74CAD00C07982 /* ActiveActivitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A44738A2CB74CAD00C07982 /* ActiveActivitiesView.swift */; };
+		4A44738F2CB7551E00C07982 /* AppStateSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A44738E2CB7551E00C07982 /* AppStateSchema.swift */; };
+		4A4473902CB7551E00C07982 /* AppStateSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A44738E2CB7551E00C07982 /* AppStateSchema.swift */; };
 		4A7F11F72C3AE282005200F2 /* TymeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F11F62C3AE282005200F2 /* TymeApp.swift */; };
 		4A7F11F92C3AE282005200F2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F11F82C3AE282005200F2 /* ContentView.swift */; };
 		4A7F11FB2C3AE283005200F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A7F11FA2C3AE283005200F2 /* Assets.xcassets */; };
@@ -100,6 +102,7 @@
 		4A4473862CAB3D8900C07982 /* ActivityClassFullCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityClassFullCellView.swift; sourceTree = "<group>"; };
 		4A4473882CB5AB1100C07982 /* ActivityClassSmallCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityClassSmallCellView.swift; sourceTree = "<group>"; };
 		4A44738A2CB74CAD00C07982 /* ActiveActivitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveActivitiesView.swift; sourceTree = "<group>"; };
+		4A44738E2CB7551E00C07982 /* AppStateSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateSchema.swift; sourceTree = "<group>"; };
 		4A7F11F32C3AE282005200F2 /* Tyme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tyme.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A7F11F62C3AE282005200F2 /* TymeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TymeApp.swift; sourceTree = "<group>"; };
 		4A7F11F82C3AE282005200F2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -320,6 +323,7 @@
 				4A6366A62C8A42E300F372BF /* Activity */,
 				4A7F12552C3AEB3F005200F2 /* TimeRange.swift */,
 				4A7F12652C3F29F9005200F2 /* ModelHelper.swift */,
+				4A44738E2CB7551E00C07982 /* AppStateSchema.swift */,
 			);
 			path = SchemaAndModels;
 			sourceTree = "<group>";
@@ -556,6 +560,7 @@
 			files = (
 				4A4473852CAB3B8A00C07982 /* NewActivityListView.swift in Sources */,
 				4A90D7A02C5D9C400036BAED /* ActivityObjectSchema.swift in Sources */,
+				4A4473902CB7551E00C07982 /* AppStateSchema.swift in Sources */,
 				4A7F12542C3AE30E005200F2 /* ActivityClassSchema.swift in Sources */,
 				4A7F11F92C3AE282005200F2 /* ContentView.swift in Sources */,
 				4A44738B2CB74CAD00C07982 /* ActiveActivitiesView.swift in Sources */,
@@ -593,6 +598,7 @@
 				4A7F12D72C55D6CE005200F2 /* ActivityObjectSchema.swift in Sources */,
 				4A7F12622C3F18BF005200F2 /* ActivityClassSchema.swift in Sources */,
 				4A7F12D52C55D2D8005200F2 /* ActivityLink.swift in Sources */,
+				4A44738F2CB7551E00C07982 /* AppStateSchema.swift in Sources */,
 				4A7F12632C3F18BF005200F2 /* ActivityDummyData.swift in Sources */,
 				4A7F125E2C3F1790005200F2 /* ActiveView.swift in Sources */,
 				4A7F12602C3F17DF005200F2 /* ListView.swift in Sources */,
