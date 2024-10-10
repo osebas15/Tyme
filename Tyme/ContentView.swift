@@ -15,7 +15,12 @@ struct ContentView: View {
         NavigationStack{
             VStack {
                 if appState.count > 0 {
-                    ActiveActivitiesView(activeActivities: appState[0].activeActivities)
+                    if appState[0].activeActivities.isEmpty{
+                        NewActivityListView()
+                    }
+                    else {
+                        ActiveActivitiesView(activeActivities: appState[0].activeActivities)
+                    }
                 }
             }
         }
