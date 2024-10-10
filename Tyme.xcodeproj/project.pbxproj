@@ -179,6 +179,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A44738C2CB753D200C07982 /* ActivityClass */ = {
+			isa = PBXGroup;
+			children = (
+				4A4473842CAB3B8A00C07982 /* NewActivityListView.swift */,
+				4A4473862CAB3D8900C07982 /* ActivityClassFullCellView.swift */,
+				4A4473882CB5AB1100C07982 /* ActivityClassSmallCellView.swift */,
+			);
+			path = ActivityClass;
+			sourceTree = "<group>";
+		};
 		4A6366A62C8A42E300F372BF /* Activity */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,12 +230,10 @@
 		4A7F11F52C3AE282005200F2 /* Tyme */ = {
 			isa = PBXGroup;
 			children = (
+				4A44738C2CB753D200C07982 /* ActivityClass */,
 				4A7F11F62C3AE282005200F2 /* TymeApp.swift */,
 				4A7F11F82C3AE282005200F2 /* ContentView.swift */,
-				4A4473842CAB3B8A00C07982 /* NewActivityListView.swift */,
 				4A44738A2CB74CAD00C07982 /* ActiveActivitiesView.swift */,
-				4A4473862CAB3D8900C07982 /* ActivityClassFullCellView.swift */,
-				4A4473882CB5AB1100C07982 /* ActivityClassSmallCellView.swift */,
 				4A7F11FA2C3AE283005200F2 /* Assets.xcassets */,
 				4A7F11FC2C3AE283005200F2 /* Preview Content */,
 			);
