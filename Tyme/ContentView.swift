@@ -6,13 +6,17 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
+    @Query(filter: ModelHelper.appStatePredicate) var appState: [AppState]
     
     var body: some View {
         NavigationStack{
             VStack {
-                NewActivityListView()
+                if appState.count > 0 {
+                    ActiveActivitiesView(activeActivities: appState[0].activeActivities)
+                }
             }
         }
     }

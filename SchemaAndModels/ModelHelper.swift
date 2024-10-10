@@ -10,9 +10,11 @@ import SwiftData
 
 struct ModelHelper {
     
-    static let homePredicate = #Predicate <ActivityClass> { activity in
-        return activity.name == "Home"
+    static let homePredicate = #Predicate<ActivityClass>{ activity in
+        activity.name == "Home"
     }
+    
+    static let appStatePredicate = #Predicate<AppState>{_ in true}
     
     nonisolated static func ifMissingCreateHomeActivity(container: ModelContainer){
         //check for activityClass and add if missing
@@ -28,9 +30,23 @@ struct ModelHelper {
         }
     }
     
+    nonisolated static func ifMissingCreateAppState(container: ModelContainer){
+        Task {@MainActor in
+            var fd = FetchDescriptor(predicate: appStatePredicate)
+            fd.fetchLimit = 1
+            let result = try? container.mainContext.fetch(fd)
+            
+            if (result?.isEmpty ?? false){
+                let appState = AppState()
+                container.mainContext.insert(appState)
+            }
+        }
+    }
+    
     nonisolated static func getBasicContainer() -> ModelContainer {
         let schema = Schema([
-            ActivityClass.self
+            ActivityClass.self,
+            AppState.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
 
@@ -48,8 +64,9 @@ struct ModelHelper {
             fatalError("Could not create ModelContainer")
         }
         
-        //make sure modelContainer contains home activity
         ifMissingCreateHomeActivity(container: modelContainer)
+        ifMissingCreateAppState(container: modelContainer)
+        
         return modelContainer
     }
     

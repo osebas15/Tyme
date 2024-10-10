@@ -17,10 +17,10 @@ enum AppState0_0_0: VersionedSchema {
     
     @Model
     class AppState {
-        var ActiveActivities: [ActivityObject]
+        var activeActivities: [ActivityObject]
         
-        init(ActiveActivities: [ActivityObject] = []) {
-            self.ActiveActivities = ActiveActivities
+        init(activeActivities: [ActivityObject] = []) {
+            self.activeActivities = activeActivities
         }
     }
 }

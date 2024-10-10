@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct ActiveActivitiesView: View {
+    var activeActivities: [ActivityObject]
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("activeActivities count:\(activeActivities.count)")
     }
 }
-
+/*
 #Preview {
     ActiveActivitiesView()
 }
+*/
