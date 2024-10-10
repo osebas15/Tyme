@@ -145,7 +145,7 @@ extension ActivityClass {
                 ActivityClass.noDupInsert(container: container, toInsert: swissBurgerRecepie!)
                 
                 Task {@MainActor in
-                    var fd = FetchDescriptor(predicate: ModelHelper.homePredicate)
+                    var fd = FetchDescriptor(predicate: ModelHelper.shared.homePredicate)
                     fd.fetchLimit = 1
                     let result = try? container.mainContext.fetch(fd)
                     if (!(result?.isEmpty ?? true)){

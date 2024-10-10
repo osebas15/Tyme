@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @Query(filter: ModelHelper.appStatePredicate) var appState: [AppState]
+    @Query(filter: ModelHelper.shared.appStatePredicate) var appState: [AppState]
     
     var body: some View {
         NavigationStack{

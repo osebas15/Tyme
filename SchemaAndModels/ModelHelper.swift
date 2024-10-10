@@ -10,13 +10,15 @@ import SwiftData
 
 struct ModelHelper {
     
-    static let homePredicate = #Predicate<ActivityClass>{ activity in
+    static let shared = ModelHelper()
+    
+    let homePredicate = #Predicate<ActivityClass>{ activity in
         activity.name == "Home"
     }
     
-    static let appStatePredicate = #Predicate<AppState>{_ in true}
+    let appStatePredicate = #Predicate<AppState>{_ in true}
     
-    nonisolated static func ifMissingCreateHomeActivity(container: ModelContainer){
+    nonisolated func ifMissingCreateHomeActivity(container: ModelContainer){
         //check for activityClass and add if missing
         Task {@MainActor in
             var fd = FetchDescriptor(predicate: homePredicate)
@@ -30,7 +32,7 @@ struct ModelHelper {
         }
     }
     
-    nonisolated static func ifMissingCreateAppState(container: ModelContainer){
+    nonisolated func ifMissingCreateAppState(container: ModelContainer){
         Task {@MainActor in
             var fd = FetchDescriptor(predicate: appStatePredicate)
             fd.fetchLimit = 1
@@ -43,7 +45,7 @@ struct ModelHelper {
         }
     }
     
-    nonisolated static func getBasicContainer() -> ModelContainer {
+    nonisolated func getBasicContainer() -> ModelContainer {
         let schema = Schema([
             ActivityClass.self,
             AppState.self
@@ -70,7 +72,7 @@ struct ModelHelper {
         return modelContainer
     }
     
-    nonisolated static func getTestContainer() -> ModelContainer {
+    nonisolated func getTestContainer() -> ModelContainer {
         let basicContainer = getBasicContainer()
         
         let _ = ActivityClass.getSwissBurgerRecepie(insertIntoContainer: basicContainer)

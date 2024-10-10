@@ -7,7 +7,6 @@ an app to make and use timed todo list and recepies
 ## Overview
 
 - make workable state for my burger recepie
-    if 0 activityobjects load NewActivityListView
     add create activityobject functionality
     add next functionality
     timing functionality
