@@ -40,9 +40,7 @@
 		4A7F12D52C55D2D8005200F2 /* ActivityLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12D42C55D2D8005200F2 /* ActivityLink.swift */; };
 		4A7F12D72C55D6CE005200F2 /* ActivityObjectSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12D62C55D6CE005200F2 /* ActivityObjectSchema.swift */; };
 		4A7F12D92C5AD4ED005200F2 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12D82C5AD4ED005200F2 /* HomeView.swift */; };
-		4A8B04B32C7A2335009400BE /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8B04B22C7A2335009400BE /* ActivityView.swift */; };
 		4A90D7A02C5D9C400036BAED /* ActivityObjectSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12D62C55D6CE005200F2 /* ActivityObjectSchema.swift */; };
-		4AD57E262C9636110007DA0A /* ActivityCellFull.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD57E252C9636110007DA0A /* ActivityCellFull.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,8 +131,6 @@
 		4A7F12D42C55D2D8005200F2 /* ActivityLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLink.swift; sourceTree = "<group>"; };
 		4A7F12D62C55D6CE005200F2 /* ActivityObjectSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityObjectSchema.swift; sourceTree = "<group>"; };
 		4A7F12D82C5AD4ED005200F2 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		4A8B04B22C7A2335009400BE /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
-		4AD57E252C9636110007DA0A /* ActivityCellFull.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCellFull.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,8 +222,6 @@
 			children = (
 				4A7F11F62C3AE282005200F2 /* TymeApp.swift */,
 				4A7F11F82C3AE282005200F2 /* ContentView.swift */,
-				4A8B04B22C7A2335009400BE /* ActivityView.swift */,
-				4AD57E252C9636110007DA0A /* ActivityCellFull.swift */,
 				4A4473842CAB3B8A00C07982 /* NewActivityListView.swift */,
 				4A44738A2CB74CAD00C07982 /* ActiveActivitiesView.swift */,
 				4A4473862CAB3D8900C07982 /* ActivityClassFullCellView.swift */,
@@ -551,8 +545,6 @@
 				4A44738B2CB74CAD00C07982 /* ActiveActivitiesView.swift in Sources */,
 				4A7F12562C3AEB3F005200F2 /* TimeRange.swift in Sources */,
 				4A7F12662C3F29F9005200F2 /* ModelHelper.swift in Sources */,
-				4A8B04B32C7A2335009400BE /* ActivityView.swift in Sources */,
-				4AD57E262C9636110007DA0A /* ActivityCellFull.swift in Sources */,
 				4A4473892CB5AB1100C07982 /* ActivityClassSmallCellView.swift in Sources */,
 				4A4473872CAB3D8900C07982 /* ActivityClassFullCellView.swift in Sources */,
 				4A7F12582C3C55A2005200F2 /* ActivityDummyData.swift in Sources */,
