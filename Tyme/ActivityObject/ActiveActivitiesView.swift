@@ -10,7 +10,9 @@ import SwiftUI
 struct ActiveActivitiesView: View {
     var activeActivities: [ActivityObject]
     var body: some View {
-        Text("activeActivities count:\(activeActivities.count)")
+        List(activeActivities){
+            ActivityObjectSmallCellView(activityObject: $0)
+        }
     }
 }
 /*

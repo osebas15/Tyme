@@ -18,7 +18,7 @@ enum ActivityObject0_0_0: VersionedSchema {
     @Model
     class ActivityObject: Identifiable {
         
-        @Attribute(.unique) let id = UUID()
+        @Attribute(.unique) var id = UUID()
         
         @Transient var creationDate : Date? {
             get {
@@ -35,6 +35,19 @@ enum ActivityObject0_0_0: VersionedSchema {
             self.completionDate = completionDate
             self.onOffTimes = onOffTimes
             self.activityClass = activityClass
+        }
+    }
+}
+
+
+extension ActivityObject {
+    func done(context: ModelContext, appState: AppState){
+        if let activityClassPosition = activityClass.subActivities.firstIndex(where: { $0.id == self.id }){
+            activityClass.subActivities.remove(at: activityClassPosition)
+        }
+        
+        if let appstatePosition = appState.activeActivities.firstIndex(where: { $0.id == self.id }){
+            appState.activeActivities.remove(at: appstatePosition)
         }
     }
 }
