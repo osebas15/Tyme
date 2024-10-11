@@ -24,6 +24,7 @@ struct ContentView: View {
                 }
             }
         }
+        .environment(\.appState, appState.count > 0 ? appState[0] : AppState())
     }
 }
 

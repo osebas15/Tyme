@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftData
+import SwiftUI
 
 typealias AppState = AppState0_0_0.AppState
 
@@ -21,6 +22,21 @@ enum AppState0_0_0: VersionedSchema {
         
         init(activeActivities: [ActivityObject] = []) {
             self.activeActivities = activeActivities
+        }
+    }
+}
+
+private struct AppStateKey: EnvironmentKey {
+    static let defaultValue = AppState()
+}
+
+extension EnvironmentValues{
+    var appState: AppState{
+        get{
+            self[AppStateKey.self]
+        }
+        set{
+            self[AppStateKey.self] = newValue
         }
     }
 }
