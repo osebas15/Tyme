@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ActivityClassSmallCellView: View {
+    @Environment(\.modelContext) private var context
+    @Environment(\.appState) private var appState
     var activityClass: ActivityClass
     
     var body: some View {
@@ -17,9 +19,11 @@ struct ActivityClassSmallCellView: View {
             Button("Edit"){
                 print("edit pressed")
             }
+            .buttonStyle(.automatic)
             Button("Start"){
-                print("start pressed")
+                activityClass.start(context: context, appState: appState)
             }
+            .buttonStyle(.automatic)
         }
     }
 }

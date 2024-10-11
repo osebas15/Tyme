@@ -49,3 +49,17 @@ enum ActivityClass0_0_0: VersionedSchema {
         }
     }
 }
+
+
+extension ActivityClass {
+    func start(context: ModelContext, appState: AppState){
+        //create object
+        let newObject = ActivityObject(activityClass: self)
+        //insert and save
+        Task{ @MainActor in
+            context.insert(newObject)
+            appState.activeActivities.append(newObject)
+            try? context.save()
+        }
+    }
+}
