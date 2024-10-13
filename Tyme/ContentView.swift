@@ -10,7 +10,6 @@ import SwiftData
 
 struct ContentView: View {
     @Query(filter: ModelHelper.shared.homeObjectPredicate) var homeObjectResult: [ActivityObject]
-    
     var body: some View {
         NavigationStack{
             VStack {
@@ -24,7 +23,6 @@ struct ContentView: View {
                 }
             }
         }
-        //.environment(\.appState, homeObjectResult.count > 0 ? homeObjectResult : AppState())
     }
 }
 

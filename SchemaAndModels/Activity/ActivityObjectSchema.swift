@@ -20,12 +20,16 @@ enum ActivityObject0_0_0: VersionedSchema {
     class ActivityObject: Identifiable {
         
         @Attribute(.unique) var id = UUID()
-        var activityClass : ActivityClass
-        var parent: ActivityObject
         
+        @Relationship(
+            deleteRule: .nullify,
+            inverse: \ActivityObject.parent
+        ) var activeSubActivities: [ActivityObject]
+        var parent: ActivityObject?
+        
+        var activityClass : ActivityClass
         var completionDate: Date?
         var onOffTimes: [TimeRange]?
-        var activeSubActivities: [ActivityObject]
         
         @Transient var creationDate : Date? {
             get {
@@ -33,7 +37,12 @@ enum ActivityObject0_0_0: VersionedSchema {
             }
         }
         
-        init(activityClass: ActivityClass, completionDate: Date? = nil, onOffTimes: [TimeRange]? = nil, activeSubActivities: [ActivityObject] = []) {
+        init(
+            activityClass: ActivityClass,
+            completionDate: Date? = nil,
+            onOffTimes: [TimeRange]? = nil,
+            activeSubActivities: [ActivityObject] = []
+        ) {
             self.activityClass = activityClass
             self.completionDate = completionDate
             self.onOffTimes = onOffTimes
