@@ -11,9 +11,9 @@ struct ActiveView: View {
     var activity: ActivityObject
     var body: some View {
         VStack{
-            Text(activity.activityClass.name)
+            Text(activity.activityClass?.name ?? "activityclass error")
             Spacer()
-            if let detail = activity.activityClass.detail{
+            if let detail = activity.activityClass?.detail {
                 Text(detail)
             }
             

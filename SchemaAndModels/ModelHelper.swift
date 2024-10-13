@@ -17,7 +17,7 @@ struct ModelHelper {
     }
     
     let homeObjectPredicate = #Predicate<ActivityObject>{ activity in
-        activity.activityClass.name == "Home"
+        return (activity.activityClass?.name == "Home") == true
     }
     
     nonisolated func ifMissingCreateHomeObject(container: ModelContainer){

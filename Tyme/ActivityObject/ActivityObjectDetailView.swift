@@ -11,7 +11,7 @@ struct ActivityObjectDetailView: View {
     var activityObject: ActivityObject
     var body: some View {
         VStack{
-            if let detail = activityObject.activityClass.detail {
+            if let detail = activityObject.activityClass?.detail {
                 Text(detail)
             }
             Text("steps")

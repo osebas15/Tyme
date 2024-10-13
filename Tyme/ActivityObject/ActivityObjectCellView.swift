@@ -17,7 +17,7 @@ struct ActivityObjectCellView: View {
     
     var body: some View {
         VStack{
-            Text(activityObject.activityClass.name)
+            Text(activityObject.activityClass?.name ?? "activityclass error")
             HStack{
                 Button("show detail"){
                     print("toggle detail")

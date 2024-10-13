@@ -27,7 +27,7 @@ enum ActivityObject0_0_0: VersionedSchema {
         ) var activeSubActivities: [ActivityObject]
         var parent: ActivityObject?
         
-        var activityClass : ActivityClass
+        var activityClass : ActivityClass?
         var completionDate: Date?
         var onOffTimes: [TimeRange]?
         
