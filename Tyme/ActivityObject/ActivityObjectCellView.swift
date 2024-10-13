@@ -22,13 +22,15 @@ struct ActivityObjectCellView: View {
                 Button("show detail"){
                     print("toggle detail")
                 }
+                .buttonStyle(.automatic)
                 Button("pause"){
                     print("pause")
                 }
+                .buttonStyle(.automatic)
                 Button("done"){
-                    //TODO
-                    //activityObject.done(context: context, appState: appState)
+                    activityObject.done(context: context)
                 }
+                .buttonStyle(.automatic)
             }
         }
     }

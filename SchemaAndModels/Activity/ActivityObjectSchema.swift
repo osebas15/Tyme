@@ -63,8 +63,10 @@ extension ActivityObject {
         }
     }
     
-    func done(context: ModelContext, parentObject: ActivityObject){
-        parentObject.removeSubActivity(context: context, activity: self)
+    func done(context: ModelContext){
+        if let parent = parent{
+            parent.removeSubActivity(context: context, activity: self)
+        }
     }
 }
 
