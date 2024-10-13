@@ -20,24 +20,26 @@ enum ActivityClass0_0_0: VersionedSchema {
         
         @Attribute(.unique) var id = UUID()
         
-        @Relationship(deleteRule: .noAction, inverse: \ActivityClass.previous)
-        var next: ActivityClass?
+        @Relationship(
+            deleteRule: .cascade,
+            inverse: \ActivityObject.activityClass
+        ) var objects: [ActivityObject] = []
+        
+        @Relationship(
+            deleteRule: .nullify,
+            inverse: \ActivityClass.previous
+        ) var next: ActivityClass?
         var previous: ActivityClass?
         
         var subActivities: [ActivityClass]
-        
-        @Relationship(deleteRule: .cascade, inverse: \ActivityObject.activityClass) var objects: [ActivityObject] = []
-        
         var name: String
         var detail: String?
-
         var timeToComplete: TimeInterval?
         
         init(
             name: String,
             next: ActivityClass? = nil,
             subActivities: [ActivityClass] = [],
-            parents: [ActivityClass] = [],
             timeToComplete: TimeInterval? = nil,
             detail: String? = nil
         ){
@@ -50,15 +52,18 @@ enum ActivityClass0_0_0: VersionedSchema {
     }
 }
 
+extension ActivityClass {
+    static var error = ActivityClass(name: "error")
+}
 
 extension ActivityClass {
-    func start(context: ModelContext, appState: AppState){
+    func start(context: ModelContext, parentObject: ActivityObject){
         //create object
         let newObject = ActivityObject(activityClass: self)
         //insert and save
         Task{ @MainActor in
             context.insert(newObject)
-            appState.activeActivities.append(newObject)
+            parentObject.activeSubActivities.append(newObject)
             try? context.save()
         }
     }

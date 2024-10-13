@@ -10,14 +10,24 @@ import SwiftUI
 struct ActivityObjectSmallCellView: View {
     @Environment(\.modelContext) var context
     @Environment(\.appState) var appState
+    
+    @State var showingDetail: Bool
+    
     let activityObject: ActivityObject
     
     var body: some View {
-        HStack{
+        VStack{
             Text(activityObject.activityClass.name)
-            Spacer()
-            Button("done"){
-                activityObject.done(context: context, appState: appState)
+            HStack{
+                Button("show detail"){
+                    print("toggle detail")
+                }
+                Button("pause"){
+                    print("pause")
+                }
+                Button("done"){
+                    activityObject.done(context: context, appState: appState)
+                }
             }
         }
     }
