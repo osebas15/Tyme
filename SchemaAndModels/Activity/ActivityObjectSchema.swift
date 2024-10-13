@@ -56,10 +56,15 @@ extension ActivityObject {
 }
 
 extension ActivityObject {
-    func done(context: ModelContext, parentObject: ActivityObject){
-        if let appstatePosition = parentObject.activeSubActivities.firstIndex(where: { $0.id == self.id }){
-            parentObject.activeSubActivities.remove(at: appstatePosition)
+    func removeSubActivity(context: ModelContext, activity: ActivityObject){
+        if let position = activeSubActivities.firstIndex(where: { $0.id == activity.id }){
+            activeSubActivities.remove(at: position)
+            context.delete(activity)
         }
+    }
+    
+    func done(context: ModelContext, parentObject: ActivityObject){
+        parentObject.removeSubActivity(context: context, activity: self)
     }
 }
 
