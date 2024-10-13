@@ -62,6 +62,7 @@ extension ActivityClass {
             // Create dummy data for making a Swiss burger ActivityClass
             let swissBurger = ActivityClass(name: "Swiss Burger Recepie")
             swissBurger.detail = "make a delicous homemade swiss burger \n /n by Sebastian Aguirre"
+            swissBurger.isMainActivity = true
             
             // Gather Ingredients
             let gatherIngredients = ActivityClass(name: "Gather ingredients")

@@ -10,7 +10,7 @@ import SwiftData
 
 struct NewActivityListView: View {
     @Query(filter: ModelHelper.shared.homeObjectPredicate) var homeObject: [ActivityObject]
-    @Query(filter: #Predicate<ActivityClass>{_ in true } ) var allActivities: [ActivityClass]
+    @Query(filter: #Predicate<ActivityClass>{ $0.isMainActivity } ) var allActivities: [ActivityClass]
     
     var body: some View {
         if allActivities.count > 0 && homeObject.count > 0 {

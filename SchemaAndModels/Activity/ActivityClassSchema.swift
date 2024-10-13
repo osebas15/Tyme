@@ -36,18 +36,22 @@ enum ActivityClass0_0_0: VersionedSchema {
         var detail: String?
         var timeToComplete: TimeInterval?
         
+        var isMainActivity: Bool
+        
         init(
             name: String,
             next: ActivityClass? = nil,
             subActivities: [ActivityClass] = [],
             timeToComplete: TimeInterval? = nil,
-            detail: String? = nil
+            detail: String? = nil,
+            isMainActivity: Bool = false
         ){
             self.name = name
             self.detail = detail
             self.next = next
             self.subActivities = subActivities
             self.timeToComplete = timeToComplete
+            self.isMainActivity = isMainActivity
         }
     }
 }
