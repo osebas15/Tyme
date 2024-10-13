@@ -12,35 +12,38 @@ struct ModelHelper {
     
     static let shared = ModelHelper()
     
-    let homePredicate = #Predicate<ActivityClass>{ activity in
+    let homeActivityPredicate = #Predicate<ActivityClass>{ activity in
         activity.name == "Home"
     }
     
-    let appStatePredicate = #Predicate<AppState>{_ in true}
-    
-    nonisolated func ifMissingCreateHomeActivity(container: ModelContainer){
-        //check for activityClass and add if missing
-        Task {@MainActor in
-            var fd = FetchDescriptor(predicate: homePredicate)
-            fd.fetchLimit = 1
-            let result = try? container.mainContext.fetch(fd)
-            
-            if (result?.isEmpty ?? false){
-                let home = ActivityClass(name: "Home")
-                container.mainContext.insert(home)
-            }
-        }
+    let homeObjectPredicate = #Predicate<ActivityObject>{ activity in
+        activity.activityClass.name == "Home"
     }
     
-    nonisolated func ifMissingCreateAppState(container: ModelContainer){
+    nonisolated func ifMissingCreateHomeObject(container: ModelContainer){
+        //check for activityClass and add if missing
         Task {@MainActor in
-            var fd = FetchDescriptor(predicate: appStatePredicate)
+            var fd = FetchDescriptor(predicate: homeObjectPredicate)
             fd.fetchLimit = 1
             let result = try? container.mainContext.fetch(fd)
             
             if (result?.isEmpty ?? false){
-                let appState = AppState()
-                container.mainContext.insert(appState)
+                var homeClassFd = FetchDescriptor(predicate: homeActivityPredicate)
+                homeClassFd.fetchLimit = 1
+                let hcResult = try? container.mainContext.fetch(homeClassFd)
+                
+                var homeClass: ActivityClass?
+                
+                if (hcResult?.isEmpty ?? false){
+                    homeClass = ActivityClass(name: "Home")
+                    container.mainContext.insert(homeClass!)
+                }
+                else {
+                    homeClass = hcResult![0]
+                }
+                
+                let homeObject = ActivityObject(activityClass: homeClass!)
+                container.mainContext.insert(homeObject)
             }
         }
     }
@@ -48,7 +51,7 @@ struct ModelHelper {
     nonisolated func getBasicContainer() -> ModelContainer {
         let schema = Schema([
             ActivityClass.self,
-            AppState.self
+            ActivityObject.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
 
@@ -66,8 +69,7 @@ struct ModelHelper {
             fatalError("Could not create ModelContainer")
         }
         
-        ifMissingCreateHomeActivity(container: modelContainer)
-        ifMissingCreateAppState(container: modelContainer)
+        ifMissingCreateHomeObject(container: modelContainer)
         
         return modelContainer
     }

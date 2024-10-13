@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftData
+import SwiftUI
 
 typealias ActivityObject = ActivityObject0_0_0.ActivityObject
 
@@ -19,6 +20,12 @@ enum ActivityObject0_0_0: VersionedSchema {
     class ActivityObject: Identifiable {
         
         @Attribute(.unique) var id = UUID()
+        var activityClass : ActivityClass
+        var parent: ActivityObject
+        
+        var completionDate: Date?
+        var onOffTimes: [TimeRange]?
+        var activeSubActivities: [ActivityObject]
         
         @Transient var creationDate : Date? {
             get {
@@ -26,28 +33,38 @@ enum ActivityObject0_0_0: VersionedSchema {
             }
         }
         
-        var completionDate: Date?
-        var onOffTimes: [TimeRange]?
-        @Relationship var activityClass : ActivityClass
-        
-        
-        init(completionDate: Date? = nil, onOffTimes: [TimeRange]? = nil, activityClass: ActivityClass) {
+        init(activityClass: ActivityClass, completionDate: Date? = nil, onOffTimes: [TimeRange]? = nil, activeSubActivities: [ActivityObject] = []) {
+            self.activityClass = activityClass
             self.completionDate = completionDate
             self.onOffTimes = onOffTimes
-            self.activityClass = activityClass
+            self.activeSubActivities = activeSubActivities
         }
     }
 }
 
+extension ActivityObject {
+    static var error = ActivityObject(activityClass: ActivityClass.error)
+}
 
 extension ActivityObject {
-    func done(context: ModelContext, appState: AppState){
-        if let activityClassPosition = activityClass.subActivities.firstIndex(where: { $0.id == self.id }){
-            activityClass.subActivities.remove(at: activityClassPosition)
+    func done(context: ModelContext, parentObject: ActivityObject){
+        if let appstatePosition = parentObject.activeSubActivities.firstIndex(where: { $0.id == self.id }){
+            parentObject.activeSubActivities.remove(at: appstatePosition)
         }
-        
-        if let appstatePosition = appState.activeActivities.firstIndex(where: { $0.id == self.id }){
-            appState.activeActivities.remove(at: appstatePosition)
+    }
+}
+
+private struct HomeObjectKey: EnvironmentKey {
+    static let defaultValue = ActivityObject(activityClass: ActivityClass(name: "error"))
+}
+
+extension EnvironmentValues{
+    var homeObject: ActivityObject{
+        get{
+            self[HomeObjectKey.self]
+        }
+        set{
+            self[HomeObjectKey.self] = newValue
         }
     }
 }
