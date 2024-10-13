@@ -11,7 +11,7 @@ struct ActiveActivitiesView: View {
     var activeActivities: [ActivityObject]
     var body: some View {
         List(activeActivities){
-            ActivityObjectSmallCellView(activityObject: $0)
+            ActivityObjectCellView(activityObject: $0)
         }
     }
 }

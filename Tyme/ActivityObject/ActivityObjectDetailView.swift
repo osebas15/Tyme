@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct ActivityObjectDetailView: View {
+    var activityObject: ActivityObject
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            if let detail = activityObject.activityClass.detail {
+                Text(detail)
+            }
+            Text("steps")
+            /*List(activityObject.activityClass.subActivities){
+            }*/
+        }
     }
 }
-
+/*
 #Preview {
     ActivityObjectDetailView()
 }
+*/

@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct ActivityObjectSmallCellView: View {
+struct ActivityObjectCellView: View {
     @Environment(\.modelContext) var context
-    @Environment(\.appState) var appState
+    @Environment(\.homeObject) var homeObject
     
-    @State var showingDetail: Bool
+    @State var showingDetail: Bool = false
     
     let activityObject: ActivityObject
     
@@ -26,7 +26,8 @@ struct ActivityObjectSmallCellView: View {
                     print("pause")
                 }
                 Button("done"){
-                    activityObject.done(context: context, appState: appState)
+                    //TODO
+                    //activityObject.done(context: context, appState: appState)
                 }
             }
         }

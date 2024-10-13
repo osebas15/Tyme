@@ -9,22 +9,22 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @Query(filter: ModelHelper.shared.appStatePredicate) var appState: [AppState]
+    @Query(filter: ModelHelper.shared.homeObjectPredicate) var homeObjectResult: [ActivityObject]
     
     var body: some View {
         NavigationStack{
             VStack {
-                if appState.count > 0 {
-                    if appState[0].activeActivities.isEmpty{
+                if homeObjectResult.count > 0 {
+                    if homeObjectResult[0].activeSubActivities.isEmpty{
                         NewActivityListView()
                     }
                     else {
-                        ActiveActivitiesView(activeActivities: appState[0].activeActivities)
+                        ActiveActivitiesView(activeActivities: homeObjectResult[0].activeSubActivities)
                     }
                 }
             }
         }
-        .environment(\.appState, appState.count > 0 ? appState[0] : AppState())
+        //.environment(\.appState, homeObjectResult.count > 0 ? homeObjectResult : AppState())
     }
 }
 

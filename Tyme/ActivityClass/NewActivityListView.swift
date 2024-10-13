@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct NewActivityListView: View {
-    @Query(filter: ModelHelper.shared.homePredicate)
+    @Query(filter: ModelHelper.shared.homeActivityPredicate)
     var home: [ActivityClass]
     
     var body: some View {
