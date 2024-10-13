@@ -9,8 +9,9 @@ import SwiftUI
 
 struct ActivityClassSmallCellView: View {
     @Environment(\.modelContext) private var context
-    @Environment(\.homeObject) private var homeObject
+    
     var activityClass: ActivityClass
+    var parentObject: ActivityObject
     
     var body: some View {
         HStack{
@@ -21,8 +22,7 @@ struct ActivityClassSmallCellView: View {
             }
             .buttonStyle(.automatic)
             Button("Start"){
-                //TODO
-                //activityClass.start(context: context, appState: appState)
+                activityClass.start(context: context, parentObject: parentObject)
             }
             .buttonStyle(.automatic)
         }

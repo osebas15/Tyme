@@ -8,12 +8,6 @@ an app to make and use timed todo list and recepies
 
 - make workable state for my burger recepie
     replace appstate with activityobject
-        remove homeobject from env declaration, object should reference parent when appropriate
-        add parent to ActivityObject 
-        style buttons
-            activityobject list
-            activityclass list
-    
     add next functionality
     timing functionality
     add toggle to NewActivityListView for small vs full activity cells

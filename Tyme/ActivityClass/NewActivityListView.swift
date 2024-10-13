@@ -9,14 +9,14 @@ import SwiftUI
 import SwiftData
 
 struct NewActivityListView: View {
-    @Query(filter: ModelHelper.shared.homeActivityPredicate)
-    var home: [ActivityClass]
+    @Query(filter: ModelHelper.shared.homeObjectPredicate) var homeObject: [ActivityObject]
+    @Query(filter: #Predicate<ActivityClass>{_ in true } ) var allActivities: [ActivityClass]
     
     var body: some View {
-        if home.count > 0 {
+        if allActivities.count > 0 && homeObject.count > 0 {
             VStack{
-                List(home[0].subActivities){activity in
-                    ActivityClassSmallCellView(activityClass: activity)
+                List(allActivities){ activity in
+                    ActivityClassSmallCellView(activityClass: activity, parentObject: homeObject[0])
                 }
             }
             .navigationTitle("Start Activity")
