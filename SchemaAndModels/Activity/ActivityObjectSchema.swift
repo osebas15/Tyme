@@ -64,7 +64,7 @@ extension ActivityObject {
 }
 
 private struct HomeObjectKey: EnvironmentKey {
-    static let defaultValue = ActivityObject(activityClass: ActivityClass(name: "error"))
+    static let defaultValue = ActivityObject(activityClass: ActivityClass.error)
 }
 
 extension EnvironmentValues{
