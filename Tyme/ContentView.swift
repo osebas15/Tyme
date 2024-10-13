@@ -21,6 +21,9 @@ struct ContentView: View {
                         ActiveActivitiesView(activeActivities: homeObjectResult[0].activeSubActivities)
                     }
                 }
+                else {
+                    Text("Home Object did not load")
+                }
             }
         }
     }
