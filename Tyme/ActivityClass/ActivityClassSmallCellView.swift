@@ -20,11 +20,11 @@ struct ActivityClassSmallCellView: View {
             Button("Edit"){
                 print("edit pressed")
             }
-            .buttonStyle(.automatic)
+            .buttonStyle(BorderlessButtonStyle())
             Button("Start"){
                 activityClass.start(context: context, parentObject: parentObject)
             }
-            .buttonStyle(.automatic)
+            .buttonStyle(BorderlessButtonStyle())
         }
     }
 }
