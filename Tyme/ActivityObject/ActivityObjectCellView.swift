@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ActivityObjectCellView: View {
     @Environment(\.modelContext) var context
-    @Environment(\.homeObject) var homeObject
     
     @State var showingDetail: Bool = false
     
@@ -33,6 +32,8 @@ struct ActivityObjectCellView: View {
                 .buttonStyle(BorderlessButtonStyle())
             }
         }
+        //if active sub activities or showing detail
+        //  show the subactivites in a checkmark fashion
     }
 }
 
