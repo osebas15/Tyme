@@ -12,6 +12,15 @@ struct ModelHelper {
     
     static let shared = ModelHelper()
     
+    let mainActivitiesPredicate = #Predicate<ActivityClass> { activity in
+        if let creatingClass = activity.createdFrom {
+            return creatingClass.name == "Home"
+        }
+        else {
+            return false
+        }
+    }
+    
     let homeActivityPredicate = #Predicate<ActivityClass>{ activity in
         activity.name == "Home"
     }

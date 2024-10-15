@@ -10,12 +10,12 @@ import SwiftData
 
 struct NewActivityListView: View {
     @Query(filter: ModelHelper.shared.homeObjectPredicate) var homeObject: [ActivityObject]
-    @Query(filter: #Predicate<ActivityClass>{ $0.isMainActivity } ) var allActivities: [ActivityClass]
+    @Query(filter: ModelHelper.shared.mainActivitiesPredicate ) var mainActivities: [ActivityClass]
     
     var body: some View {
-        if allActivities.count > 0 && homeObject.count > 0 {
+        if mainActivities.count > 0 && homeObject.count > 0 {
             VStack{
-                List(allActivities){ activity in
+                List(mainActivities){ activity in
                     ActivityClassSmallCellView(activityClass: activity, parentObject: homeObject[0])
                 }
             }
@@ -29,7 +29,7 @@ struct NewActivityListView: View {
             }
         }
         else {
-            Text("Couldn't load home")
+            Text("Couldn't load home \(mainActivities.count) \(homeObject.count)")
         }
     }
 }

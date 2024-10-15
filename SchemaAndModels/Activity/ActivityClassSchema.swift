@@ -32,11 +32,10 @@ enum ActivityClass0_0_0: VersionedSchema {
         var previous: ActivityClass?
         
         var subActivities: [ActivityClass]
+        var createdFrom: ActivityClass?
         var name: String
         var detail: String?
         var timeToComplete: TimeInterval?
-        
-        var isMainActivity: Bool
         
         init(
             name: String,
@@ -44,14 +43,14 @@ enum ActivityClass0_0_0: VersionedSchema {
             subActivities: [ActivityClass] = [],
             timeToComplete: TimeInterval? = nil,
             detail: String? = nil,
-            isMainActivity: Bool = false
+            createdFrom: ActivityClass? = nil
         ){
             self.name = name
             self.detail = detail
             self.next = next
             self.subActivities = subActivities
             self.timeToComplete = timeToComplete
-            self.isMainActivity = isMainActivity
+            self.createdFrom = createdFrom
         }
     }
 }
