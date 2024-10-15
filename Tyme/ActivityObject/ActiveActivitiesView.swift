@@ -10,8 +10,12 @@ import SwiftUI
 struct ActiveActivitiesView: View {
     var activeActivities: [ActivityObject]
     var body: some View {
-        List(activeActivities){
-            ActivityObjectCellView(activityObject: $0)
+        List(activeActivities){ activity in
+            DisclosureGroup{
+                ActiveObjectSubActivitiesView(activities: activity.activeSubActivities)
+            } label: {
+                ActivityObjectCellView(activityObject: activity)
+            }
         }
     }
 }

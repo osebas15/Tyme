@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct ActiveObjectSubActivitiesView: View {
+    let activities: [ActivityObject]
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ForEach(activities){
+            Text($0.activityClass?.name ?? "error")
+        }
     }
 }
 /*
