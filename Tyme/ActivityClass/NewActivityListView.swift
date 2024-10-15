@@ -16,7 +16,13 @@ struct NewActivityListView: View {
         if mainActivities.count > 0 && homeObject.count > 0 {
             VStack{
                 List(mainActivities){ activity in
-                    ActivityClassSmallCellView(activityClass: activity, parentObject: homeObject[0])
+                    DisclosureGroup{
+                        ForEach(activity.subActivities){
+                            Text($0.name)
+                        }
+                    } label: {
+                        ActivityClassSmallCellView(activityClass: activity, parentObject: homeObject[0])
+                    }
                 }
             }
             .navigationTitle("Start Activity")

@@ -45,7 +45,6 @@
 		4A7F12D92C5AD4ED005200F2 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12D82C5AD4ED005200F2 /* HomeView.swift */; };
 		4A90D7A02C5D9C400036BAED /* ActivityObjectSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12D62C55D6CE005200F2 /* ActivityObjectSchema.swift */; };
 		4A9A73B22CBEFC5C0047C701 /* ActiveObjectSubActivitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A73B12CBEFC5C0047C701 /* ActiveObjectSubActivitiesView.swift */; };
-		4A9A73B42CBEFCE10047C701 /* InactiveSubActivitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A73B32CBEFCE10047C701 /* InactiveSubActivitiesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,7 +138,6 @@
 		4A7F12D62C55D6CE005200F2 /* ActivityObjectSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityObjectSchema.swift; sourceTree = "<group>"; };
 		4A7F12D82C5AD4ED005200F2 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4A9A73B12CBEFC5C0047C701 /* ActiveObjectSubActivitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveObjectSubActivitiesView.swift; sourceTree = "<group>"; };
-		4A9A73B32CBEFCE10047C701 /* InactiveSubActivitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InactiveSubActivitiesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,7 +202,6 @@
 				4A4473912CB9B03D00C07982 /* ActivityObjectCellView.swift */,
 				4A4473932CB9D52600C07982 /* ActivityObjectDetailView.swift */,
 				4A9A73B12CBEFC5C0047C701 /* ActiveObjectSubActivitiesView.swift */,
-				4A9A73B32CBEFCE10047C701 /* InactiveSubActivitiesView.swift */,
 			);
 			path = ActivityObject;
 			sourceTree = "<group>";
@@ -580,7 +577,6 @@
 				4A4473892CB5AB1100C07982 /* ActivityClassSmallCellView.swift in Sources */,
 				4A7F12582C3C55A2005200F2 /* ActivityDummyData.swift in Sources */,
 				4A4473922CB9B03D00C07982 /* ActivityObjectCellView.swift in Sources */,
-				4A9A73B42CBEFCE10047C701 /* InactiveSubActivitiesView.swift in Sources */,
 				4A7F11F72C3AE282005200F2 /* TymeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

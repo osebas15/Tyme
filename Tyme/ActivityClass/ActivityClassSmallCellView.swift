@@ -14,17 +14,19 @@ struct ActivityClassSmallCellView: View {
     var parentObject: ActivityObject
     
     var body: some View {
-        HStack{
-            Text(activityClass.name)
-            Spacer()
-            Button("Edit"){
-                print("edit pressed")
+        VStack{
+            HStack{
+                Text(activityClass.name)
+                Spacer()
+                Button("Edit"){
+                    print("edit pressed")
+                }
+                .buttonStyle(BorderlessButtonStyle())
+                Button("Start"){
+                    activityClass.start(context: context, parentObject: parentObject)
+                }
+                .buttonStyle(BorderlessButtonStyle())
             }
-            .buttonStyle(BorderlessButtonStyle())
-            Button("Start"){
-                activityClass.start(context: context, parentObject: parentObject)
-            }
-            .buttonStyle(BorderlessButtonStyle())
         }
     }
 }
