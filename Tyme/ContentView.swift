@@ -14,11 +14,11 @@ struct ContentView: View {
         NavigationStack{
             VStack {
                 if homeObjectResult.count > 0 {
-                    if homeObjectResult[0].activeSubActivities.isEmpty{
+                    if homeObjectResult[0].subActivities.isEmpty{
                         NewActivityListView()
                     }
                     else {
-                        ActiveActivitiesView(activeActivities: homeObjectResult[0].activeSubActivities)
+                        ActiveActivitiesView(activeActivities: homeObjectResult[0].subActivities)
                     }
                 }
                 else {

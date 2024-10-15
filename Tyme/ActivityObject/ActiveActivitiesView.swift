@@ -12,7 +12,7 @@ struct ActiveActivitiesView: View {
     var body: some View {
         List(activeActivities){ activity in
             DisclosureGroup{
-                ActiveObjectSubActivitiesView(activities: activity.activeSubActivities)
+                ActiveObjectSubActivitiesView(activities: activity.subActivities)
             } label: {
                 ActivityObjectCellView(activityObject: activity)
             }

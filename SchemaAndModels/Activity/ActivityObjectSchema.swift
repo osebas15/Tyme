@@ -24,7 +24,7 @@ enum ActivityObject0_0_0: VersionedSchema {
         @Relationship(
             deleteRule: .nullify,
             inverse: \ActivityObject.parent
-        ) var activeSubActivities: [ActivityObject]
+        ) var subActivities: [ActivityObject]
         var parent: ActivityObject?
         
         var activityClass : ActivityClass?
@@ -41,12 +41,12 @@ enum ActivityObject0_0_0: VersionedSchema {
             activityClass: ActivityClass,
             completionDate: Date? = nil,
             onOffTimes: [TimeRange]? = nil,
-            activeSubActivities: [ActivityObject] = []
+            subActivities: [ActivityObject] = []
         ) {
             self.activityClass = activityClass
             self.completionDate = completionDate
             self.onOffTimes = onOffTimes
-            self.activeSubActivities = activeSubActivities
+            self.subActivities = subActivities
         }
     }
 }
@@ -57,8 +57,8 @@ extension ActivityObject {
 
 extension ActivityObject {
     func removeSubActivity(context: ModelContext, activity: ActivityObject){
-        if let position = activeSubActivities.firstIndex(where: { $0.id == activity.id }){
-            activeSubActivities.remove(at: position)
+        if let position = subActivities.firstIndex(where: { $0.id == activity.id }){
+            subActivities.remove(at: position)
             context.delete(activity)
         }
     }

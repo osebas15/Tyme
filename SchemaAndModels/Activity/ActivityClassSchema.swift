@@ -64,7 +64,7 @@ extension ActivityClass {
         let newObject = ActivityObject(activityClass: self)
         //Task{ @MainActor in
             context.insert(newObject)
-            parentObject.activeSubActivities.append(newObject)
+            parentObject.subActivities.append(newObject)
             try? context.save()
         //}
     }
