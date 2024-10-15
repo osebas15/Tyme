@@ -22,7 +22,8 @@ struct ContentView: View {
                     }
                 }
                 else {
-                    Text("Home Object did not load")
+                    let _ = print("home object did not load")
+                    Text("Home Object did not load \(homeObjectResult.count)")
                 }
             }
         }

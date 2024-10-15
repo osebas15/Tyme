@@ -46,13 +46,19 @@ struct ModelHelper {
                 if (hcResult?.isEmpty ?? false){
                     homeClass = ActivityClass(name: "Home")
                     container.mainContext.insert(homeClass!)
+                    print("home class created and inserted")
                 }
                 else {
                     homeClass = hcResult![0]
+                    print("home class found")
                 }
                 
                 let homeObject = ActivityObject(activityClass: homeClass!)
                 container.mainContext.insert(homeObject)
+                print("home object inserted")
+            }
+            else {
+                print("home object found")
             }
         }
     }
