@@ -6,14 +6,14 @@
 //
 
 import Foundation
-import SwiftData
+@preconcurrency import SwiftData
 
 typealias ActivityClass = ActivityClass0_0_0.ActivityClass
 
 enum ActivityClass0_0_0: VersionedSchema {
-    static var models: [any PersistentModel.Type] = [ActivityClass.self]
+    static let models: [any PersistentModel.Type] = [ActivityClass.self]
     
-    static var versionIdentifier: Schema.Version = Schema.Version(0,0,0)
+    static let versionIdentifier: Schema.Version = Schema.Version(0,0,0)
     
     @Model
     class ActivityClass: Identifiable{
@@ -56,7 +56,7 @@ enum ActivityClass0_0_0: VersionedSchema {
 }
 
 extension ActivityClass {
-    static var error = ActivityClass(name: "error")
+    @MainActor static let error = ActivityClass(name: "error")
 }
 
 extension ActivityClass {

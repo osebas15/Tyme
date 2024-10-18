@@ -6,15 +6,15 @@
 //
 
 import Foundation
-import SwiftData
+@preconcurrency import SwiftData
 import SwiftUI
 
 typealias ActivityObject = ActivityObject0_0_0.ActivityObject
 
 enum ActivityObject0_0_0: VersionedSchema {
-    static var models: [any PersistentModel.Type] = [ActivityObject.self]
+    static let models: [any PersistentModel.Type] = [ActivityObject.self]
     
-    static var versionIdentifier = Schema.Version(0, 0, 0)
+    static let versionIdentifier = Schema.Version(0, 0, 0)
     
     @Model
     class ActivityObject: Identifiable {
@@ -22,7 +22,7 @@ enum ActivityObject0_0_0: VersionedSchema {
         @Attribute(.unique) var id = UUID()
         
         @Relationship(
-            deleteRule: .nullify,
+            deleteRule: .cascade,
             inverse: \ActivityObject.parent
         ) var subActivities: [ActivityObject]
         var parent: ActivityObject?
@@ -52,7 +52,7 @@ enum ActivityObject0_0_0: VersionedSchema {
 }
 
 extension ActivityObject {
-    static var error = ActivityObject(activityClass: ActivityClass.error)
+    @MainActor static let error = ActivityObject(activityClass: ActivityClass.error)
 }
 
 extension ActivityObject {
@@ -70,17 +70,3 @@ extension ActivityObject {
     }
 }
 
-private struct HomeObjectKey: EnvironmentKey {
-    static let defaultValue = ActivityObject(activityClass: ActivityClass.error)
-}
-
-extension EnvironmentValues{
-    var homeObject: ActivityObject{
-        get{
-            self[HomeObjectKey.self]
-        }
-        set{
-            self[HomeObjectKey.self] = newValue
-        }
-    }
-}
