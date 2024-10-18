@@ -55,12 +55,14 @@ struct ModelHelper {
                 
                 let homeObject = ActivityObject(activityClass: homeClass!)
                 container.mainContext.insert(homeObject)
+                try! container.mainContext.save()
                 print("home object inserted")
             }
             else {
                 print("home object found")
             }
         }
+        print("home object processing done")
     }
     
     nonisolated func getBasicContainer() -> ModelContainer {

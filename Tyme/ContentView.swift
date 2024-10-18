@@ -22,8 +22,10 @@ struct ContentView: View {
                     }
                 }
                 else {
-                    let _ = print("home object did not load")
-                    Text("Home Object did not load \(homeObjectResult.count)")
+                    let _ = print("home object did not load \(homeObjectResult.count)")
+                    HStack{
+                        Text("Home Object did not load \(homeObjectResult.count)")
+                    }
                 }
             }
         }

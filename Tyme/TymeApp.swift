@@ -10,7 +10,7 @@ import SwiftData
 
 @main
 struct TymeApp: App {
-    var sharedModelContainer: ModelContainer = ModelHelper.shared.getTestContainer()
+    let sharedModelContainer: ModelContainer = ModelHelper.shared.getTestContainer()
     
     var body: some Scene {
         WindowGroup {
