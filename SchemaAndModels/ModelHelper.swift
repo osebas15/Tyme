@@ -42,21 +42,13 @@ struct ModelHelper {
             
             if (hcResult?.isEmpty ?? false){
                 homeClass = ActivityClass(name: "Home")
-                container.mainContext.insert(homeClass!)
-                print("home class created and inserted")
             }
             else {
                 homeClass = hcResult![0]
-                print("home class found")
             }
             
             let homeObject = ActivityObject(activityClass: homeClass!)
             container.mainContext.insert(homeObject)
-            try! container.mainContext.save()
-            print("home object inserted")
-        }
-        else {
-            print("home object found")
         }
     }
     
@@ -91,7 +83,6 @@ struct ModelHelper {
         
         ActivityDummyData().insertSwissBurgerRecepie(into: basicContainer)
         
-        //let _ = ActivityClass.getSwissBurgerRecepie(insertIntoContainer: basicContainer)
         return basicContainer
     }
 }
