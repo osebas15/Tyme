@@ -10,10 +10,11 @@ import SwiftData
 
 @main
 struct Tyme_Watch_AppApp: App {
+    let modelContainer = ModelHelper().getTestContainer()
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(ModelHelper.shared.getTestContainer())
+        .modelContainer(modelContainer)
     }
 }

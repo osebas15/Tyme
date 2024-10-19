@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @Query(filter: ModelHelper.shared.homeObjectPredicate) var homeObjectResult: [ActivityObject]
+    @Query(filter: ModelHelper().homeObjectPredicate) var homeObjectResult: [ActivityObject]
     var body: some View {
         NavigationStack{
             VStack {

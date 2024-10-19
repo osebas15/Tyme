@@ -15,7 +15,8 @@ struct PassiveView: View {
         }
     }
 }
-
+/*
 #Preview {
     PassiveView(activity: ActivityClass.getDummyActivities()[0])
 }
+*/

@@ -8,10 +8,8 @@
 import Foundation
 import SwiftData
 
+@MainActor
 struct ModelHelper {
-    
-    static let shared = ModelHelper()
-    
     let mainActivitiesPredicate = #Predicate<ActivityClass> { activity in
         if let creatingClass = activity.createdFrom {
             return creatingClass.name == "Home"
@@ -21,7 +19,7 @@ struct ModelHelper {
         }
     }
     
-    let homeActivityPredicate = #Predicate<ActivityClass>{ activity in
+    let homeActivityPredicate = #Predicate<ActivityClass> { activity in
         activity.name == "Home"
     }
     
@@ -29,43 +27,40 @@ struct ModelHelper {
         return (activity.activityClass?.name == "Home") == true
     }
     
-    nonisolated func ifMissingCreateHomeObject(container: ModelContainer){
+    func ifMissingCreateHomeObject(container: ModelContainer) {
         //check for activityClass and add if missing
-        Task {@MainActor in
-            var fd = FetchDescriptor(predicate: homeObjectPredicate)
-            fd.fetchLimit = 1
-            let result = try? container.mainContext.fetch(fd)
+        var fd = FetchDescriptor(predicate: homeObjectPredicate)
+        fd.fetchLimit = 1
+        let result = try? container.mainContext.fetch(fd)
+        
+        if (result?.isEmpty ?? false){
+            var homeClassFd = FetchDescriptor(predicate: homeActivityPredicate)
+            homeClassFd.fetchLimit = 1
+            let hcResult = try? container.mainContext.fetch(homeClassFd)
             
-            if (result?.isEmpty ?? false){
-                var homeClassFd = FetchDescriptor(predicate: homeActivityPredicate)
-                homeClassFd.fetchLimit = 1
-                let hcResult = try? container.mainContext.fetch(homeClassFd)
-                
-                var homeClass: ActivityClass?
-                
-                if (hcResult?.isEmpty ?? false){
-                    homeClass = ActivityClass(name: "Home")
-                    container.mainContext.insert(homeClass!)
-                    print("home class created and inserted")
-                }
-                else {
-                    homeClass = hcResult![0]
-                    print("home class found")
-                }
-                
-                let homeObject = ActivityObject(activityClass: homeClass!)
-                container.mainContext.insert(homeObject)
-                try! container.mainContext.save()
-                print("home object inserted")
+            var homeClass: ActivityClass?
+            
+            if (hcResult?.isEmpty ?? false){
+                homeClass = ActivityClass(name: "Home")
+                container.mainContext.insert(homeClass!)
+                print("home class created and inserted")
             }
             else {
-                print("home object found")
+                homeClass = hcResult![0]
+                print("home class found")
             }
+            
+            let homeObject = ActivityObject(activityClass: homeClass!)
+            container.mainContext.insert(homeObject)
+            try! container.mainContext.save()
+            print("home object inserted")
         }
-        print("home object processing done")
+        else {
+            print("home object found")
+        }
     }
     
-    nonisolated func getBasicContainer() -> ModelContainer {
+    func getBasicContainer() -> ModelContainer {
         let schema = Schema([
             ActivityClass.self,
             ActivityObject.self
@@ -91,10 +86,10 @@ struct ModelHelper {
         return modelContainer
     }
     
-    nonisolated func getTestContainer() -> ModelContainer {
+    func getTestContainer() -> ModelContainer {
         let basicContainer = getBasicContainer()
         
-        let _ = ActivityClass.getSwissBurgerRecepie(insertIntoContainer: basicContainer)
+        //let _ = ActivityClass.getSwissBurgerRecepie(insertIntoContainer: basicContainer)
         
         return basicContainer
     }

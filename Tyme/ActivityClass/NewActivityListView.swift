@@ -9,8 +9,8 @@ import SwiftUI
 import SwiftData
 
 struct NewActivityListView: View {
-    @Query(filter: ModelHelper.shared.homeObjectPredicate) var homeObject: [ActivityObject]
-    @Query(filter: ModelHelper.shared.mainActivitiesPredicate ) var mainActivities: [ActivityClass]
+    @Query(filter: ModelHelper().homeObjectPredicate) var homeObject: [ActivityObject]
+    @Query(filter: ModelHelper().mainActivitiesPredicate ) var mainActivities: [ActivityClass]
     
     var body: some View {
         if mainActivities.count > 0 && homeObject.count > 0 {
@@ -35,7 +35,7 @@ struct NewActivityListView: View {
             }
         }
         else {
-            Text("Couldn't load home \(mainActivities.count) \(homeObject.count)")
+            Text("add new activities \(mainActivities.count) \(homeObject.count)")
         }
     }
 }
