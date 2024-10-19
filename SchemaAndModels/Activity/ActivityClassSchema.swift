@@ -62,10 +62,8 @@ extension ActivityClass {
 extension ActivityClass {
     func start(context: ModelContext, parentObject: ActivityObject){
         let newObject = ActivityObject(activityClass: self)
-        //Task{ @MainActor in
-            context.insert(newObject)
-            parentObject.subActivities.append(newObject)
-            try? context.save()
-        //}
+        context.insert(newObject)
+        parentObject.subActivities.append(newObject)
+        try? context.save()
     }
 }

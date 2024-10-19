@@ -89,8 +89,9 @@ struct ModelHelper {
     func getTestContainer() -> ModelContainer {
         let basicContainer = getBasicContainer()
         
-        //let _ = ActivityClass.getSwissBurgerRecepie(insertIntoContainer: basicContainer)
+        ActivityDummyData().insertSwissBurgerRecepie(into: basicContainer)
         
+        //let _ = ActivityClass.getSwissBurgerRecepie(insertIntoContainer: basicContainer)
         return basicContainer
     }
 }
