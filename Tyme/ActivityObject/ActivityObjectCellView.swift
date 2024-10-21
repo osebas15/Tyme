@@ -18,10 +18,6 @@ struct ActivityObjectCellView: View {
         VStack{
             Text(activityObject.activityClass?.name ?? "activityclass error")
             HStack{
-                Button("show detail"){
-                    print("toggle detail")
-                }
-                .buttonStyle(BorderlessButtonStyle())
                 Button("pause"){
                     print("pause")
                 }
