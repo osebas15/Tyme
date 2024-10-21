@@ -32,6 +32,7 @@ enum ActivityClass0_0_0: VersionedSchema {
         var previous: ActivityClass?
         
         var subActivities: [ActivityClass]
+        var canDoSubActivitiesInParallel: Bool
         var createdFrom: ActivityClass?
         var name: String
         var detail: String?
@@ -41,6 +42,7 @@ enum ActivityClass0_0_0: VersionedSchema {
             name: String,
             next: ActivityClass? = nil,
             subActivities: [ActivityClass] = [],
+            canDoSubActivitiesInParallel: Bool = false,
             timeToComplete: TimeInterval? = nil,
             detail: String? = nil,
             createdFrom: ActivityClass? = nil
@@ -49,6 +51,7 @@ enum ActivityClass0_0_0: VersionedSchema {
             self.detail = detail
             self.next = next
             self.subActivities = subActivities
+            self.canDoSubActivitiesInParallel = canDoSubActivitiesInParallel
             self.timeToComplete = timeToComplete
             self.createdFrom = createdFrom
         }
@@ -64,6 +67,14 @@ extension ActivityClass {
         let newObject = ActivityObject(activityClass: self)
         context.insert(newObject)
         parentObject.subActivities.append(newObject)
-        try? context.save()
+        
+        if self.subActivities.count > 0 {
+            if self.canDoSubActivitiesInParallel {
+                self.subActivities.forEach { $0.start(context: context, parentObject: newObject) }
+            }
+            else {
+                self.subActivities[0].start(context: context, parentObject: newObject)
+            }
+        }
     }
 }
