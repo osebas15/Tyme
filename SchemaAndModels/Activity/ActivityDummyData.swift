@@ -146,7 +146,7 @@ struct ActivityDummyData {
         }
     }
     
-     func noDupInsert(container: ModelContainer, toInsert: [ActivityClass]){
+    func noDupInsert(container: ModelContainer, toInsert: [ActivityClass]){
         for model in toInsert {
             let modelId = model.id
             let predicate = #Predicate <ActivityClass> { idableModel in
@@ -163,5 +163,3 @@ struct ActivityDummyData {
         }
     }
 }
-
-
