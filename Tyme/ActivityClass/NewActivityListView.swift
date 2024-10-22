@@ -10,14 +10,14 @@ import SwiftData
 
 struct NewActivityListView: View {
     @Query(filter: ModelHelper().homeObjectPredicate) var homeObject: [ActivityObject]
-    @Query(filter: ModelHelper().mainActivitiesPredicate ) var mainActivities: [ActivityClass]
+    @Query(filter: ModelHelper().homeActivityPredicate ) var mainClass: [ActivityClass]
     
     var body: some View {
-        if mainActivities.count > 0 && homeObject.count > 0 {
+        if mainClass.count > 0 && homeObject.count > 0 {
             VStack{
-                List(mainActivities){ activity in
+                List(mainClass[0].orderedSubActivities){ activity in
                     DisclosureGroup{
-                        ForEach(activity.subActivities){
+                        ForEach(activity.orderedSubActivities){
                             Text($0.name)
                         }
                     } label: {
@@ -35,7 +35,7 @@ struct NewActivityListView: View {
             }
         }
         else {
-            Text("add new activities \(mainActivities.count) \(homeObject.count)")
+            Text("add new activities \(mainClass.count) \(homeObject.count)")
         }
     }
 }

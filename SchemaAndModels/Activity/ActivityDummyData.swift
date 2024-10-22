@@ -49,7 +49,7 @@ struct ActivityDummyData {
         ActivityClass2.next = ActivityClass3
 
         // Set subActivities
-        ActivityClass1.subActivities = [ActivityClass2, ActivityClass3]
+        //ActivityClass1.subActivities = [ActivityClass2, ActivityClass3]
     }
 
     func insertSwissBurgerRecepie(into container: ModelContainer) {
@@ -59,15 +59,15 @@ struct ActivityDummyData {
         
         // Gather Ingredients
         let gatherIngredients = ActivityClass(name: "Gather ingredients")
-        gatherIngredients.subActivities = [
-            ActivityClass(name: "Buns"),
+        //gatherIngredients.subActivities = [
+        [ActivityClass(name: "Buns"),
             ActivityClass(name: "Ground beef"),
             ActivityClass(name: "Mushrooms"),
             ActivityClass(name: "Swiss cheese"),
             ActivityClass(name: "Cooking wine"),
             ActivityClass(name: "Salt"),
             ActivityClass(name: "Pepper")
-        ]
+        ].forEach { gatherIngredients.addSubActivity(activity: $0) }
         
         // Form patty and season with salt and pepper
         let formPatty = ActivityClass(name: "Form patty and season with salt and pepper")
@@ -118,8 +118,8 @@ struct ActivityDummyData {
         // Place mushrooms on burger, Enjoy!!!
         let placeMushrooms = ActivityClass(name: "Place mushrooms on burger, Enjoy!!!")
         
-        swissBurger.subActivities = [
-            gatherIngredients,
+        //swissBurger.subActivities = [
+        [gatherIngredients,
             formPatty,
             preheatPan,
             cleanMushrooms,
@@ -131,9 +131,9 @@ struct ActivityDummyData {
             takeBurger,
             fryMushrooms,
             placeMushrooms
-        ]
+        ].forEach { swissBurger.addSubActivity(activity: $0) }
         
-        let swissBurgerRecepie = [swissBurger] + swissBurger.subActivities
+        let swissBurgerRecepie = [swissBurger]// + swissBurger.subActivities
         
         noDupInsert(container: container, toInsert: swissBurgerRecepie)
         
@@ -141,8 +141,8 @@ struct ActivityDummyData {
         fd.fetchLimit = 1
         let result = try? container.mainContext.fetch(fd)
         if (!(result?.isEmpty ?? true)){
-            result![0].subActivities.append(swissBurger)
-            swissBurger.createdFrom = result![0]
+            result![0].addSubActivity(activity: swissBurger)//.subActivities.append(swissBurger)
+            //swissBurger.createdFrom = result![0]
         }
     }
     

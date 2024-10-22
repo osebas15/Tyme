@@ -31,9 +31,22 @@ enum ActivityClass0_0_0: VersionedSchema {
         ) var next: ActivityClass?
         var previous: ActivityClass?
         
-        var subActivities: [ActivityClass]
+        private var subActivities: [ActivityClass]
+        var subActivityOrder: [Int: UUID]
+        
+        @Transient var orderedSubActivities: [ActivityClass] {
+            get {
+                var toReturn = [ActivityClass]()
+                for index in 0..<subActivities.count {
+                    let actClass = subActivities.first { $0.id == subActivityOrder[index] }!
+                    toReturn.append(actClass)
+                }
+                return toReturn
+            }
+        }
+        
         var canDoSubActivitiesInParallel: Bool
-        var createdFrom: ActivityClass?
+        
         var name: String
         var detail: String?
         var timeToComplete: TimeInterval?
@@ -41,19 +54,17 @@ enum ActivityClass0_0_0: VersionedSchema {
         init(
             name: String,
             next: ActivityClass? = nil,
-            subActivities: [ActivityClass] = [],
             canDoSubActivitiesInParallel: Bool = false,
             timeToComplete: TimeInterval? = nil,
-            detail: String? = nil,
-            createdFrom: ActivityClass? = nil
+            detail: String? = nil
         ){
             self.name = name
             self.detail = detail
             self.next = next
-            self.subActivities = subActivities
+            self.subActivities = []
+            self.subActivityOrder = [:]
             self.canDoSubActivitiesInParallel = canDoSubActivitiesInParallel
             self.timeToComplete = timeToComplete
-            self.createdFrom = createdFrom
         }
     }
 }
@@ -63,6 +74,11 @@ extension ActivityClass {
 }
 
 extension ActivityClass {
+    func addSubActivity(activity: ActivityClass){
+        self.subActivities.append(activity)
+        self.subActivityOrder[self.subActivityOrder.count] = activity.id
+    }
+    
     func start(context: ModelContext, parentObject: ActivityObject){
         let newObject = ActivityObject(activityClass: self)
         context.insert(newObject)
@@ -73,7 +89,10 @@ extension ActivityClass {
                 self.subActivities.forEach { $0.start(context: context, parentObject: newObject) }
             }
             else {
-                self.subActivities[0].start(context: context, parentObject: newObject)
+                let firstActivityId = self.subActivityOrder[0]
+                self.subActivities
+                    .first(where: {$0.id == firstActivityId})!
+                    .start(context: context, parentObject: newObject)
             }
         }
     }
