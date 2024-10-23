@@ -75,6 +75,7 @@ struct ModelHelper {
         let basicContainer = getBasicContainer()
         
         ActivityDummyData().insertSwissBurgerRecepie(into: basicContainer)
+        ActivityDummyData().insertQuickBreakfastRecepie(into: basicContainer)
         
         return basicContainer
     }
