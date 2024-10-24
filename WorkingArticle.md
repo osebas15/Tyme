@@ -6,11 +6,17 @@ an app to make and use timed todo list and recepies
 
 ## Overview
 
-- make workable state for my burger recepie
+- make workable state for my burger/quick breakfast recepie
     add next functionality
-        if subactivities are present
-            create first step object on start or on next
+            if multipick have options for start and done/next
+            i.e if multi then class if single then object
+            
+        show current activity
+        figure out focus
+            focus should be enumed
+                [main, passive, secondary]
         
+    on done make all Object.subactivities done
     timing functionality
     add toggle to NewActivityListView for small vs full activity cells
     draw multiple activities functionality
@@ -19,8 +25,6 @@ an app to make and use timed todo list and recepies
 make next functionality for:
 - iOS
 - WatchOS
-
-#### Multi Selection Screen
 
 ##### Watch
 List for all subactivities on select show next or disappear until all are gone and then show next

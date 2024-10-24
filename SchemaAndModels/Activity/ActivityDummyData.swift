@@ -82,14 +82,14 @@ struct ActivityDummyData {
         cleanMushrooms.detail = "Use a moist paper towel to clean the mushrooms"
         cleanMushrooms.timeToComplete = 150 // 2 minutes 30 seconds
         
+        // Cut mushrooms
+        let cutMushrooms = ActivityClass(name: "Cut mushrooms")
+        cutMushrooms.timeToComplete = 300 // 5 minutes
+        
         // Place patty on pan
         let placePatty = ActivityClass(name: "Place patty on pan")
         placePatty.detail = "Flip in 4 minutes"
         placePatty.timeToComplete = 240 // 4 minutes
-        
-        // Cut mushrooms
-        let cutMushrooms = ActivityClass(name: "Cut mushrooms")
-        cutMushrooms.timeToComplete = 300 // 5 minutes
         
         // Flip patty
         let flipPatty = ActivityClass(name: "Flip patty")
