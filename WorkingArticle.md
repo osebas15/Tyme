@@ -9,11 +9,13 @@ an app to make and use timed todo list and recepies
 - make workable state for my burger/quick breakfast recepie
     add next functionality
             if multipick have options for start and done/next
-            i.e if multi then class if single then object
+                i.e if multi then class if single then object
+                on done switch status to done rather than removing
+                multi not done until all subactivities are done
             
-            remove canDoConcurrently if multipick then assume concurrency
-            only need the first subactivity for multistep sequential activity
-            
+            append next multi step to same spot as previous
+                when order subobject use a function that goes back to first activity and checks that on multitask
+                
             consider continuos task that are processed in the background
             
         show current activity
@@ -25,6 +27,9 @@ an app to make and use timed todo list and recepies
     timing functionality
     add toggle to NewActivityListView for small vs full activity cells
     draw multiple activities functionality
+    
+### Happy on complete!
+consider how to reward user for finishing tasks
 
 ### Going through Swiss burger
 make next functionality for:

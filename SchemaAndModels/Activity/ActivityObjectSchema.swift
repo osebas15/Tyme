@@ -46,6 +46,19 @@ enum ActivityObject0_0_0: VersionedSchema {
         @Transient var numberOfSubActivities: Int {
             get { return activityClass?.unOrderedSubActivities.count ?? 0 }
         }
+        @Transient var isPartOfMultiPick: Bool {
+            get { return parent?.activityClass?.unOrderedSubActivities.count ?? 0 > 1 }
+        }
+        @Transient var couldBeDone: Bool {
+            get {
+                for activity in subActivities {
+                    if activity.focus != .done{
+                        return false
+                    }
+                }
+                return true
+            }
+        }
         
         init(
             activityClass: ActivityClass,
@@ -77,8 +90,18 @@ extension ActivityObject {
     }
     
     func done(context: ModelContext){
-        if let parent = parent{
+        guard let parent = parent else { return }
+
+        if let next = activityClass?.next {
             parent.removeSubActivity(context: context, activity: self)
+            next.start(context: context, parentObject: parent)
+        }
+        else if isPartOfMultiPick {
+            self.focus = .done
+            if parent.couldBeDone{ parent.done(context: context) }
+        }
+        else {
+            parent.done(context: context)
         }
     }
 }
