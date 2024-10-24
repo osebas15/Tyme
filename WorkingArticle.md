@@ -11,6 +11,11 @@ an app to make and use timed todo list and recepies
             if multipick have options for start and done/next
             i.e if multi then class if single then object
             
+            remove canDoConcurrently if multipick then assume concurrency
+            only need the first subactivity for multistep sequential activity
+            
+            consider continuos task that are processed in the background
+            
         show current activity
         figure out focus
             focus should be enumed

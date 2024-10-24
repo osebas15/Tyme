@@ -33,18 +33,18 @@ enum ActivityObject0_0_0: VersionedSchema {
         
         private var storedFocus: Int
         @Transient var focus: FocusState{
-            set{
-                self.storedFocus = newValue.rawValue
-            }
-            get{
-                return FocusState(rawValue: storedFocus) ?? .error
-            }
+            set{ self.storedFocus = newValue.rawValue }
+            get{ return FocusState(rawValue: storedFocus) ?? .error }
         }
         
-        @Transient var creationDate : Date? {
-            get {
-                return onOffTimes?.first?.start
-            }
+        @Transient var creationDate: Date?{
+            get { return onOffTimes?.first?.start }
+        }
+        @Transient var hasNext: Bool{
+            get { return activityClass?.next != nil }
+        }
+        @Transient var numberOfSubActivities: Int {
+            get { return activityClass?.unOrderedSubActivities.count ?? 0 }
         }
         
         init(
@@ -64,7 +64,7 @@ enum ActivityObject0_0_0: VersionedSchema {
 }
 
 extension ActivityObject {
-    enum FocusState: Int { case main, passive, secondary, none, error }
+    enum FocusState: Int { case main, passive, secondary, done, none, error }
     @MainActor static let error = ActivityObject(activityClass: ActivityClass.error)
 }
 

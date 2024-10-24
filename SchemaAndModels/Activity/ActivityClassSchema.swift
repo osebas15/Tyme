@@ -45,7 +45,9 @@ enum ActivityClass0_0_0: VersionedSchema {
             }
         }
         
-        var canDoSubActivitiesInParallel: Bool
+        @Transient var unOrderedSubActivities: [ActivityClass] {
+            get { return subActivities }
+        }
         
         var name: String
         var detail: String?
@@ -63,7 +65,6 @@ enum ActivityClass0_0_0: VersionedSchema {
             self.next = next
             self.subActivities = []
             self.subActivityOrder = [:]
-            self.canDoSubActivitiesInParallel = canDoSubActivitiesInParallel
             self.timeToComplete = timeToComplete
         }
     }
@@ -85,7 +86,7 @@ extension ActivityClass {
         parentObject.subActivities.append(newObject)
         
         if self.subActivities.count > 0 {
-            if self.canDoSubActivitiesInParallel {
+            if self.subActivities.count > 1 {
                 self.subActivities.forEach { $0.start(context: context, parentObject: newObject) }
             }
             else {

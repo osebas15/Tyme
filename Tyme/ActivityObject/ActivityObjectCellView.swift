@@ -20,7 +20,7 @@ struct ActivityObjectCellView: View {
                     print("pause")
                 }
                 .buttonStyle(BorderlessButtonStyle())
-                Button("done"){
+                Button(activityObject.hasNext ? "next" : "done"){
                     activityObject.done(context: context)
                 }
                 .buttonStyle(BorderlessButtonStyle())

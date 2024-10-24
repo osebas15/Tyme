@@ -69,69 +69,85 @@ struct ActivityDummyData {
             ActivityClass(name: "Pepper")
         ].forEach { gatherIngredients.addSubActivity(activity: $0) }
         
-        // Form patty and season with salt and pepper
-        let formPatty = ActivityClass(name: "Form patty and season with salt and pepper")
-        formPatty.timeToComplete = 60 // 1 minute
-        
         // Preheat pan
         let preheatPan = ActivityClass(name: "Preheat pan")
         preheatPan.timeToComplete = 180 // 3 minutes
         
+        gatherIngredients.next = preheatPan
+        
         // Clean mushrooms
         let cleanMushrooms = ActivityClass(name: "Clean mushrooms")
         cleanMushrooms.detail = "Use a moist paper towel to clean the mushrooms"
-        cleanMushrooms.timeToComplete = 150 // 2 minutes 30 seconds
+        cleanMushrooms.timeToComplete = 60 // 1 minutes
+        
+        preheatPan.next = cleanMushrooms
         
         // Cut mushrooms
         let cutMushrooms = ActivityClass(name: "Cut mushrooms")
-        cutMushrooms.timeToComplete = 300 // 5 minutes
+        cutMushrooms.timeToComplete = 120 // 2 minutes
+        
+        cleanMushrooms.next = cutMushrooms
+        
+        // Form patty and season with salt and pepper
+        let formPatty = ActivityClass(name: "Season with salt and pepper and form patty")
+        formPatty.timeToComplete = 60 // 1 minute
+        
+        cutMushrooms.next = formPatty
         
         // Place patty on pan
         let placePatty = ActivityClass(name: "Place patty on pan")
         placePatty.detail = "Flip in 4 minutes"
         placePatty.timeToComplete = 240 // 4 minutes
         
-        // Flip patty
-        let flipPatty = ActivityClass(name: "Flip patty")
-        flipPatty.detail = "High priority"
-        flipPatty.timeToComplete = 30 // 30 seconds
+        formPatty.next = placePatty
         
-        // Fry patty
-        let fryPatty = ActivityClass(name: "Fry patty")
-        fryPatty.timeToComplete = 120 // 2 minutes
+        // Flip patty
+        let flipPatty = ActivityClass(name: "Flip patty and fry for 2 more minutes")
+        flipPatty.detail = "High priority"
+        flipPatty.timeToComplete = 150 // 2.5 minutes
+        
+        placePatty.next = flipPatty
         
         // Put cheese on patty
         let putCheese = ActivityClass(name: "Put cheese on patty")
         putCheese.detail = "High priority"
         putCheese.timeToComplete = 30 // 30 seconds
         
+        placePatty.next = putCheese
+        
         // Take burger from pan
         let takeBurger = ActivityClass(name: "Take burger from pan")
         takeBurger.detail = "High priority"
-        takeBurger.timeToComplete = 30 // 30 seconds
+        //takeBurger.timeToComplete = 30 // 30 seconds
+        
+        putCheese.next = takeBurger
         
         // Fry mushrooms with cooking wine
         let fryMushrooms = ActivityClass(name: "Fry mushrooms with cooking wine")
-        fryMushrooms.detail = "High heat"
+        fryMushrooms.detail = "High heat, continously flip"
         fryMushrooms.timeToComplete = 180 // 3 minutes
+        
+        takeBurger.next = fryMushrooms
         
         // Place mushrooms on burger, Enjoy!!!
         let placeMushrooms = ActivityClass(name: "Place mushrooms on burger, Enjoy!!!")
         
-        //swissBurger.subActivities = [
-        [gatherIngredients,
+        fryMushrooms.next = placeMushrooms
+        
+        swissBurger.addSubActivity(activity: gatherIngredients)
+        /*[gatherIngredients,
             formPatty,
             preheatPan,
             cleanMushrooms,
             placePatty,
             cutMushrooms,
             flipPatty,
-            fryPatty,
             putCheese,
             takeBurger,
             fryMushrooms,
             placeMushrooms
         ].forEach { swissBurger.addSubActivity(activity: $0) }
+        */
         
         let swissBurgerRecepie = [swissBurger]// + swissBurger.subActivities
         
