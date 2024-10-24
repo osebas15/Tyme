@@ -98,9 +98,13 @@ extension ActivityObject {
         }
         else if isPartOfMultiPick {
             self.focus = .done
-            if parent.couldBeDone{ parent.done(context: context) }
+            if parent.couldBeDone{
+                parent.removeSubActivity(context: context, activity: self)
+                parent.done(context: context)
+            }
         }
         else {
+            parent.removeSubActivity(context: context, activity: self)
             parent.done(context: context)
         }
     }

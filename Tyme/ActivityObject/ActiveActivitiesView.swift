@@ -12,10 +12,9 @@ struct ActiveActivitiesView: View {
     var body: some View {
         List(activeActivities){ activity in
             DisclosureGroup{
-                //if one sub activity then start it automatically, if multiple then show them all in an inactive state
-                //ActiveObje
-                //ActiveObjectSubActivitiesView(activities: activity.subActivities)
-                Text("objects go here")
+                ForEach(activity.subActivities){ subActivity in
+                    ActivityObjectCellView(activityObject: subActivity)
+                }
             } label: {
                 ActivityObjectCellView(activityObject: activity)
             }
