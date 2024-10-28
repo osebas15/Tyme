@@ -88,20 +88,6 @@ extension ActivityClass {
     }
     
     func start(context: ModelContext, parentObject: ActivityObject){
-        let newObject = ActivityObject(activityClass: self)
-        context.insert(newObject)
-        parentObject.subActivities.append(newObject)
-        
-        if self.subActivities.count > 0 {
-            if self.subActivities.count > 1 {
-                self.subActivities.forEach { $0.start(context: context, parentObject: newObject) }
-            }
-            else {
-                let firstActivityId = self.subActivityOrder[0]
-                self.subActivities
-                    .first(where: {$0.id == firstActivityId})!
-                    .start(context: context, parentObject: newObject)
-            }
-        }
+        parentObject.createSubActivity(context: context, activityClass: self)
     }
 }

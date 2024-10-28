@@ -40,7 +40,7 @@ struct ModelHelper {
                 homeClass = hcResult![0]
             }
             
-            let homeObject = ActivityObject(activityClass: homeClass!)
+            let homeObject = ActivityObject(activityClass: homeClass!, priorityOrder: 0)
             container.mainContext.insert(homeObject)
         }
     }

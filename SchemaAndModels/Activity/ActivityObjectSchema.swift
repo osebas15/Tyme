@@ -31,6 +31,14 @@ enum ActivityObject0_0_0: VersionedSchema {
         var completionDate: Date?
         var onOffTimes: [TimeRange]?
         
+        var priorityOrder: Int
+        @Transient var orderedActivities: [ActivityObject] {
+            get { return subActivities.sorted { $0.priorityOrder < $1.priorityOrder }}
+        }
+        @Transient var unOrderedActivities: [ActivityObject] {
+            get{ subActivities }
+        }
+        
         private var storedFocus: Int
         @Transient var focus: FocusState{
             set{ self.storedFocus = newValue.rawValue }
@@ -65,24 +73,48 @@ enum ActivityObject0_0_0: VersionedSchema {
             completionDate: Date? = nil,
             onOffTimes: [TimeRange]? = nil,
             subActivities: [ActivityObject] = [],
-            focus: FocusState = .none
+            focus: FocusState = .none,
+            priorityOrder: Int
         ) {
             self.activityClass = activityClass
             self.completionDate = completionDate
             self.onOffTimes = onOffTimes
             self.subActivities = subActivities
             self.storedFocus = focus.rawValue
+            self.priorityOrder = priorityOrder
         }
     }
 }
 
 extension ActivityObject {
     enum FocusState: Int { case main, passive, secondary, done, none, error }
-    @MainActor static let error = ActivityObject(activityClass: ActivityClass.error)
+    @MainActor static let error = ActivityObject(activityClass: ActivityClass.error, priorityOrder: 0)
 }
 
 extension ActivityObject {
+    func createSubActivity(context: ModelContext, activityClass: ActivityClass, mainSubActivity: Bool = false){
+        
+        //if mainSubActivity {
+        //move all other prio orders up and make this 0
+        // } else {
+        let newObject = ActivityObject(activityClass: activityClass, priorityOrder: self.subActivities.count )
+        //}
+        context.insert(newObject)
+        self.subActivities.append(newObject)
+        
+        //start the subactivities from the activityclass
+        if let activityClass = newObject.activityClass, activityClass.unOrderedSubActivities.count > 0 {
+            if activityClass.unOrderedSubActivities.count > 1 {
+                activityClass.unOrderedSubActivities.forEach { $0.start(context: context, parentObject: newObject) }
+            }
+            else {
+                activityClass.unOrderedSubActivities[0].start(context: context, parentObject: newObject)
+            }
+        }
+    }
+    
     func removeSubActivity(context: ModelContext, activity: ActivityObject){
+        //TODO: fix the ordering after deletion
         if let position = subActivities.firstIndex(where: { $0.id == activity.id }){
             subActivities.remove(at: position)
             context.delete(activity)
