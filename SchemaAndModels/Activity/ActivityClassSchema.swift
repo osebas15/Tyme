@@ -33,7 +33,6 @@ enum ActivityClass0_0_0: VersionedSchema {
         
         private var subActivities: [ActivityClass]
         var subActivityOrder: [Int: UUID]
-        
         @Transient var orderedSubActivities: [ActivityClass] {
             get {
                 var toReturn = [ActivityClass]()
@@ -44,7 +43,6 @@ enum ActivityClass0_0_0: VersionedSchema {
                 return toReturn
             }
         }
-        
         @Transient var unOrderedSubActivities: [ActivityClass] {
             get { return subActivities }
         }
@@ -53,12 +51,19 @@ enum ActivityClass0_0_0: VersionedSchema {
         var detail: String?
         var timeToComplete: TimeInterval?
         
+        var storedPriority: Int
+        @Transient var priority: Priority {
+            get { return Priority(rawValue: storedPriority) ?? .null }
+            set { storedPriority = newValue.rawValue }
+        }
+        
         init(
             name: String,
             next: ActivityClass? = nil,
             canDoSubActivitiesInParallel: Bool = false,
             timeToComplete: TimeInterval? = nil,
-            detail: String? = nil
+            detail: String? = nil,
+            priority: Priority = .null
         ){
             self.name = name
             self.detail = detail
@@ -66,12 +71,14 @@ enum ActivityClass0_0_0: VersionedSchema {
             self.subActivities = []
             self.subActivityOrder = [:]
             self.timeToComplete = timeToComplete
+            self.storedPriority = priority.rawValue
         }
     }
 }
 
 extension ActivityClass {
     @MainActor static let error = ActivityClass(name: "error")
+    enum Priority: Int { case immidiate, high, medium, low, passive, null }
 }
 
 extension ActivityClass {
