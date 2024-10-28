@@ -6,11 +6,26 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
+    @Environment(\.modelContext) private var context
+    @Query(filter: ModelHelper().homeObjectPredicate) var homeObject: [ActivityObject]
+    @Query(filter: ModelHelper().homeActivityPredicate) var mainActivity: [ActivityClass]
+    
     var body: some View {
-        Spacer()
-        //ListView()
+        if homeObject.count > 0 && mainActivity.count > 0 {
+            if homeObject[0].subActivities.count > 0 {
+                ActiveView(activities: homeObject[0].subActivities)
+            }
+            else {
+                HomeView(activities: mainActivity[0].orderedSubActivities, mainObject: homeObject[0])
+            }
+            
+        }
+        else {
+            Text("Error loading HomeView")
+        }
     }
 }
 

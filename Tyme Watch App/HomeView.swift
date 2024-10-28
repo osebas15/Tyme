@@ -9,17 +9,17 @@ import SwiftUI
 import SwiftData
 
 struct HomeView: View {
-    @Environment(\.modelContext) private var context
-    
-    @Query(filter: #Predicate<ActivityClass>{ act in
-        true//act.parents == nil
-    }) var activityClasses: [ActivityClass]
+    let activities: [ActivityClass]
+    let mainObject: ActivityObject
     
     var body: some View {
-        Text("Hello, World! \(activityClasses.count) \(context)")
+        List(activities){ activity in
+            ActivityClassCell(parentObject: mainObject, activity: activity)
+        }
     }
 }
 
+/*
 #Preview {
     HomeView()
-}
+ }*/

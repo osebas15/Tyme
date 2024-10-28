@@ -13,7 +13,8 @@ struct ListView: View {
     let activityObjs : [ActivityObject]
 
     var body: some View {
-        VStack{
+        Text("in old list view")
+        /*VStack{
             NavigationStack{
                 List{
                     ForEach(activityObjs){ activity in
@@ -23,7 +24,7 @@ struct ListView: View {
                     }
                 }
             }
-        }
+        }*/
     }
     /*
     @ViewBuilder

@@ -6,21 +6,23 @@ an app to make and use timed todo list and recepies
 
 ## Scratch Pad
 - make workable state for my burger/quick breakfast recepie
-    add next functionality
-        append next multi step to same spot as previous
-            when ordering subObjects use a function that goes back to first activity and checks that on actClass.orderSubActivities
-                
-            consider continuos task that are processed in the background
-            
-        show current activity
-        figure out focus
-            focus should be enumed
-                [main, passive, secondary]
+    - AppleWatch
+        show quick breakfast
         
-    on done make all Object.subactivities done
-    timing functionality
-    add toggle to NewActivityListView for small vs full activity cells
-    draw multiple activities functionality
+    - iPhone
+        add to next functionality
+            append next multi step to same spot as previous
+                when ordering subObjects use a function that goes back to first activity and checks that on actClass.orderSubActivities
+                    
+                consider continuos task that are processed in the background
+                
+            show current activity
+            figure out focus
+                focus should be enumed
+                    [main, passive, secondary]
+                    
+        timing functionality
+    
     
 ### Happy on complete!
 consider how to reward user for finishing tasks

@@ -8,18 +8,10 @@
 import SwiftUI
 
 struct ActiveView: View {
-    var activity: ActivityObject
+    var activities: [ActivityObject]
     var body: some View {
-        VStack{
-            Text(activity.activityClass?.name ?? "activityclass error")
-            Spacer()
-            if let detail = activity.activityClass?.detail {
-                Text(detail)
-            }
-            
-            Button("done"){
-                print("done")
-            }
+        List(activities){ activity in
+            Text(activity.activityClass!.name)
         }
     }
 }
