@@ -94,11 +94,13 @@ extension ActivityObject {
 extension ActivityObject {
     func createSubActivity(context: ModelContext, activityClass: ActivityClass, mainSubActivity: Bool = false){
         
-        //if mainSubActivity {
-        //move all other prio orders up and make this 0
-        // } else {
         let newObject = ActivityObject(activityClass: activityClass, priorityOrder: self.subActivities.count )
-        //}
+        
+        if mainSubActivity {
+            self.subActivities.forEach{ $0.priorityOrder = $0.priorityOrder + 1 }
+            newObject.priorityOrder = 0
+        }
+        
         context.insert(newObject)
         self.subActivities.append(newObject)
         
@@ -114,7 +116,10 @@ extension ActivityObject {
     }
     
     func removeSubActivity(context: ModelContext, activity: ActivityObject){
-        //TODO: fix the ordering after deletion
+        self.subActivities
+            .filter{ $0.priorityOrder > activity.priorityOrder }
+            .forEach{ $0.priorityOrder = $0.priorityOrder - 1 }
+        
         if let position = subActivities.firstIndex(where: { $0.id == activity.id }){
             subActivities.remove(at: position)
             context.delete(activity)

@@ -7,12 +7,12 @@ an app to make and use timed todo list and recepies
 ## Scratch Pad
 - make workable state for my burger/quick breakfast recepie
     - Focus and priority
-        prio can start at 0 and go - or +
-            raw prio vs working prio / static vs dynamic
+        class prio vs object prio / static vs dynamic
         focus is a score based on prio and completion date
     
     - AppleWatch
         show quick breakfast
+        focus subactivities
         
     - iPhone
         add to next functionality
