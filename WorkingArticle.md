@@ -11,6 +11,8 @@ an app to make and use timed todo list and recepies
         focus is a score based on prio and completion date
     
     - AppleWatch
+        show current activity 
+            all active activities are objects
         show quick breakfast
         focus subactivities
         

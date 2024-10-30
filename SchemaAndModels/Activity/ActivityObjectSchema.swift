@@ -128,7 +128,6 @@ extension ActivityObject {
     
     func done(context: ModelContext){
         guard let parent = parent else { return }
-
         if let next = activityClass?.next {
             parent.removeSubActivity(context: context, activity: self)
             next.start(context: context, parentObject: parent)

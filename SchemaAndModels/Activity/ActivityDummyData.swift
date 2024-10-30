@@ -176,6 +176,8 @@ struct ActivityDummyData {
             name: "Potatoes, Cheese",
             canDoSubActivitiesInParallel: true
         )
+        potatoes.next = gatherIngridientsPotatoes
+        
         let iPotatoes = ActivityClass(
             name: "Potatoes",
             detail: "use baby potatoes, make sure to wash them"
@@ -190,12 +192,17 @@ struct ActivityDummyData {
             name: "Poke holes in the potatoes",
             detail: "so the potatoes don't explode in the microwave"
         )
+        gatherIngridientsPotatoes.next = pokeHoles
+        
         let microwavePotatoes = ActivityClass(
             name: "Microwave potatoes for 5 minutes",
             timeToComplete: 5 * 60
         )
+        pokeHoles.next = gatherIngridientsPotatoes
+        
         let cutPotatoes = ActivityClass(name: "Cut the potatoes and add the cheese")
-        [gatherIngridientsPotatoes, pokeHoles, microwavePotatoes].forEach({potatoes.addSubActivity(activity: $0)})
+        //[gatherIngridientsPotatoes, pokeHoles, microwavePotatoes].forEach({potatoes.addSubActivity(activity: $0)})
+        gatherIngridientsPotatoes.next = cutPotatoes
         
         let eggs = ActivityClass(name: "Eggs")
         let butterAndEggs = ActivityClass(
@@ -205,14 +212,16 @@ struct ActivityDummyData {
         let iButter = ActivityClass(name: "Butter")
         let iEggs = ActivityClass(name: "Eggs")
         [iButter, iEggs].forEach({butterAndEggs.addSubActivity(activity: $0)})
+        eggs.next = butterAndEggs
         
         let heatUpPanMeltButter = ActivityClass(
             name: "heat up the pan and melt butter",
             timeToComplete: 60
         )
+        butterAndEggs.next = heatUpPanMeltButter
         let cookCovered = ActivityClass(name: "pan fried covered for 3 minutes")
-        [butterAndEggs, heatUpPanMeltButter, cookCovered].forEach({eggs.addSubActivity(activity: $0)})
-        
+        //[butterAndEggs, heatUpPanMeltButter, cookCovered].forEach({eggs.addSubActivity(activity: $0)})
+        heatUpPanMeltButter.next = cookCovered
         let toast = ActivityClass(
             name: "Make Toast",
             timeToComplete: 3 * 60
