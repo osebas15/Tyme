@@ -18,10 +18,7 @@ struct ActiveView: View {
         }
         else {
             List(activities){ activity in
-                Text(activity.activityClass!.name)
-                    .onTapGesture {
-                        activity.done(context: context)
-                    }
+                ActiveObjectCellView(activity: activity)
             }
         }
     }

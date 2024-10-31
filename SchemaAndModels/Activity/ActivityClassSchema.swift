@@ -91,3 +91,9 @@ extension ActivityClass {
         parentObject.createSubActivity(context: context, activityClass: self)
     }
 }
+
+extension ActivityClass {
+    static func dummyActivity() -> ActivityClass {
+        return ActivityClass(name: "DummyClass")
+    }
+}

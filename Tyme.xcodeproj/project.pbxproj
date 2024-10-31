@@ -40,6 +40,7 @@
 		4A7F12D92C5AD4ED005200F2 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12D82C5AD4ED005200F2 /* HomeView.swift */; };
 		4A90D7A02C5D9C400036BAED /* ActivityObjectSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12D62C55D6CE005200F2 /* ActivityObjectSchema.swift */; };
 		4A9A73F02CCDED660047C701 /* ActivityClassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A73EF2CCDED660047C701 /* ActivityClassCell.swift */; };
+		4AB17C352CD3465B0045B34C /* ActiveObjectCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB17C342CD3465B0045B34C /* ActiveObjectCellView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +130,7 @@
 		4A7F12D62C55D6CE005200F2 /* ActivityObjectSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityObjectSchema.swift; sourceTree = "<group>"; };
 		4A7F12D82C5AD4ED005200F2 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4A9A73EF2CCDED660047C701 /* ActivityClassCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityClassCell.swift; sourceTree = "<group>"; };
+		4AB17C342CD3465B0045B34C /* ActiveObjectCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveObjectCellView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,6 +282,7 @@
 				4A7F12222C3AE284005200F2 /* Assets.xcassets */,
 				4A7F12242C3AE284005200F2 /* Preview Content */,
 				4A7F125D2C3F1790005200F2 /* ActiveView.swift */,
+				4AB17C342CD3465B0045B34C /* ActiveObjectCellView.swift */,
 				4A7F12D82C5AD4ED005200F2 /* HomeView.swift */,
 				4A9A73EF2CCDED660047C701 /* ActivityClassCell.swift */,
 			);
@@ -589,6 +592,7 @@
 				4A7F12612C3F18BF005200F2 /* TimeRange.swift in Sources */,
 				4A7F12D72C55D6CE005200F2 /* ActivityObjectSchema.swift in Sources */,
 				4A7F12622C3F18BF005200F2 /* ActivityClassSchema.swift in Sources */,
+				4AB17C352CD3465B0045B34C /* ActiveObjectCellView.swift in Sources */,
 				4A7F12D52C55D2D8005200F2 /* ActivityLink.swift in Sources */,
 				4A7F12632C3F18BF005200F2 /* ActivityDummyData.swift in Sources */,
 				4A9A73F02CCDED660047C701 /* ActivityClassCell.swift in Sources */,
@@ -790,7 +794,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 10.5;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
 			};
 			name = Debug;
 		};
@@ -821,7 +825,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 10.5;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
 			};
 			name = Release;
 		};

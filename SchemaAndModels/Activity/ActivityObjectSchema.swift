@@ -145,3 +145,9 @@ extension ActivityObject {
         }
     }
 }
+
+extension ActivityObject {
+    static func dummyObject() -> ActivityObject {
+        return ActivityObject(activityClass: ActivityClass.dummyActivity(), priorityOrder: 0)
+    }
+}

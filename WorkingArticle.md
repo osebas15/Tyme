@@ -6,6 +6,8 @@ an app to make and use timed todo list and recepies
 
 ## Scratch Pad
 - make workable state for my burger/quick breakfast recepie
+    - activity information
+        wait X time after completion
     - Focus and priority
         class prio vs object prio / static vs dynamic
         focus is a score based on prio and completion date
