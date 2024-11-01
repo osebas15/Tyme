@@ -10,46 +10,154 @@ import SwiftData
 
 @MainActor
 struct ActivityDummyData {
-    func insertDummyActivities(into container: ModelContainer){
-        // Create dummy data
-        let ActivityClass1 = ActivityClass(name: "parent")
-        ActivityClass1.detail = "Detail of ActivityClass 1"
-        ActivityClass1.timeToComplete = 3600 // 1 hour
-        //ActivityClass1.onOffTimes?.append(TimeRange(start: Date(), end: Date().addingTimeInterval(30 * 60)))
-
-        let ActivityClass2 = ActivityClass(name: "small")
-        ActivityClass2.detail = "Detail of ActivityClass 2"
-        ActivityClass2.timeToComplete = 900 // 15 min
-
-        let ActivityClass3 = ActivityClass(name: "big")
-        ActivityClass3.detail = "Detail of ActivityClass 3"
-        ActivityClass3.timeToComplete = 2700 // 45 minutes
+    
+    let microwavedPotatoRecepie: ActivityClass = {
+        let gatherIngridientsPotatoes = ActivityClass(
+            name: "Microwaved potatoes ingridients"
+        )
+        [
+            "Baby Potatoes",
+            "Cheese",
+            "Microwave safe small plate",
+            "fork and knife"
+        ].forEach{
+            gatherIngridientsPotatoes.addSubActivity(
+                activity: ActivityClass(name: $0)
+            )
+        }
+        let pokeHoles = ActivityClass(
+            name: "Poke holes in the potatoes",
+            detail: "so the potatoes don't explode in the microwave"
+        )
+        let microwavePotatoes = ActivityClass(
+            name: "Microwave potatoes for 5 minutes",
+            waitAfterCompletion: 5 * 60
+        )
+        let cutPotatoes = ActivityClass(
+            name: "Cut the potatoes and add cheese"
+        )
         
-        //ActivityClass3.onOffTimes?.append(TimeRange(start: Date(), end: Date().addingTimeInterval(30 * 60)))
-        /*
-        let ActivityClass4 = ActivityClass()
-        ActivityClass4.name = "always"
-        ActivityClass4.detail = "but part of parent"
-        ActivityClass4.timeToComplete = 60 * 5 // 5 minutes
-        ActivityClass4.onOffTimes?.append(contentsOf: [
-            TimeRange(
-                start: Date(),
-                end: Date().addingTimeInterval(60)),
-            TimeRange(
-                start: Date().addingTimeInterval(4 * 60),
-                end: Date().addingTimeInterval(5 * 60))
-        ])*/
-
-        let dummyActivities = [ActivityClass1, ActivityClass2, ActivityClass3]
+        gatherIngridientsPotatoes.addSteps(activities: [
+            pokeHoles,
+            microwavePotatoes,
+            cutPotatoes
+        ])
         
-        noDupInsert(container: container, toInsert: dummyActivities)
+        return gatherIngridientsPotatoes
+    }()
+    
+    let friedEggs: ActivityClass = {
+        let eggsIngridients = ActivityClass(
+            name: "What you need to fry eggs"
+        )
+        [
+            "Butter",
+            "Eggs",
+            "Frying Pan with cover",
+            "Spatula"
+        ].forEach{
+            eggsIngridients.addSubActivity(activity: ActivityClass(name:$0))
+        }
         
-        // Link the activities
-        ActivityClass1.next = ActivityClass2
-        ActivityClass2.next = ActivityClass3
-
-        // Set subActivities
-        //ActivityClass1.subActivities = [ActivityClass2, ActivityClass3]
+        let heatUpPanMeltButter = ActivityClass(
+            name: "heat up the pan and melt butter",
+            waitAfterCompletion: 60
+        )
+        let cookUncovered = ActivityClass(
+            name: "fry uncovered",
+            waitAfterCompletion: 60
+        )
+        let cookCovered = ActivityClass(
+            name: "cover frying pan",
+            waitAfterCompletion: 60
+        )
+        let removeFromPan = ActivityClass(
+            name: "remove from frying pan"
+        )
+        
+        eggsIngridients.addSteps(activities: [
+            heatUpPanMeltButter,
+            cookUncovered,
+            cookCovered,
+            removeFromPan
+        ])
+        
+        return eggsIngridients
+    }()
+    
+    let coffee: ActivityClass = {
+        let coffeeIngridients = ActivityClass(
+            name: "make coffee with a coffee maker"
+        )
+        [
+            "Water",
+            "Ground coffee",
+            "Coffee mug",
+            "Milk"
+        ].forEach {
+            coffeeIngridients.addSubActivity(activity: ActivityClass(name: $0))
+        }
+        
+        let coffeeMaker = ActivityClass(
+            name: "Put water and ground coffee in coffee maker and start it",
+            waitAfterCompletion: 5 * 60
+        )
+        let serve = ActivityClass(
+            name: "Serve in mug with milk"
+        )
+        
+        coffeeIngridients.addSteps(activities: [
+            coffeeMaker,
+            serve
+        ])
+        
+        return coffeeIngridients
+    }()
+    
+    let toast: ActivityClass = {
+        let toast = ActivityClass(
+            name: "Ingridients for Toast"
+        )
+        toast.addSubActivity(activity: ActivityClass(name: "bread"))
+        
+        let toaster = ActivityClass(
+            name: "Add to toaster and start",
+            waitAfterCompletion: 3 * 60
+        )
+        let serveToast = ActivityClass(
+            name: "Serve toast"
+        )
+        
+        toast.addSteps(activities: [
+            toaster,
+            serveToast
+        ])
+        
+        return toast
+    }()
+    
+    func insertQuickBreakfastRecepie(into container: ModelContainer){
+        let recepie = ActivityClass(
+            name: "Quick Breakfast",
+            detail: "a quick hearty breakfast with cheesy potatoes, eggs, toast and coffee for an easy morning!"
+        )
+        [
+            coffee,
+            friedEggs,
+            microwavedPotatoRecepie,
+            toast
+        ].forEach{
+            recepie.addSubActivity(activity: $0)
+        }
+        
+        container.mainContext.insert(recepie)
+        
+        var fd = FetchDescriptor(predicate: ModelHelper().homeActivityPredicate)
+        fd.fetchLimit = 1
+        let result = try? container.mainContext.fetch(fd)
+        if (!(result?.isEmpty ?? true)){
+            result![0].addSubActivity(activity: recepie)
+        }
     }
 
     func insertSwissBurgerRecepie(into container: ModelContainer) {
@@ -151,111 +259,12 @@ struct ActivityDummyData {
         
         let swissBurgerRecepie = [swissBurger]// + swissBurger.subActivities
         
-        noDupInsert(container: container, toInsert: swissBurgerRecepie)
-        
         var fd = FetchDescriptor(predicate: ModelHelper().homeActivityPredicate)
         fd.fetchLimit = 1
         let result = try? container.mainContext.fetch(fd)
         if (!(result?.isEmpty ?? true)){
             result![0].addSubActivity(activity: swissBurger)//.subActivities.append(swissBurger)
             //swissBurger.createdFrom = result![0]
-        }
-    }
-    
-    func insertQuickBreakfastRecepie(into container: ModelContainer){
-        let recepie = ActivityClass(
-            name: "Quick Breakfast",
-            canDoSubActivitiesInParallel: true, 
-            detail: "a quick hearty breakfast for those on the go!"
-        )
-        let potatoes = ActivityClass(
-            name: "Microwaved Potatoes",
-            detail: "quick potatoes"
-        )
-        let gatherIngridientsPotatoes = ActivityClass(
-            name: "Potatoes, Cheese",
-            canDoSubActivitiesInParallel: true
-        )
-        potatoes.next = gatherIngridientsPotatoes
-        
-        let iPotatoes = ActivityClass(
-            name: "Potatoes",
-            detail: "use baby potatoes, make sure to wash them"
-        )
-        let iCheese = ActivityClass(
-            name: "Cheese",
-            detail: "use any cheese you would like, something that melts tasty"
-        )
-        [iPotatoes, iCheese].forEach({gatherIngridientsPotatoes.addSubActivity(activity: $0)})
-        
-        let pokeHoles = ActivityClass(
-            name: "Poke holes in the potatoes",
-            detail: "so the potatoes don't explode in the microwave"
-        )
-        gatherIngridientsPotatoes.next = pokeHoles
-        
-        let microwavePotatoes = ActivityClass(
-            name: "Microwave potatoes for 5 minutes",
-            timeToComplete: 5 * 60
-        )
-        pokeHoles.next = gatherIngridientsPotatoes
-        
-        let cutPotatoes = ActivityClass(name: "Cut the potatoes and add the cheese")
-        //[gatherIngridientsPotatoes, pokeHoles, microwavePotatoes].forEach({potatoes.addSubActivity(activity: $0)})
-        gatherIngridientsPotatoes.next = cutPotatoes
-        
-        let eggs = ActivityClass(name: "Eggs")
-        let butterAndEggs = ActivityClass(
-            name: "get butter and eggs",
-            canDoSubActivitiesInParallel: true
-        )
-        let iButter = ActivityClass(name: "Butter")
-        let iEggs = ActivityClass(name: "Eggs")
-        [iButter, iEggs].forEach({butterAndEggs.addSubActivity(activity: $0)})
-        eggs.next = butterAndEggs
-        
-        let heatUpPanMeltButter = ActivityClass(
-            name: "heat up the pan and melt butter",
-            timeToComplete: 60
-        )
-        butterAndEggs.next = heatUpPanMeltButter
-        let cookCovered = ActivityClass(name: "pan fried covered for 3 minutes")
-        //[butterAndEggs, heatUpPanMeltButter, cookCovered].forEach({eggs.addSubActivity(activity: $0)})
-        heatUpPanMeltButter.next = cookCovered
-        let toast = ActivityClass(
-            name: "Make Toast",
-            timeToComplete: 3 * 60
-        )
-        let coffee = ActivityClass(
-            name: "Prepare Coffee",
-            timeToComplete: 5 * 60
-        )
-        [potatoes, eggs, toast, coffee].forEach({recepie.addSubActivity(activity: $0)})
-        
-        container.mainContext.insert(recepie)
-        
-        var fd = FetchDescriptor(predicate: ModelHelper().homeActivityPredicate)
-        fd.fetchLimit = 1
-        let result = try? container.mainContext.fetch(fd)
-        if (!(result?.isEmpty ?? true)){
-            result![0].addSubActivity(activity: recepie)
-        }
-    }
-    
-    func noDupInsert(container: ModelContainer, toInsert: [ActivityClass]){
-        for model in toInsert {
-            let modelId = model.id
-            let predicate = #Predicate <ActivityClass> { idableModel in
-                return idableModel.id == modelId
-            }
-            
-            var fd = FetchDescriptor(predicate: predicate)
-            fd.fetchLimit = 1
-            let result = try? container.mainContext.fetch(fd)
-            
-            if (result?.isEmpty ?? false){
-                container.mainContext.insert(model)
-            }
         }
     }
 }

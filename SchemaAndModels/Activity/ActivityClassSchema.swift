@@ -50,6 +50,7 @@ enum ActivityClass0_0_0: VersionedSchema {
         var name: String
         var detail: String?
         var timeToComplete: TimeInterval?
+        var waitAfterCompletion: TimeInterval?
         
         var storedPriority: Int
         @Transient var priority: Priority {
@@ -60,8 +61,8 @@ enum ActivityClass0_0_0: VersionedSchema {
         init(
             name: String,
             next: ActivityClass? = nil,
-            canDoSubActivitiesInParallel: Bool = false,
             timeToComplete: TimeInterval? = nil,
+            waitAfterCompletion: TimeInterval? = nil,
             detail: String? = nil,
             priority: Priority = .null
         ){
@@ -85,6 +86,13 @@ extension ActivityClass {
     func addSubActivity(activity: ActivityClass){
         self.subActivities.append(activity)
         self.subActivityOrder[self.subActivityOrder.count] = activity.id
+    }
+    
+    func addSteps(activities: [ActivityClass]){
+        let _ = activities.reduce(self) { current, next in
+            current.next = next
+            return next
+        }
     }
     
     func start(context: ModelContext, parentObject: ActivityObject){
