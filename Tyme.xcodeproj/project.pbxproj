@@ -131,6 +131,8 @@
 		4A7F12D82C5AD4ED005200F2 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4A9A73EF2CCDED660047C701 /* ActivityClassCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityClassCell.swift; sourceTree = "<group>"; };
 		4AB17C342CD3465B0045B34C /* ActiveObjectCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveObjectCellView.swift; sourceTree = "<group>"; };
+		4AB17C372CD6DE7F0045B34C /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
+		4AB17C382CD6E8F00045B34C /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -336,6 +338,8 @@
 		4AB17C362CD6DC680045B34C /* TimingAndNotifications */ = {
 			isa = PBXGroup;
 			children = (
+				4AB17C382CD6E8F00045B34C /* NotificationManager.swift */,
+				4AB17C372CD6DE7F0045B34C /* TimerManager.swift */,
 			);
 			path = TimingAndNotifications;
 			sourceTree = "<group>";
