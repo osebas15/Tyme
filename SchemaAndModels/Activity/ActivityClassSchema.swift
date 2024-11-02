@@ -84,8 +84,8 @@ extension ActivityClass {
 
 extension ActivityClass {
     func addSubActivity(activity: ActivityClass){
-        self.subActivities.append(activity)
         self.subActivityOrder[self.subActivityOrder.count] = activity.id
+        self.subActivities.append(activity)
     }
     
     func addSteps(activities: [ActivityClass]){
@@ -95,8 +95,8 @@ extension ActivityClass {
         }
     }
     
-    func start(context: ModelContext, parentObject: ActivityObject){
-        parentObject.createSubActivity(context: context, activityClass: self)
+    func start(context: ModelContext, parentObject: ActivityObject, priorityIndex: Int? = nil){
+        parentObject.createSubActivity(context: context, activityClass: self, priorityIndex: priorityIndex)
     }
 }
 

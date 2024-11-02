@@ -23,7 +23,7 @@ struct ActiveObjectCellView: View {
                     .foregroundColor(Color(red: 0.2, green: 0.6, blue: 0.2))
             }
             
-            Text(activity.activityClass!.name)
+            Text(activity.activityClass!.name + " \(activity.getPlaceInPriorityHierarchy())")
             Spacer()
         }
         .onTapGesture {

@@ -87,11 +87,11 @@ extension ActivityObject {
         }
     }
     @Transient var lowestActivities: [ActivityObject]{
-        if subActivities.isEmpty{
+        if unOrderedActivities.isEmpty{
             return [self]
         }
         else {
-            return subActivities.flatMap { $0.lowestActivities }
+            return orderedActivities.flatMap { $0.lowestActivities }
         }
     }
 }
@@ -102,14 +102,21 @@ extension ActivityObject {
 }
 
 extension ActivityObject {
-    func createSubActivity(context: ModelContext, activityClass: ActivityClass, mainSubActivity: Bool = false){
-        
-        let newObject = ActivityObject(activityClass: activityClass, priorityOrder: self.subActivities.count )
-        
-        if mainSubActivity {
-            self.subActivities.forEach{ $0.priorityOrder = $0.priorityOrder + 1 }
-            newObject.priorityOrder = 0
+    func createSubActivity(
+        context: ModelContext,
+        activityClass: ActivityClass,
+        priorityIndex: Int? = nil
+    ){
+        if let priorityIndex = priorityIndex {
+            unOrderedActivities
+                .filter{ $0.priorityOrder >= priorityIndex }
+                .forEach{ $0.priorityOrder += 1 }
         }
+        
+        let newObject = ActivityObject(
+            activityClass: activityClass,
+            priorityOrder: priorityIndex ?? self.subActivities.count
+        )
         
         context.insert(newObject)
         self.subActivities.append(newObject)
@@ -140,7 +147,7 @@ extension ActivityObject {
         guard let parent = parent else { return }
         if let next = activityClass?.next {
             parent.removeSubActivity(context: context, activity: self)
-            next.start(context: context, parentObject: parent)
+            next.start(context: context, parentObject: parent, priorityIndex: self.priorityOrder)
         }
         else if isPartOfMultiPick {
             self.focus = .done
@@ -152,6 +159,17 @@ extension ActivityObject {
         else {
             parent.removeSubActivity(context: context, activity: self)
             parent.done(context: context)
+        }
+    }
+}
+
+extension ActivityObject {
+    func getPlaceInPriorityHierarchy() -> String {
+        if let parent = parent{
+            return parent.getPlaceInPriorityHierarchy() + ", \(priorityOrder)"
+        }
+        else {
+            return "\(priorityOrder)"
         }
     }
 }

@@ -13,13 +13,8 @@ struct ActiveView: View {
     var activities: [ActivityObject]
     
     var body: some View {
-        if activities.count == 1 && activities[0].unOrderedActivities.count > 0 {
-            ActiveView(activities: activities[0].orderedActivities)
-        }
-        else {
-            List(activities){ activity in
-                ActiveObjectCellView(activity: activity)
-            }
+        List(activities){ activity in
+            ActiveObjectCellView(activity: activity)
         }
     }
 }

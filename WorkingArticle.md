@@ -3,8 +3,13 @@
 
 an app to make and use timed todo list and recepies
 
+## BIG BUGS
+### Memory leaks
+    - seems to be mostly at beggining
 
 ## Scratch Pad
+- debug print for activity hierarch
+    - ordering on start is wierd
 - make workable state for my burger/quick breakfast recepie
     - UI for higher nodes!!!
         - focus this for complete task
