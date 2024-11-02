@@ -8,14 +8,28 @@ an app to make and use timed todo list and recepies
     - seems to be mostly at beggining
 
 ## Scratch Pad
-- debug print for activity hierarch
-    - ordering on start is wierd
+- Timing mechanism
+    - queue up notifications
+    - create var waitingTimeOver? on object
+    - on foreground or start waiting create timers
+    - on background kill timers
+    
 - make workable state for my burger/quick breakfast recepie
-    - UI for higher nodes!!!
+    - UI for Active activities
+        - higher nodes!!!
+        - ordering and what is shown
+            - the higher up on the next scale the higher up on the active list
+                - should be scrolled past this
+                    - show an up arrow
+            - second and where it should be scrolled to are the lowest on the next scale while completable
+            - second to last are waiting "passive" activities
+            - last are completed activities
         - focus this for complete task
             - i.e Quick Breakfast
     - tasking and multitaskings
         wait X time after completion
+            - can be made passive if has a passive timing
+                - research between dispatch Queue vs Actor system
         number of completions
         - Focus //and priority
             //class prio vs object prio / static vs dynamic
@@ -23,25 +37,10 @@ an app to make and use timed todo list and recepies
             focus is a state. if passive then easy multitask, if focused then compete for spotlight
     
     - AppleWatch
-        show current activity 
-            all active activities are objects
-        show quick breakfast
-        focus subactivities
-        
-    - iPhone
-        add to next functionality
-            append next multi step to same spot as previous
-                when ordering subObjects use a function that goes back to first activity and checks that on actClass.orderSubActivities
-                    
-                consider continuos task that are processed in the background
-                
-            show current activity
-            figure out focus
-                focus should be enumed
-                    [main, passive, secondary]
-                    
-        timing functionality
-    
+        show current activity
+        figure out focus
+            focus should be enumed
+                [main, passive, secondary]
     
 ### Happy on complete!
 consider how to reward user for finishing tasks
@@ -58,7 +57,10 @@ List for all subactivities on select show next or disappear until all are gone a
 ##Quick
 ###Activity Object 
  - move pertinent transient properties into own extension
- - clean up done pathing for remove from parent
+ - clean up start logic is too complex
+ - clean up done pathing 
+    - for remove from parent
+    - current done is more like clicked on, make it actually done
 
 ##Swift Data
 - check if things are deleted after arc goes to zero if not delete on done
@@ -72,3 +74,4 @@ simple MVP like UI so I can iterate
 
 ### UI watch
 can I do edits and creation on the watch
+research apple watch background states

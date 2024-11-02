@@ -211,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				4A7F126A2C3F3E34005200F2 /* WorkingArticle.md */,
+				4AB17C362CD6DC680045B34C /* TimingAndNotifications */,
 				4A7F12522C3AE2E4005200F2 /* SchemaAndModels */,
 				4A7F11F52C3AE282005200F2 /* Tyme */,
 				4A7F12062C3AE283005200F2 /* TymeTests */,
@@ -330,6 +331,13 @@
 				4A7F12D42C55D2D8005200F2 /* ActivityLink.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		4AB17C362CD6DC680045B34C /* TimingAndNotifications */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TimingAndNotifications;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
