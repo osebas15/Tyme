@@ -6,6 +6,11 @@ an app to make and use timed todo list and recepies
 
 ## Scratch Pad
 - make workable state for my burger/quick breakfast recepie
+    - have tasks go to lowest node
+        - i.e recepies should go straigt to gather ingridients
+        - UI for higher nodes!!!
+            - focus this for complete task
+                - i.e Quick Breakfast
     - tasking and multitaskings
         wait X time after completion
         number of completions

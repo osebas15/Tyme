@@ -21,17 +21,11 @@ enum ActivityObject0_0_0: VersionedSchema {
         
         @Attribute(.unique) var id = UUID()
         
+        var parent: ActivityObject?
         @Relationship(
             deleteRule: .cascade,
             inverse: \ActivityObject.parent
-        ) var subActivities: [ActivityObject]
-        var parent: ActivityObject?
-        
-        var activityClass : ActivityClass?
-        var completionDate: Date?
-        var onOffTimes: [TimeRange]?
-        
-        var priorityOrder: Int
+        ) private var subActivities: [ActivityObject]
         @Transient var orderedActivities: [ActivityObject] {
             get { return subActivities.sorted { $0.priorityOrder < $1.priorityOrder }}
         }
@@ -39,33 +33,16 @@ enum ActivityObject0_0_0: VersionedSchema {
             get{ subActivities }
         }
         
+        var activityClass : ActivityClass?
+        var completionDate: Date?
+        var onOffTimes: [TimeRange]?
+        
+        var priorityOrder: Int
+        
         private var storedFocus: Int
         @Transient var focus: FocusState{
             set{ self.storedFocus = newValue.rawValue }
             get{ return FocusState(rawValue: storedFocus) ?? .error }
-        }
-        
-        @Transient var creationDate: Date?{
-            get { return onOffTimes?.first?.start }
-        }
-        @Transient var hasNext: Bool{
-            get { return activityClass?.next != nil }
-        }
-        @Transient var numberOfSubActivities: Int {
-            get { return activityClass?.unOrderedSubActivities.count ?? 0 }
-        }
-        @Transient var isPartOfMultiPick: Bool {
-            get { return parent?.activityClass?.unOrderedSubActivities.count ?? 0 > 1 }
-        }
-        @Transient var couldBeDone: Bool {
-            get {
-                for activity in subActivities {
-                    if activity.focus != .done{
-                        return false
-                    }
-                }
-                return true
-            }
         }
         
         init(
@@ -82,6 +59,31 @@ enum ActivityObject0_0_0: VersionedSchema {
             self.subActivities = subActivities
             self.storedFocus = focus.rawValue
             self.priorityOrder = priorityOrder
+        }
+    }
+}
+
+extension ActivityObject {
+    @Transient var creationDate: Date?{
+        get { return onOffTimes?.first?.start }
+    }
+    @Transient var hasNext: Bool{
+        get { return activityClass?.next != nil }
+    }
+    @Transient var numberOfSubActivities: Int {
+        get { return activityClass?.unOrderedSubActivities.count ?? 0 }
+    }
+    @Transient var isPartOfMultiPick: Bool {
+        get { return parent?.activityClass?.unOrderedSubActivities.count ?? 0 > 1 }
+    }
+    @Transient var couldBeDone: Bool {
+        get {
+            for activity in subActivities {
+                if activity.focus != .done{
+                    return false
+                }
+            }
+            return true
         }
     }
 }
