@@ -86,6 +86,14 @@ extension ActivityObject {
             return true
         }
     }
+    @Transient var lowestActivities: [ActivityObject]{
+        if subActivities.isEmpty{
+            return [self]
+        }
+        else {
+            return subActivities.flatMap { $0.lowestActivities }
+        }
+    }
 }
 
 extension ActivityObject {

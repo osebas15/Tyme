@@ -16,7 +16,7 @@ struct ContentView: View {
     var body: some View {
         if homeObject.count > 0 && mainActivity.count > 0 {
             if homeObject[0].unOrderedActivities.count > 0 {
-                ActiveView(activities: homeObject[0].orderedActivities)
+                ActiveView(activities: homeObject[0].lowestActivities)
             }
             else {
                 HomeView(activities: mainActivity[0].orderedSubActivities, mainObject: homeObject[0])
