@@ -15,5 +15,21 @@ struct TymeNotificationManager {
         }
     }
     
-    
+    func sendWaitAfterCompletionDoneNotification(object: ActivityObject){
+        guard let activityClass = object.activityClass else { return }
+        
+        let content = UNMutableNotificationContent()
+        content.title = activityClass.name
+        content.subtitle = activityClass.detail
+        content.sound = UNNotificationSound.default
+
+        // show this notification five seconds from now
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: activityClass.waitAfterCompletion, repeats: false)
+
+        // choose a random identifier
+        let request = UNNotificationRequest(identifier: activityClass.name + ".\()", content: content, trigger: trigger)
+
+        // add our notification request
+        UNUserNotificationCenter.current().add(request)
+    }
 }
