@@ -39,6 +39,8 @@ enum ActivityObject0_0_0: VersionedSchema {
         
         var priorityOrder: Int
         
+        var currentStep: Int
+        
         private var storedFocus: Int
         @Transient var focus: FocusState{
             set{ self.storedFocus = newValue.rawValue }
@@ -51,7 +53,8 @@ enum ActivityObject0_0_0: VersionedSchema {
             onOffTimes: [TimeRange]? = nil,
             subActivities: [ActivityObject] = [],
             focus: FocusState = .none,
-            priorityOrder: Int
+            priorityOrder: Int,
+            currentStep: Int = 0
         ) {
             self.activityClass = activityClass
             self.completionDate = completionDate
@@ -59,6 +62,7 @@ enum ActivityObject0_0_0: VersionedSchema {
             self.subActivities = subActivities
             self.storedFocus = focus.rawValue
             self.priorityOrder = priorityOrder
+            self.currentStep = currentStep
         }
     }
 }
@@ -97,7 +101,7 @@ extension ActivityObject {
 }
 
 extension ActivityObject {
-    enum FocusState: Int { case main, passive, secondary, done, none, error }
+    enum FocusState: Int { case main, actionable, passive, done, none, error }
     @MainActor static let error = ActivityObject(activityClass: ActivityClass.error, priorityOrder: 0)
 }
 
@@ -105,7 +109,8 @@ extension ActivityObject {
     func createSubActivity(
         context: ModelContext,
         activityClass: ActivityClass,
-        priorityIndex: Int? = nil
+        priorityIndex: Int? = nil,
+        stepNumber: Int
     ){
         if let priorityIndex = priorityIndex {
             unOrderedActivities
@@ -115,7 +120,9 @@ extension ActivityObject {
         
         let newObject = ActivityObject(
             activityClass: activityClass,
-            priorityOrder: priorityIndex ?? self.subActivities.count
+            focus: .actionable,
+            priorityOrder: priorityIndex ?? self.subActivities.count,
+            currentStep: stepNumber
         )
         
         context.insert(newObject)
@@ -124,10 +131,12 @@ extension ActivityObject {
         //start the subactivities from the activityclass
         if let activityClass = newObject.activityClass, activityClass.unOrderedSubActivities.count > 0 {
             if activityClass.unOrderedSubActivities.count > 1 {
-                activityClass.unOrderedSubActivities.forEach { $0.start(context: context, parentObject: newObject) }
+                activityClass.unOrderedSubActivities.forEach {
+                    $0.start(context: context, parentObject: newObject, stepNumber: 0)
+                }
             }
             else {
-                activityClass.unOrderedSubActivities[0].start(context: context, parentObject: newObject)
+                activityClass.unOrderedSubActivities[0].start(context: context, parentObject: newObject, stepNumber: 0)
             }
         }
     }
@@ -143,11 +152,16 @@ extension ActivityObject {
         }
     }
     
+    func checkAndContinueState(context: ModelContext){
+        done(context: context)
+    }
+    
     func done(context: ModelContext){
         guard let parent = parent else { return }
+        
         if let next = activityClass?.next {
             parent.removeSubActivity(context: context, activity: self)
-            next.start(context: context, parentObject: parent, priorityIndex: self.priorityOrder)
+            next.start(context: context, parentObject: parent, priorityIndex: self.priorityOrder, stepNumber: self.currentStep + 1)
         }
         else if isPartOfMultiPick {
             self.focus = .done

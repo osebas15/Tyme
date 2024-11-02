@@ -16,7 +16,7 @@ struct ActivityClassCell: View {
     var body: some View {
         Text(activity.name)
         .onTapGesture {
-            activity.start(context: model, parentObject: parentObject)
+            activity.start(context: model, parentObject: parentObject, stepNumber: 0)
         }
     }
 }

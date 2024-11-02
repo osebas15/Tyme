@@ -23,7 +23,7 @@ struct ActivityClassSmallCellView: View {
                 }
                 .buttonStyle(BorderlessButtonStyle())
                 Button("Start"){
-                    activityClass.start(context: context, parentObject: parentObject)
+                    activityClass.start(context: context, parentObject: parentObject, stepNumber: 0)
                 }
                 .buttonStyle(BorderlessButtonStyle())
             }
