@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftData
+import SwiftUI
 
 class TimerManager {
     var currentTimers = [UUID: Timer]()
@@ -20,7 +21,24 @@ class TimerManager {
     }
     
     func endTimer(id: UUID){
-        currentTimers[id].invalidate()
+        currentTimers[id]?.invalidate()
         currentTimers.removeValue(forKey: id)
+    }
+}
+
+private struct TimerManagerKey: EnvironmentKey {
+    static let defaultValue = TimerManager()
+}
+
+extension EnvironmentValues {
+    var timerManager: TimerManager {
+        get { self[TimerManagerKey.self] }
+        set { self[TimerManagerKey.self] = newValue }
+    }
+}
+
+extension Scene {
+    func timerManager(_ manager: TimerManager) -> some Scene {
+        environment(\.timerManager, manager)
     }
 }

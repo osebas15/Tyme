@@ -35,12 +35,13 @@
 		4A7F12632C3F18BF005200F2 /* ActivityDummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12572C3C55A2005200F2 /* ActivityDummyData.swift */; };
 		4A7F12662C3F29F9005200F2 /* ModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12652C3F29F9005200F2 /* ModelHelper.swift */; };
 		4A7F12672C3F29F9005200F2 /* ModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12652C3F29F9005200F2 /* ModelHelper.swift */; };
-		4A7F12D52C55D2D8005200F2 /* ActivityLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12D42C55D2D8005200F2 /* ActivityLink.swift */; };
 		4A7F12D72C55D6CE005200F2 /* ActivityObjectSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12D62C55D6CE005200F2 /* ActivityObjectSchema.swift */; };
 		4A7F12D92C5AD4ED005200F2 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12D82C5AD4ED005200F2 /* HomeView.swift */; };
 		4A90D7A02C5D9C400036BAED /* ActivityObjectSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12D62C55D6CE005200F2 /* ActivityObjectSchema.swift */; };
 		4A9A73F02CCDED660047C701 /* ActivityClassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A73EF2CCDED660047C701 /* ActivityClassCell.swift */; };
 		4AB17C352CD3465B0045B34C /* ActiveObjectCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB17C342CD3465B0045B34C /* ActiveObjectCellView.swift */; };
+		4AB17C392CD6FD5E0045B34C /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB17C382CD6E8F00045B34C /* NotificationManager.swift */; };
+		4AB17C3A2CD6FD5E0045B34C /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB17C372CD6DE7F0045B34C /* TimerManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,7 +127,6 @@
 		4A7F125D2C3F1790005200F2 /* ActiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveView.swift; sourceTree = "<group>"; };
 		4A7F12652C3F29F9005200F2 /* ModelHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelHelper.swift; sourceTree = "<group>"; };
 		4A7F126A2C3F3E34005200F2 /* WorkingArticle.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = WorkingArticle.md; sourceTree = "<group>"; };
-		4A7F12D42C55D2D8005200F2 /* ActivityLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLink.swift; sourceTree = "<group>"; };
 		4A7F12D62C55D6CE005200F2 /* ActivityObjectSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityObjectSchema.swift; sourceTree = "<group>"; };
 		4A7F12D82C5AD4ED005200F2 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4A9A73EF2CCDED660047C701 /* ActivityClassCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityClassCell.swift; sourceTree = "<group>"; };
@@ -279,7 +279,6 @@
 		4A7F121D2C3AE283005200F2 /* Tyme Watch App */ = {
 			isa = PBXGroup;
 			children = (
-				4A7F12D32C55D2B1005200F2 /* Components */,
 				4A7F121E2C3AE283005200F2 /* TymeApp.swift */,
 				4A7F12202C3AE283005200F2 /* ContentView.swift */,
 				4A7F12222C3AE284005200F2 /* Assets.xcassets */,
@@ -325,14 +324,6 @@
 				4A7F12652C3F29F9005200F2 /* ModelHelper.swift */,
 			);
 			path = SchemaAndModels;
-			sourceTree = "<group>";
-		};
-		4A7F12D32C55D2B1005200F2 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				4A7F12D42C55D2D8005200F2 /* ActivityLink.swift */,
-			);
-			path = Components;
 			sourceTree = "<group>";
 		};
 		4AB17C362CD6DC680045B34C /* TimingAndNotifications */ = {
@@ -601,11 +592,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AB17C392CD6FD5E0045B34C /* NotificationManager.swift in Sources */,
+				4AB17C3A2CD6FD5E0045B34C /* TimerManager.swift in Sources */,
 				4A7F12612C3F18BF005200F2 /* TimeRange.swift in Sources */,
 				4A7F12D72C55D6CE005200F2 /* ActivityObjectSchema.swift in Sources */,
 				4A7F12622C3F18BF005200F2 /* ActivityClassSchema.swift in Sources */,
 				4AB17C352CD3465B0045B34C /* ActiveObjectCellView.swift in Sources */,
-				4A7F12D52C55D2D8005200F2 /* ActivityLink.swift in Sources */,
 				4A7F12632C3F18BF005200F2 /* ActivityDummyData.swift in Sources */,
 				4A9A73F02CCDED660047C701 /* ActivityClassCell.swift in Sources */,
 				4A7F125E2C3F1790005200F2 /* ActiveView.swift in Sources */,

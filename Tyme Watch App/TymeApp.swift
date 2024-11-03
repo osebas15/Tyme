@@ -11,10 +11,13 @@ import SwiftData
 @main
 struct Tyme_Watch_AppApp: App {
     let modelContainer = ModelHelper().getTestContainer()
+    let timeManager = TimerManager()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
         .modelContainer(modelContainer)
+        .timerManager(timeManager)
     }
 }
