@@ -131,8 +131,8 @@ extension ActivityObject {
         //start the subactivities from the activityclass
         if let activityClass = newObject.activityClass, activityClass.unOrderedSubActivities.count > 0 {
             if activityClass.unOrderedSubActivities.count > 1 {
-                activityClass.unOrderedSubActivities.forEach {
-                    $0.start(context: context, parentObject: newObject, stepNumber: 0)
+                activityClass.orderedSubActivities.enumerated().forEach {
+                    $1.start(context: context, parentObject: newObject, priorityIndex: $0, stepNumber: 0)
                 }
             }
             else {
