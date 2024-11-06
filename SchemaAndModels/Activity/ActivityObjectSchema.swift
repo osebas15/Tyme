@@ -68,6 +68,10 @@ enum ActivityObject0_0_0: VersionedSchema {
 }
 
 extension ActivityObject {
+    enum FocusState: Int { case main, actionable, passive, done, none, error }
+}
+
+extension ActivityObject {
     @Transient var creationDate: Date?{
         get { return onOffTimes?.first?.start }
     }
@@ -100,11 +104,7 @@ extension ActivityObject {
     }
 }
 
-extension ActivityObject {
-    enum FocusState: Int { case main, actionable, passive, done, none, error }
-    @MainActor static let error = ActivityObject(activityClass: ActivityClass.error, priorityOrder: 0)
-}
-
+@MainActor
 extension ActivityObject {
     func createSubActivity(
         context: ModelContext,
@@ -152,7 +152,7 @@ extension ActivityObject {
         }
     }
     
-    func checkAndContinueState(context: ModelContext){
+    func checkAndContinueState(context: ModelContext) {
         done(context: context)
     }
     
@@ -189,7 +189,28 @@ extension ActivityObject {
 }
 
 extension ActivityObject {
+    @MainActor
+    func queriedCopy(container: ModelContainer) async -> ActivityObject {
+        let selfPersistantId = self.persistentModelID
+        var fd = FetchDescriptor<ActivityObject>(predicate: #Predicate{ obj in
+            return obj.persistentModelID == selfPersistantId
+        })
+        fd.fetchLimit = 1
+        
+        var toReturn = ActivityObject.error()
+        
+        if let result = try? container.mainContext.fetch(fd), result.count == 1{
+            toReturn = result[0]
+        }
+        
+        return toReturn
+    }
+    
     static func dummyObject() -> ActivityObject {
         return ActivityObject(activityClass: ActivityClass.dummyActivity(), priorityOrder: 0)
+    }
+    
+    static func error() -> ActivityObject {
+        return ActivityObject(activityClass: ActivityClass.error(), priorityOrder: 0)
     }
 }

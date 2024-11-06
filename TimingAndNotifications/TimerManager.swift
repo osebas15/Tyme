@@ -9,15 +9,26 @@ import Foundation
 import SwiftData
 import SwiftUI
 
-class TimerManager {
+actor TimerManager {
     var currentTimers = [UUID: Timer]()
     
-    func startTimer(context: ModelContext, forObject: ActivityObject){
-        let newTimer = Timer(timeInterval: forObject.waitAfterCompletion, repeats: false){ timer in
-            forObject.checkAndContinueState(context: context)
-            endTimer(id: forObject.id)
+    func startTimer(container: ModelContainer, forObject objectToQuery: ActivityObject){
+        
+        guard
+            let activityClass = objectToQuery.activityClass,
+            let waitTime = activityClass.waitAfterCompletion
+        else { return }
+        
+        let newTimer = Timer(timeInterval: waitTime, repeats: false) { timer in
+            Task {
+                let actorIsolatedObject = await objectToQuery.queriedCopy(container: container)
+                await MainActor.run { actorIsolatedObject.checkAndContinueState(context: container.mainContext)
+                }
+                await self.endTimer(id: actorIsolatedObject.id)
+            }
         }
-        currentTimers[forObject.id] = newTimer
+        
+        currentTimers[objectToQuery.id] = newTimer
     }
     
     func endTimer(id: UUID){
