@@ -59,14 +59,14 @@ enum ActivityClass0_0_0: VersionedSchema {
         }
         
         init(
-            name: String,
+            name: String?,
             next: ActivityClass? = nil,
             timeToComplete: TimeInterval? = nil,
             waitAfterCompletion: TimeInterval? = nil,
             detail: String? = nil,
             priority: Priority = .null
         ){
-            self.name = name
+            self.name = name ?? ""
             self.detail = detail
             self.next = next
             self.subActivities = []
@@ -78,7 +78,6 @@ enum ActivityClass0_0_0: VersionedSchema {
 }
 
 extension ActivityClass {
-    @MainActor static let error = ActivityClass(name: "error")
     enum Priority: Int { case immidiate, high, medium, low, passive, null }
 }
 
@@ -95,6 +94,7 @@ extension ActivityClass {
         }
     }
     
+    @MainActor
     func start(
         context: ModelContext,
         parentObject: ActivityObject,
@@ -113,5 +113,9 @@ extension ActivityClass {
 extension ActivityClass {
     static func dummyActivity() -> ActivityClass {
         return ActivityClass(name: "DummyClass")
+    }
+    
+    static func error() -> ActivityClass {
+        return ActivityClass(name: "error")
     }
 }
