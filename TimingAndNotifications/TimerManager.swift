@@ -37,6 +37,18 @@ actor TimerManager {
     }
 }
 
+actor UITimer: ObservableObject {
+    @MainActor @Published var currentTime: Date = Date()
+    
+    static let shared = UITimer()
+    
+    lazy var timer = Timer(timeInterval: 1, repeats: true) { _ in
+        Task{ await MainActor.run {
+            self.currentTime = Date()
+        }}
+    }
+}
+
 private struct TimerManagerKey: EnvironmentKey {
     static let defaultValue = TimerManager()
 }
