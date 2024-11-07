@@ -9,6 +9,7 @@ import UserNotifications
 
 
 struct TymeNotificationManager {
+    /*
     func getPermission() -> Bool {
         UNUserNotificationCenter.current().requestAuthorization(with: [.alert, .badge, .sound]){ success, error in
             return success
@@ -32,4 +33,5 @@ struct TymeNotificationManager {
         // add our notification request
         UNUserNotificationCenter.current().add(request)
     }
+     */
 }
