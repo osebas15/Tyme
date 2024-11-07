@@ -10,9 +10,8 @@ import SwiftData
 
 struct ActiveObjectCellView: View {
     @Environment(\.modelContext) var context: ModelContext
-    //@Environment(\.uiTimer) var uiTimer: UITimer
-    @State var currentTime = Date()
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+    var currentTime: Date
     
     let activity: ActivityObject
     
@@ -31,18 +30,15 @@ struct ActiveObjectCellView: View {
             Spacer()
             
             Text(currentTime.formatted(date: .omitted, time: .standard))
-                .onReceive(timer) { _ in
-                    self.currentTime = Date()
-                }
-            
         }
         .onTapGesture {
             activity.done(context: context)
         }
     }
 }
-
+/*
 #Preview {
     ActiveObjectCellView(activity: ActivityObject.dummyObject())
 }
 
+*/

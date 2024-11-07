@@ -10,7 +10,9 @@ import SwiftData
 
 struct ActiveView: View {
     @Environment(\.modelContext) var context: ModelContext
+    @State var currentTime: Date = Date()
     var activities: [ActivityObject]
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var sortingAlgorithm: (ActivityObject, ActivityObject) -> Bool = { up, down in
         if up.currentStep != down.currentStep {
@@ -22,9 +24,16 @@ struct ActiveView: View {
         else { return true }
     }
     
+    init(activities: [ActivityObject]){
+        self.activities = activities
+    }
+    
     var body: some View {
         List(activities){ activity in
-            ActiveObjectCellView(activity: activity)
+            ActiveObjectCellView(currentTime: currentTime, activity: activity)
+        }
+        .onReceive(timer) { _ in
+            self.currentTime = Date()
         }
     }
 }
