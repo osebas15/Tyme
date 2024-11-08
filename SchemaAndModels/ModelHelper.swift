@@ -11,7 +11,6 @@ import SwiftData
 @MainActor
 struct ModelHelper {
 
-    
     let homeActivityPredicate = #Predicate<ActivityClass> { activity in
         activity.name == "Home"
     }
@@ -78,5 +77,21 @@ struct ModelHelper {
         ActivityDummyData().insertQuickBreakfastRecepie(into: basicContainer)
         
         return basicContainer
+    }
+    
+    @MainActor
+    func queriedCopy(container: ModelContainer, persistantId: PersistentIdentifier) -> ActivityObject {
+        var fd = FetchDescriptor<ActivityObject>(predicate: #Predicate{ obj in
+            return obj.persistentModelID == persistantId
+        })
+        fd.fetchLimit = 1
+        
+        var toReturn = ActivityObject.error()
+        
+        if let result = try? container.mainContext.fetch(fd), result.count == 1{
+            toReturn = result[0]
+        }
+        
+        return toReturn
     }
 }

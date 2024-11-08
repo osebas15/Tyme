@@ -94,6 +94,17 @@ extension ActivityObject {
             return true
         }
     }
+    @Transient var waitUntilDate: Date? {
+        if
+            let completionDate = self.completionDate,
+            let waitUntil = self.activityClass?.waitAfterCompletion
+        {
+            return completionDate.addingTimeInterval(waitUntil)
+        }
+        else {
+            return nil
+        }
+    }
     @Transient var lowestActivities: [ActivityObject]{
         if unOrderedActivities.isEmpty{
             return [self]
@@ -152,8 +163,46 @@ extension ActivityObject {
         }
     }
     
-    func checkAndContinueState(context: ModelContext) {
-        done(context: context)
+    func verifyCurrentState() -> FocusState {
+        if
+            let completionDate = self.completionDate,
+            let waitTime = self.activityClass?.waitAfterCompletion
+        {
+            if completionDate.addingTimeInterval(waitTime) > Date(){
+                return .done
+            }
+            else {
+                return .passive
+            }
+        }
+        else if self.completionDate != nil
+        {
+            return .done
+        }
+        else
+        {
+            return .actionable
+        }
+    }
+    
+    func checkAndContinueState(context: ModelContext, timerManager: TimerManager) {
+        
+        let verifiedState = verifyCurrentState()
+        
+        switch verifiedState{
+        case .done:
+            self.focus = .done
+            done(context: context)
+            return //TODO: make sure there are not timers for this class
+        case .passive:
+            self.focus = .passive
+            checkForAndCreateIfMissingTimerForWaitOnCompletion(container: context.container, timerManager: timerManager)
+        case .actionable, .main:
+            completionDate = Date()
+            checkAndContinueState(context: context, timerManager: timerManager)
+        default:
+            return
+        }
     }
     
     func done(context: ModelContext){
@@ -178,6 +227,46 @@ extension ActivityObject {
 }
 
 extension ActivityObject {
+    func checkForAndCreateIfMissingTimerForWaitOnCompletion(
+        container: ModelContainer,
+        timerManager: TimerManager
+    ){
+        let id = self.id
+        let persistantId = self.persistentModelID
+        Task{
+            if await timerManager.timerExists(id: id ) {
+                return
+            }
+        }
+        
+        guard
+            let activityClass = self.activityClass,
+            let completionDate = self.completionDate,
+            let waitTime = activityClass.waitAfterCompletion
+        else { return }
+        
+        Task {
+            await timerManager.createTimer(for: TimerManager.TimerVariables(
+                fireDate: completionDate.addingTimeInterval(waitTime),
+                id: id,
+                action: {
+                    Task {
+                        await MainActor.run {
+                            let actorIsolatedObject = ModelHelper().queriedCopy(container: container, persistantId: persistantId)
+                            actorIsolatedObject.checkAndContinueState(
+                                context: container.mainContext,
+                                timerManager: timerManager
+                            )
+                        }
+                        await timerManager.endTimer(id: id)
+                    }
+                }
+            ))
+        }
+    }
+}
+
+extension ActivityObject {
     func getPlaceInPriorityHierarchy() -> String {
         if let parent = parent{
             return parent.getPlaceInPriorityHierarchy() + ", \(priorityOrder)"
@@ -189,22 +278,6 @@ extension ActivityObject {
 }
 
 extension ActivityObject {
-    @MainActor
-    func queriedCopy(container: ModelContainer) async -> ActivityObject {
-        let selfPersistantId = self.persistentModelID
-        var fd = FetchDescriptor<ActivityObject>(predicate: #Predicate{ obj in
-            return obj.persistentModelID == selfPersistantId
-        })
-        fd.fetchLimit = 1
-        
-        var toReturn = ActivityObject.error()
-        
-        if let result = try? container.mainContext.fetch(fd), result.count == 1{
-            toReturn = result[0]
-        }
-        
-        return toReturn
-    }
     
     static func dummyObject() -> ActivityObject {
         return ActivityObject(activityClass: ActivityClass.dummyActivity(), priorityOrder: 0)

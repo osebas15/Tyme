@@ -39,6 +39,7 @@
 		4A7F12D92C5AD4ED005200F2 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12D82C5AD4ED005200F2 /* HomeView.swift */; };
 		4A90D7A02C5D9C400036BAED /* ActivityObjectSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12D62C55D6CE005200F2 /* ActivityObjectSchema.swift */; };
 		4A9A73F02CCDED660047C701 /* ActivityClassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A73EF2CCDED660047C701 /* ActivityClassCell.swift */; };
+		4AB16F182CDC768E00706F8B /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB17C372CD6DE7F0045B34C /* TimerManager.swift */; };
 		4AB17C352CD3465B0045B34C /* ActiveObjectCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB17C342CD3465B0045B34C /* ActiveObjectCellView.swift */; };
 		4AB17C392CD6FD5E0045B34C /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB17C382CD6E8F00045B34C /* NotificationManager.swift */; };
 		4AB17C3A2CD6FD5E0045B34C /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB17C372CD6DE7F0045B34C /* TimerManager.swift */; };
@@ -557,6 +558,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AB16F182CDC768E00706F8B /* TimerManager.swift in Sources */,
 				4A4473852CAB3B8A00C07982 /* NewActivityListView.swift in Sources */,
 				4A90D7A02C5D9C400036BAED /* ActivityObjectSchema.swift in Sources */,
 				4A7F12542C3AE30E005200F2 /* ActivityClassSchema.swift in Sources */,

@@ -8,6 +8,13 @@ an app to make and use timed todo list and recepies
     - seems to be mostly at beggining
 
 ## Scratch Pad
+- Right now
+    - implement passive mode
+        - figure out state mapping
+        - in checkForAndUpdateState
+        - using waitingTimeOver? 
+        - object updates in Tasks need to have save() called
+    
 - Timing mechanism
     - queue up notifications
     - create var waitingTimeOver? on object
