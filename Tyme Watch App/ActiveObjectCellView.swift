@@ -10,29 +10,40 @@ import SwiftData
 
 struct ActiveObjectCellView: View {
     @Environment(\.modelContext) var context: ModelContext
+    @Environment(\.timerManager) var timerManager: TimerManager
     
     var currentTime: Date
     
     let activity: ActivityObject
     
     var body: some View {
-        HStack{
-            if activity.focus != .done {
-                Image(systemName: "circle")
-                    .foregroundColor(.gray)
-            }
-            else {
-                Image(systemName: "circle.fill")
-                    .foregroundColor(Color(red: 0.2, green: 0.6, blue: 0.2))
+        VStack{
+            HStack{
+                if activity.focus == .done {
+                    Image(systemName: "circle.fill")
+                        .foregroundColor(Color(red: 0.2, green: 0.6, blue: 0.2))
+                }
+                else if activity.focus == .passive {
+                    Image(systemName: "circle.fill")
+                        .foregroundColor(.yellow)
+                }
+                else {
+                    Image(systemName: "circle")
+                        .foregroundColor(.gray)
+                }
+               
+                Text(activity.activityClass!.name)
             }
             
-            Text(activity.activityClass!.name)
-            Spacer()
+            if let waitUntil = activity.waitUntilDate, activity.focus == .passive{
+                let time = waitUntil.timeIntervalSince(currentTime)
+                Text(time.description)
+            }
             
-            Text(currentTime.formatted(date: .omitted, time: .standard))
+            
         }
         .onTapGesture {
-            activity.done(context: context)
+            activity.checkAndContinueState(context: context, timerManager: timerManager)
         }
     }
 }

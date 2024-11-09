@@ -17,16 +17,31 @@ actor TimerManager {
     }
     
     func createTimer(for timeable: TimerVariables){
-        currentTimers[timeable.id] = Timer(
-            fire: timeable.fireDate,
-            interval: 0,
-            repeats: false,
-            block: { timer in
-                timeable.action()
-                Task {
-                    await self.endTimer(id: timeable.id)
-                }
-            })
+        print(timeable.fireInterval.description)
+        DispatchQueue.main.async { [self] in
+            let timer = Timer.scheduledTimer(
+                withTimeInterval: timeable.fireInterval,
+                repeats: false,
+                block: { timer in
+                    print("in timer")
+                    timeable.action()
+                    Task {
+                        await self.endTimer(id: timeable.id)
+                    }
+                })
+            
+            Task{
+                await self.addTimer(id: timeable.id, timer: timer)
+            }
+            
+            
+            RunLoop.current.add(timer, forMode: .common)
+        }
+        
+    }
+    
+    func addTimer(id: UUID, timer: Timer){
+        currentTimers[id] = timer
     }
     
     func endTimer(id: UUID){
@@ -37,7 +52,7 @@ actor TimerManager {
 
 extension TimerManager {
     struct TimerVariables: Sendable {
-        let fireDate: Date
+        let fireInterval: TimeInterval
         let id: UUID
         let action: @Sendable () -> ()
     }

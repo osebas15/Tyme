@@ -71,6 +71,7 @@ enum ActivityClass0_0_0: VersionedSchema {
             self.next = next
             self.subActivities = []
             self.subActivityOrder = [:]
+            self.waitAfterCompletion = waitAfterCompletion
             self.timeToComplete = timeToComplete
             self.storedPriority = priority.rawValue
         }

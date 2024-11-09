@@ -168,7 +168,7 @@ extension ActivityObject {
             let completionDate = self.completionDate,
             let waitTime = self.activityClass?.waitAfterCompletion
         {
-            if completionDate.addingTimeInterval(waitTime) > Date(){
+            if completionDate.addingTimeInterval(waitTime) <= Date(){
                 return .done
             }
             else {
@@ -247,7 +247,7 @@ extension ActivityObject {
         
         Task {
             await timerManager.createTimer(for: TimerManager.TimerVariables(
-                fireDate: completionDate.addingTimeInterval(waitTime),
+                fireInterval: waitTime - completionDate.timeIntervalSince(Date()),
                 id: id,
                 action: {
                     Task {
