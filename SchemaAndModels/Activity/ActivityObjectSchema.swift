@@ -168,7 +168,7 @@ extension ActivityObject {
             let completionDate = self.completionDate,
             let waitTime = self.activityClass?.waitAfterCompletion
         {
-            if completionDate.addingTimeInterval(waitTime) <= Date(){
+            if completionDate.addingTimeInterval(waitTime - 1) <= Date(){
                 return .done
             }
             else {
@@ -196,6 +196,7 @@ extension ActivityObject {
             return //TODO: make sure there are not timers for this class
         case .passive:
             self.focus = .passive
+
             checkForAndCreateIfMissingTimerForWaitOnCompletion(container: context.container, timerManager: timerManager)
         case .actionable, .main:
             completionDate = Date()
@@ -231,37 +232,39 @@ extension ActivityObject {
         container: ModelContainer,
         timerManager: TimerManager
     ){
-        let id = self.id
         let persistantId = self.persistentModelID
+        let waitTime = self.activityClass?.waitAfterCompletion
+        let completionDate = self.completionDate
+        
         Task{
-            if await timerManager.timerExists(id: id ) {
+            if await timerManager.timerExists(id: persistantId){
                 return
             }
-        }
-        
-        guard
-            let activityClass = self.activityClass,
-            let completionDate = self.completionDate,
-            let waitTime = activityClass.waitAfterCompletion
-        else { return }
-        
-        Task {
-            await timerManager.createTimer(for: TimerManager.TimerVariables(
-                fireInterval: waitTime - completionDate.timeIntervalSince(Date()),
-                id: id,
-                action: {
-                    Task {
-                        await MainActor.run {
-                            let actorIsolatedObject = ModelHelper().queriedCopy(container: container, persistantId: persistantId)
-                            actorIsolatedObject.checkAndContinueState(
-                                context: container.mainContext,
-                                timerManager: timerManager
-                            )
+            
+            guard
+                let completionDate = completionDate,
+                let waitTime = waitTime
+            else { return }
+            
+            Task {
+                await timerManager.createTimer(for: TimerManager.TimerVariables(
+                    fireInterval: waitTime - Date().timeIntervalSince(completionDate),
+                    id: persistantId,
+                    action: {
+                        Task {
+                            await MainActor.run {
+                                let actorIsolatedObject = ModelHelper().queriedCopy(container: container, id: persistantId)
+                                actorIsolatedObject.checkAndContinueState(
+                                    context: container.mainContext,
+                                    timerManager: timerManager
+                                )
+                                try? container.mainContext.save()
+                            }
+                            await timerManager.endTimer(id: persistantId)
                         }
-                        await timerManager.endTimer(id: id)
                     }
-                }
-            ))
+                ))
+            }
         }
     }
 }

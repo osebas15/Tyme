@@ -12,38 +12,48 @@ struct ActiveObjectCellView: View {
     @Environment(\.modelContext) var context: ModelContext
     @Environment(\.timerManager) var timerManager: TimerManager
     
+    @Query var activity: [ActivityObject]
+    
     var currentTime: Date
     
-    let activity: ActivityObject
+    init(activity: ActivityObject, currentTime: Date) {
+        let activityId = activity.id
+        _activity = Query(filter: #Predicate<ActivityObject>{ $0.id == activityId })
+        self.currentTime = currentTime
+    }
     
     var body: some View {
         VStack{
-            HStack{
-                if activity.focus == .done {
-                    Image(systemName: "circle.fill")
-                        .foregroundColor(Color(red: 0.2, green: 0.6, blue: 0.2))
+            if let activity = activity.first {
+                HStack{
+                    if activity.focus == .done {
+                        Image(systemName: "circle.fill")
+                            .foregroundColor(Color(red: 0.2, green: 0.6, blue: 0.2))
+                    }
+                    else if activity.focus == .passive {
+                        Image(systemName: "circle.fill")
+                            .foregroundColor(.yellow)
+                    }
+                    else {
+                        Image(systemName: "circle")
+                            .foregroundColor(.gray)
+                    }
+                    Text(activity.activityClass?.name ?? "ERROR")
                 }
-                else if activity.focus == .passive {
-                    Image(systemName: "circle.fill")
-                        .foregroundColor(.yellow)
+                
+                if let waitUntil = activity.waitUntilDate, activity.focus == .passive{
+                    let time = waitUntil.timeIntervalSince(currentTime)
+                    Text(time.description)
                 }
-                else {
-                    Image(systemName: "circle")
-                        .foregroundColor(.gray)
-                }
-               
-                Text(activity.activityClass!.name)
             }
-            
-            if let waitUntil = activity.waitUntilDate, activity.focus == .passive{
-                let time = waitUntil.timeIntervalSince(currentTime)
-                Text(time.description)
+            else {
+                Text("no object here")
             }
-            
-            
         }
         .onTapGesture {
-            activity.checkAndContinueState(context: context, timerManager: timerManager)
+            if let activity = activity.first {
+                activity.checkAndContinueState(context: context, timerManager: timerManager)
+            }
         }
     }
 }

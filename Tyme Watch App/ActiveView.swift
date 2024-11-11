@@ -11,7 +11,7 @@ import SwiftData
 struct ActiveView: View {
     @Environment(\.modelContext) var context: ModelContext
     @State var currentTime: Date = Date()
-    var activities: [ActivityObject]
+    @Query var activities: [ActivityObject]
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var sortingAlgorithm: (ActivityObject, ActivityObject) -> Bool = { up, down in
@@ -24,13 +24,16 @@ struct ActiveView: View {
         else { return true }
     }
     
-    init(activities: [ActivityObject]){
-        self.activities = activities
+    init(activitiesToShow: [ActivityObject]){
+        let staleIds = activitiesToShow.map{$0.id}
+        _activities = Query(filter: #Predicate<ActivityObject>{ object in
+            return staleIds.contains(object.id)
+        })
     }
     
     var body: some View {
         List(activities){ activity in
-            ActiveObjectCellView(currentTime: currentTime, activity: activity)
+            ActiveObjectCellView(activity: activity, currentTime: currentTime)
         }
         .onReceive(timer) { _ in
             self.currentTime = Date()

@@ -10,50 +10,51 @@ import SwiftData
 import SwiftUI
 
 actor TimerManager {
-    private var currentTimers = [UUID: Timer]()
+    private var currentTimers = [PersistentIdentifier: Timer]()
     
-    func timerExists(id: UUID) -> Bool {
-        return currentTimers.contains(where: {$0.key == id})
+    func timerExists(id: PersistentIdentifier) -> Bool {
+        return currentTimers.keys.contains(id)
     }
     
     func createTimer(for timeable: TimerVariables){
-        print(timeable.fireInterval.description)
-        DispatchQueue.main.async { [self] in
-            let timer = Timer.scheduledTimer(
-                withTimeInterval: timeable.fireInterval,
-                repeats: false,
-                block: { timer in
-                    print("in timer")
-                    timeable.action()
-                    Task {
-                        await self.endTimer(id: timeable.id)
-                    }
-                })
-            
-            Task{
-                await self.addTimer(id: timeable.id, timer: timer)
+        Task{
+            await MainActor.run{
+                let timer = Timer.scheduledTimer(
+                    withTimeInterval: timeable.fireInterval,
+                    repeats: false,
+                    block: { timer in
+                        timeable.action()
+                        Task {
+                            await self.endTimer(id: timeable.id)
+                        }
+                    })
+                
+                Task{
+                    await self.addTimer(id: timeable.id, timer: timer)
+                }
+                
+                RunLoop.current.add(timer, forMode: .common)
             }
-            
-            
-            RunLoop.current.add(timer, forMode: .common)
         }
-        
     }
     
-    func addTimer(id: UUID, timer: Timer){
+    func addTimer(id: PersistentIdentifier, timer: Timer){
+        if currentTimers.keys.contains([id]){
+            endTimer(id: id)
+        }
         currentTimers[id] = timer
     }
     
-    func endTimer(id: UUID){
+    func endTimer(id: PersistentIdentifier){
         currentTimers[id]?.invalidate()
         currentTimers.removeValue(forKey: id)
     }
 }
 
 extension TimerManager {
-    struct TimerVariables: Sendable {
+    struct TimerVariables: Sendable, Identifiable {
         let fireInterval: TimeInterval
-        let id: UUID
+        let id: PersistentIdentifier
         let action: @Sendable () -> ()
     }
 }

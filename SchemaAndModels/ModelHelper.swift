@@ -73,16 +73,16 @@ struct ModelHelper {
     func getTestContainer() -> ModelContainer {
         let basicContainer = getBasicContainer()
         
-        ActivityDummyData().insertSwissBurgerRecepie(into: basicContainer)
         ActivityDummyData().insertQuickBreakfastRecepie(into: basicContainer)
+        ActivityDummyData().insertEasyTest(into: basicContainer)
         
         return basicContainer
     }
     
     @MainActor
-    func queriedCopy(container: ModelContainer, persistantId: PersistentIdentifier) -> ActivityObject {
+    func queriedCopy(container: ModelContainer, id: PersistentIdentifier) -> ActivityObject {
         var fd = FetchDescriptor<ActivityObject>(predicate: #Predicate{ obj in
-            return obj.persistentModelID == persistantId
+            return obj.persistentModelID == id
         })
         fd.fetchLimit = 1
         
