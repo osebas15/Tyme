@@ -168,7 +168,7 @@ extension ActivityObject {
             let completionDate = self.completionDate,
             let waitTime = self.activityClass?.waitAfterCompletion
         {
-            if completionDate.addingTimeInterval(waitTime - 1) <= Date(){
+            if completionDate.addingTimeInterval(waitTime) <= Date(){
                 return .done
             }
             else {
@@ -185,7 +185,7 @@ extension ActivityObject {
         }
     }
     
-    func checkAndContinueState(context: ModelContext, timerManager: TimerManager) {
+    func checkAndContinueState(context: ModelContext, timerManager: TimerManager, userAction: Bool = true) {
         
         let verifiedState = verifyCurrentState()
         
@@ -196,11 +196,12 @@ extension ActivityObject {
             return //TODO: make sure there are not timers for this class
         case .passive:
             self.focus = .passive
-
             checkForAndCreateIfMissingTimerForWaitOnCompletion(container: context.container, timerManager: timerManager)
         case .actionable, .main:
-            completionDate = Date()
-            checkAndContinueState(context: context, timerManager: timerManager)
+            if userAction {
+                completionDate = Date()
+                checkAndContinueState(context: context, timerManager: timerManager)
+            }
         default:
             return
         }

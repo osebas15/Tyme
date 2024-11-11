@@ -50,6 +50,11 @@ struct ActiveObjectCellView: View {
                 Text("no object here")
             }
         }
+        .onAppear {
+            if let activity = activity.first {
+                activity.checkAndContinueState(context: context, timerManager: timerManager, userAction: false)
+            }
+        }
         .onTapGesture {
             if let activity = activity.first {
                 activity.checkAndContinueState(context: context, timerManager: timerManager)
