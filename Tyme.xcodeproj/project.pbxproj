@@ -44,6 +44,8 @@
 		4AB17C392CD6FD5E0045B34C /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB17C382CD6E8F00045B34C /* NotificationManager.swift */; };
 		4AB17C3A2CD6FD5E0045B34C /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB17C372CD6DE7F0045B34C /* TimerManager.swift */; };
 		4AF6B8E32CE28ABA0016811F /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB17C382CD6E8F00045B34C /* NotificationManager.swift */; };
+		4AF6B8E52CE29BB30016811F /* TextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF6B8E42CE29BB30016811F /* TextToSpeech.swift */; };
+		4AF6B8E62CE29BB30016811F /* TextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF6B8E42CE29BB30016811F /* TextToSpeech.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +137,7 @@
 		4AB17C342CD3465B0045B34C /* ActiveObjectCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveObjectCellView.swift; sourceTree = "<group>"; };
 		4AB17C372CD6DE7F0045B34C /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
 		4AB17C382CD6E8F00045B34C /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		4AF6B8E42CE29BB30016811F /* TextToSpeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToSpeech.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -333,6 +336,7 @@
 			children = (
 				4AB17C382CD6E8F00045B34C /* NotificationManager.swift */,
 				4AB17C372CD6DE7F0045B34C /* TimerManager.swift */,
+				4AF6B8E42CE29BB30016811F /* TextToSpeech.swift */,
 			);
 			path = TimingAndNotifications;
 			sourceTree = "<group>";
@@ -570,6 +574,7 @@
 				4A7F12662C3F29F9005200F2 /* ModelHelper.swift in Sources */,
 				4A4473892CB5AB1100C07982 /* ActivityClassSmallCellView.swift in Sources */,
 				4A7F12582C3C55A2005200F2 /* ActivityDummyData.swift in Sources */,
+				4AF6B8E52CE29BB30016811F /* TextToSpeech.swift in Sources */,
 				4A4473922CB9B03D00C07982 /* ActivityObjectCellView.swift in Sources */,
 				4A7F11F72C3AE282005200F2 /* TymeApp.swift in Sources */,
 			);
@@ -607,6 +612,7 @@
 				4A7F125E2C3F1790005200F2 /* ActiveView.swift in Sources */,
 				4A7F12672C3F29F9005200F2 /* ModelHelper.swift in Sources */,
 				4A7F12212C3AE283005200F2 /* ContentView.swift in Sources */,
+				4AF6B8E62CE29BB30016811F /* TextToSpeech.swift in Sources */,
 				4A7F12D92C5AD4ED005200F2 /* HomeView.swift in Sources */,
 				4A7F121F2C3AE283005200F2 /* TymeApp.swift in Sources */,
 			);

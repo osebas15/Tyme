@@ -8,16 +8,12 @@ an app to make and use timed todo list and recepies
     - seems to be mostly at beggining
 
 ## Scratch Pad
-
-
-    
 - make workable state for my burger/quick breakfast recepie
     - UI for Active activities
         - higher nodes!!!
         - number of completions
 
 # Clean up
-
 ##unit tests
 
 # Permenant notes

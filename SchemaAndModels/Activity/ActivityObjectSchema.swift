@@ -249,6 +249,7 @@ extension ActivityObject {
     ){
         let persistantId = self.persistentModelID
         let waitTime = self.activityClass?.waitAfterCompletion
+        let name = self.activityClass?.name ?? ""
         let completionDate = self.completionDate
         
         Task{
