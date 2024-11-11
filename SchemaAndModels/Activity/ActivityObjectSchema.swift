@@ -84,6 +84,16 @@ extension ActivityObject {
     @Transient var isPartOfMultiPick: Bool {
         get { return parent?.activityClass?.unOrderedSubActivities.count ?? 0 > 1 }
     }
+    @Transient var timeLeftToWait: TimeInterval? {
+        get {
+            guard
+                let waitTime = activityClass?.waitAfterCompletion,
+                let completionDate = completionDate
+            else { return nil }
+            
+            return waitTime + completionDate.timeIntervalSinceNow
+        }
+    }
     @Transient var couldBeDone: Bool {
         get {
             for activity in subActivities {
@@ -185,26 +195,30 @@ extension ActivityObject {
         }
     }
     
-    func checkAndContinueState(context: ModelContext, timerManager: TimerManager, userAction: Bool = true) {
-        
+    func checkAndContinueState(
+        context: ModelContext,
+        timerManager: TimerManager,
+        userAction: Bool = true)
+    {
         let verifiedState = verifyCurrentState()
         
         switch verifiedState{
         case .done:
             self.focus = .done
-            done(context: context)
-            return //TODO: make sure there are not timers for this class
+            done(context: context)//TODO: make sure there are not timers for this class
         case .passive:
             self.focus = .passive
-            checkForAndCreateIfMissingTimerForWaitOnCompletion(container: context.container, timerManager: timerManager)
+            createWaitOnCompletionTimer(container: context.container, timerManager: timerManager)
+            sendWaitOnCompleteNotification()
         case .actionable, .main:
             if userAction {
                 completionDate = Date()
                 checkAndContinueState(context: context, timerManager: timerManager)
             }
         default:
-            return
+            break
         }
+        try? context.save()
     }
     
     func done(context: ModelContext){
@@ -229,7 +243,7 @@ extension ActivityObject {
 }
 
 extension ActivityObject {
-    func checkForAndCreateIfMissingTimerForWaitOnCompletion(
+    func createWaitOnCompletionTimer(
         container: ModelContainer,
         timerManager: TimerManager
     ){
@@ -239,7 +253,7 @@ extension ActivityObject {
         
         Task{
             if await timerManager.timerExists(id: persistantId){
-                return
+                await timerManager.endTimer(id: persistantId)
             }
             
             guard
@@ -268,6 +282,26 @@ extension ActivityObject {
             }
         }
     }
+    
+    func sendWaitOnCompleteNotification(){
+        guard
+            let activityClass = activityClass,
+            let timeLeftToWait = timeLeftToWait
+        else { return }
+        
+        let manager = TymeNotificationManager()
+        
+        let notificationInfo = TymeNotificationManager.NotificationInfo(
+            title: activityClass.name,
+            subtitle: activityClass.detail ?? "",
+            timeToWait: timeLeftToWait,
+            id: self.id
+        )
+        Task {
+            await manager.sendWaitAfterCompletionDoneNotification(info: notificationInfo)
+        }
+        
+    }
 }
 
 extension ActivityObject {
@@ -282,7 +316,6 @@ extension ActivityObject {
 }
 
 extension ActivityObject {
-    
     static func dummyObject() -> ActivityObject {
         return ActivityObject(activityClass: ActivityClass.dummyActivity(), priorityOrder: 0)
     }

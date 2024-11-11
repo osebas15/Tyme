@@ -8,30 +8,44 @@ import Foundation
 import UserNotifications
 
 
-struct TymeNotificationManager {
-    /*
-    func getPermission() -> Bool {
-        UNUserNotificationCenter.current().requestAuthorization(with: [.alert, .badge, .sound]){ success, error in
-            return success
+actor TymeNotificationManager {
+    func getPermission(callback: @escaping (Bool, Error?) -> ()) {
+        UNUserNotificationCenter.current().requestAuthorization(options: [
+            .alert, .badge, .sound
+        ]){ success, error in
+            callback(success, error)
         }
     }
     
-    func sendWaitAfterCompletionDoneNotification(object: ActivityObject){
-        guard let activityClass = object.activityClass else { return }
-        
-        let content = UNMutableNotificationContent()
-        content.title = activityClass.name
-        content.subtitle = activityClass.detail
-        content.sound = UNNotificationSound.default
+    func sendWaitAfterCompletionDoneNotification(info: NotificationInfo){
+        getPermission { success, error in
+            guard success == true else { return }
+            
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["\(info.id)"])
+            
+            let content = UNMutableNotificationContent()
+            content.title = info.title
+            content.subtitle = info.subtitle
+            content.sound = UNNotificationSound.default
+            content.interruptionLevel = .timeSensitive
 
-        // show this notification five seconds from now
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: activityClass.waitAfterCompletion, repeats: false)
+            // show this notification five seconds from now
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: info.timeToWait , repeats: false)
 
-        // choose a random identifier
-        let request = UNNotificationRequest(identifier: activityClass.name + ".\()", content: content, trigger: trigger)
+            // choose a random identifier
+            let request = UNNotificationRequest(identifier: "\(info.id)", content: content, trigger: trigger)
 
-        // add our notification request
-        UNUserNotificationCenter.current().add(request)
+            // add our notification request
+            UNUserNotificationCenter.current().add(request)
+        }
     }
-     */
+}
+
+extension TymeNotificationManager {
+    struct NotificationInfo: Identifiable {
+        let title: String
+        let subtitle: String
+        let timeToWait: TimeInterval
+        let id: UUID
+    }
 }

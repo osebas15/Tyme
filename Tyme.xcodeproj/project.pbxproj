@@ -43,6 +43,7 @@
 		4AB17C352CD3465B0045B34C /* ActiveObjectCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB17C342CD3465B0045B34C /* ActiveObjectCellView.swift */; };
 		4AB17C392CD6FD5E0045B34C /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB17C382CD6E8F00045B34C /* NotificationManager.swift */; };
 		4AB17C3A2CD6FD5E0045B34C /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB17C372CD6DE7F0045B34C /* TimerManager.swift */; };
+		4AF6B8E32CE28ABA0016811F /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB17C382CD6E8F00045B34C /* NotificationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -558,6 +559,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AF6B8E32CE28ABA0016811F /* NotificationManager.swift in Sources */,
 				4AB16F182CDC768E00706F8B /* TimerManager.swift in Sources */,
 				4A4473852CAB3B8A00C07982 /* NewActivityListView.swift in Sources */,
 				4A90D7A02C5D9C400036BAED /* ActivityObjectSchema.swift in Sources */,
