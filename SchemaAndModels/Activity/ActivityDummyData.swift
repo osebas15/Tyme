@@ -136,6 +136,30 @@ struct ActivityDummyData {
         return toast
     }()
     
+    func makeWaitClass(waitTime: TimeInterval? = 5) -> ActivityClass {
+        return ActivityClass(
+            name: "wait",
+            waitAfterCompletion: waitTime
+        )
+    }
+    
+    func insertEasyTest(into container: ModelContainer) {
+        let recepie = ActivityClass(
+            name: "waiting parent"
+        )
+        
+        
+        let subAct = makeWaitClass()
+            
+        subAct.addSteps(activities: [
+            makeWaitClass(),
+            makeWaitClass()
+        ])
+        
+        recepie.addSubActivity(activity: subAct)
+        addToHomeActivity(container: container, activity: recepie)
+    }
+    
     func insertQuickBreakfastRecepie(into container: ModelContainer){
         let recepie = ActivityClass(
             name: "Quick Breakfast",
@@ -257,7 +281,7 @@ struct ActivityDummyData {
         ].forEach { swissBurger.addSubActivity(activity: $0) }
         */
         
-        let swissBurgerRecepie = [swissBurger]// + swissBurger.subActivities
+        let _ = [swissBurger]// + swissBurger.subActivities
         
         var fd = FetchDescriptor(predicate: ModelHelper().homeActivityPredicate)
         fd.fetchLimit = 1
@@ -265,6 +289,17 @@ struct ActivityDummyData {
         if (!(result?.isEmpty ?? true)){
             result![0].addSubActivity(activity: swissBurger)//.subActivities.append(swissBurger)
             //swissBurger.createdFrom = result![0]
+        }
+    }
+}
+
+extension ActivityDummyData{
+    func addToHomeActivity(container: ModelContainer, activity: ActivityClass){
+        var fd = FetchDescriptor(predicate: ModelHelper().homeActivityPredicate)
+        fd.fetchLimit = 1
+        let result = try? container.mainContext.fetch(fd)
+        if (!(result?.isEmpty ?? true)){
+            result![0].addSubActivity(activity: activity)
         }
     }
 }
