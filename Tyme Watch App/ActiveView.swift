@@ -11,24 +11,20 @@ import SwiftData
 struct ActiveView: View {
     @Environment(\.modelContext) var context: ModelContext
     @State var currentTime: Date = Date()
-    @Query var activities: [ActivityObject]
+    var activities: [ActivityObject]
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
-    var sortingAlgorithm: (ActivityObject, ActivityObject) -> Bool = { up, down in
-        if up.currentStep != down.currentStep {
-            return up.currentStep > down.currentStep
-        }
-        else if up.focus != down.focus {
-            return up.focus.rawValue < down.focus.rawValue
-        }
-        else { return true }
-    }
-    
-    init(activitiesToShow: [ActivityObject]){
-        let staleIds = activitiesToShow.map{$0.id}
-        _activities = Query(filter: #Predicate<ActivityObject>{ object in
-            return staleIds.contains(object.id)
-        })
+    init(activities: [ActivityObject]){
+        self.activities = activities
+            .enumerated().sorted(by: { up, down in
+                if up.element.focus != down.element.focus {
+                    return up.element.focus.rawValue < down.element.focus.rawValue
+                }
+                else {
+                    return up.offset < down.offset
+                }
+            })
+            .map{$0.1}
     }
     
     var body: some View {
