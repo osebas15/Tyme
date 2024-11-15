@@ -217,9 +217,8 @@
 		4A7F11EA2C3AE282005200F2 = {
 			isa = PBXGroup;
 			children = (
+				4A8F502F2CE7EF910096327C /* Shared */,
 				4A7F126A2C3F3E34005200F2 /* WorkingArticle.md */,
-				4AB17C362CD6DC680045B34C /* TimingAndNotifications */,
-				4A7F12522C3AE2E4005200F2 /* SchemaAndModels */,
 				4A7F11F52C3AE282005200F2 /* Tyme */,
 				4A7F12062C3AE283005200F2 /* TymeTests */,
 				4A7F12102C3AE283005200F2 /* TymeUITests */,
@@ -329,6 +328,31 @@
 				4A7F12652C3F29F9005200F2 /* ModelHelper.swift */,
 			);
 			path = SchemaAndModels;
+			sourceTree = "<group>";
+		};
+		4A8F502F2CE7EF910096327C /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				4A8F50302CE7F0010096327C /* Views */,
+				4A7F12522C3AE2E4005200F2 /* SchemaAndModels */,
+				4AB17C362CD6DC680045B34C /* TimingAndNotifications */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		4A8F50302CE7F0010096327C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4A8F50312CE7F0250096327C /* ModelUI */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4A8F50312CE7F0250096327C /* ModelUI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ModelUI;
 			sourceTree = "<group>";
 		};
 		4AB17C362CD6DC680045B34C /* TimingAndNotifications */ = {
