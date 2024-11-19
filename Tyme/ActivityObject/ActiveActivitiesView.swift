@@ -22,7 +22,6 @@ struct ActiveActivitiesView: View {
                 ActivityObjectCellView(activityObject: activity, currentTime: currentTime)
             }
             .onReceive(timer) { _ in
-                print("in received")
                 currentTime = Date()
             }
         }

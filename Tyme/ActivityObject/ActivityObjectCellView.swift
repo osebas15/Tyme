@@ -15,19 +15,19 @@ struct ActivityObjectCellView: View {
     let currentTime: Date
     
     var body: some View {
-        VStack{
-            Text(activityObject.activityClass?.name ?? "activityclass error")
-            HStack{
-                Button("pause"){
-                    print("pause")
+        HStack {
+            ActObjStatusCircleView(obj: activityObject)
+            VStack{
+                Text(activityObject.activityClass?.name ?? "activityclass error")
+                HStack{
+                    Button(activityObject.hasNext ? "next" : "done"){
+                        activityObject.checkAndContinueState(context: context, timerManager: timerManager)
+                    }
+                    .buttonStyle(BorderlessButtonStyle())
+                    ActivityObjectWaitCountDown(
+                        currentTime: currentTime, actObject: activityObject)
+                    Spacer()
                 }
-                .buttonStyle(BorderlessButtonStyle())
-                Button(activityObject.hasNext ? "next" : "done"){
-                    activityObject.checkAndContinueState(context: context, timerManager: timerManager)
-                }
-                .buttonStyle(BorderlessButtonStyle())
-                ActivityObjectWaitCountDown(
-                    currentTime: currentTime, actObject: activityObject)
             }
         }
     }
