@@ -12,10 +12,13 @@ import SwiftData
 struct TymeApp: App {
     let modelContainer: ModelContainer = ModelHelper().getTestContainer()
     
+    let timerManager: TimerManager = TimerManager()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
         .modelContainer(modelContainer)
+        .timerManager(timerManager)
     }
 }

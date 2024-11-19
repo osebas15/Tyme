@@ -9,8 +9,10 @@ import SwiftUI
 
 struct ActivityObjectCellView: View {
     @Environment(\.modelContext) var context
+    @Environment(\.timerManager) var timerManager
     
     let activityObject: ActivityObject
+    let currentTime: Date
     
     var body: some View {
         VStack{
@@ -21,9 +23,11 @@ struct ActivityObjectCellView: View {
                 }
                 .buttonStyle(BorderlessButtonStyle())
                 Button(activityObject.hasNext ? "next" : "done"){
-                    activityObject.done(context: context)
+                    activityObject.checkAndContinueState(context: context, timerManager: timerManager)
                 }
                 .buttonStyle(BorderlessButtonStyle())
+                ActivityObjectWaitCountDown(
+                    currentTime: currentTime, actObject: activityObject)
             }
         }
     }

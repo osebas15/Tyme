@@ -18,11 +18,10 @@ struct ContentView: View {
                         NewActivityListView()
                     }
                     else {
-                        ActiveActivitiesView(activeActivities: homeObjectResult[0].orderedActivities)
+                        ActiveActivitiesView(activeActivities: homeObjectResult[0].lowestActivities)
                     }
                 }
                 else {
-                    let _ = print("home object did not load \(homeObjectResult.count)")
                     HStack{
                         Text("Home Object did not load \(homeObjectResult.count)")
                     }
