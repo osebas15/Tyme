@@ -10,7 +10,6 @@ import SwiftUI
 struct ActClassFullEditableView: View {
     let actClass: ActivityClass
     @State var editManager: ActivityClass.UIEditsManager
-    @State var test: String = "other"
     
     init(actClass: ActivityClass) {
         self.actClass = actClass
@@ -20,13 +19,22 @@ struct ActClassFullEditableView: View {
     var body: some View {
         VStack {
             TextEditor(text: $editManager.name)
+                .multilineTextAlignment(.center)
             TextEditor(text: $editManager.detail)
+            EditableTimer(time: $editManager.waitAfterStart)
+            HStack{
+                Text("Next: \(actClass.next?.name ?? "nil")")
+            }
         }
     }
 }
 
 #Preview {
-    let sample = ActivityClass.dummyActivity()
+    let sample = {
+        let toReturn = ActivityClass.dummyActivity()
+        toReturn.next = ActivityClass.dummyActivity()
+        return toReturn
+    }()
     
     ActClassFullEditableView(actClass: sample)
 }
