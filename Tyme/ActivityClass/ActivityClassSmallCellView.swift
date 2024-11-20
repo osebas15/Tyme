@@ -13,12 +13,15 @@ struct ActivityClassSmallCellView: View {
     var activityClass: ActivityClass
     var parentObject: ActivityObject
     
+    var onEditPressed: (ActivityClass) -> ()
+    
     var body: some View {
         VStack{
             HStack{
                 Text(activityClass.name)
                 Spacer()
                 Button("Edit"){
+                    onEditPressed(activityClass)
                     print("edit pressed")
                 }
                 .buttonStyle(BorderlessButtonStyle())
@@ -31,8 +34,16 @@ struct ActivityClassSmallCellView: View {
     }
 }
 
-/*
 #Preview {
-    ActivityClassSmallCellView()
+    let actClass = ActivityClass.dummyActivity()
+    let actObj = ActivityObject.dummyObject()
+    let container = {
+        let toReturn = ModelHelper().getBasicContainer()
+        //toReturn.mainContext.insert(actClass)
+        toReturn.mainContext.insert(actObj)
+        return toReturn
+    }()
+    
+    ActivityClassSmallCellView(activityClass: actClass, parentObject: actObj, onEditPressed: {_ in})
+        .modelContainer(container)
 }
-*/
