@@ -44,6 +44,7 @@
 		4A8F50392CED41730096327C /* ActObjStatusCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F50382CED41730096327C /* ActObjStatusCircleView.swift */; };
 		4A8F503A2CED41730096327C /* ActObjStatusCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F50382CED41730096327C /* ActObjStatusCircleView.swift */; };
 		4A8F503F2CED64AE0096327C /* ActClassFullEditableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F503E2CED64AE0096327C /* ActClassFullEditableView.swift */; };
+		4A8F50412CED72A70096327C /* EditableTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F50402CED72A70096327C /* EditableTimer.swift */; };
 		4A90D7A02C5D9C400036BAED /* ActivityObjectSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12D62C55D6CE005200F2 /* ActivityObjectSchema.swift */; };
 		4A9A73F02CCDED660047C701 /* ActivityClassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A73EF2CCDED660047C701 /* ActivityClassCell.swift */; };
 		4AB16F182CDC768E00706F8B /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB17C372CD6DE7F0045B34C /* TimerManager.swift */; };
@@ -144,6 +145,7 @@
 		4A8F50352CE80C840096327C /* ActObjStartWaitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActObjStartWaitButton.swift; sourceTree = "<group>"; };
 		4A8F50382CED41730096327C /* ActObjStatusCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActObjStatusCircleView.swift; sourceTree = "<group>"; };
 		4A8F503E2CED64AE0096327C /* ActClassFullEditableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActClassFullEditableView.swift; sourceTree = "<group>"; };
+		4A8F50402CED72A70096327C /* EditableTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableTimer.swift; sourceTree = "<group>"; };
 		4A9A73EF2CCDED660047C701 /* ActivityClassCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityClassCell.swift; sourceTree = "<group>"; };
 		4AB17C342CD3465B0045B34C /* ActiveObjectCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveObjectCellView.swift; sourceTree = "<group>"; };
 		4AB17C372CD6DE7F0045B34C /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				4A4473842CAB3B8A00C07982 /* NewActivityListView.swift */,
 				4A4473882CB5AB1100C07982 /* ActivityClassSmallCellView.swift */,
 				4A8F503E2CED64AE0096327C /* ActClassFullEditableView.swift */,
+				4A8F50402CED72A70096327C /* EditableTimer.swift */,
 			);
 			path = ActivityClass;
 			sourceTree = "<group>";
@@ -612,6 +615,7 @@
 				4A44738B2CB74CAD00C07982 /* ActiveActivitiesView.swift in Sources */,
 				4A7F12562C3AEB3F005200F2 /* TimeRange.swift in Sources */,
 				4A8F50372CE80C840096327C /* ActObjStartWaitButton.swift in Sources */,
+				4A8F50412CED72A70096327C /* EditableTimer.swift in Sources */,
 				4A7F12662C3F29F9005200F2 /* ModelHelper.swift in Sources */,
 				4A8F50332CE7F1560096327C /* ActivityObjectWaitCountDown.swift in Sources */,
 				4A4473892CB5AB1100C07982 /* ActivityClassSmallCellView.swift in Sources */,
