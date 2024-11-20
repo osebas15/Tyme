@@ -45,6 +45,8 @@
 		4A8F503A2CED41730096327C /* ActObjStatusCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F50382CED41730096327C /* ActObjStatusCircleView.swift */; };
 		4A8F503F2CED64AE0096327C /* ActClassFullEditableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F503E2CED64AE0096327C /* ActClassFullEditableView.swift */; };
 		4A8F50412CED72A70096327C /* EditableTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F50402CED72A70096327C /* EditableTimer.swift */; };
+		4A8F50432CED99150096327C /* ActClassSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F50422CED99150096327C /* ActClassSearchView.swift */; };
+		4A8F50442CED99150096327C /* ActClassSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F50422CED99150096327C /* ActClassSearchView.swift */; };
 		4A90D7A02C5D9C400036BAED /* ActivityObjectSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12D62C55D6CE005200F2 /* ActivityObjectSchema.swift */; };
 		4A9A73F02CCDED660047C701 /* ActivityClassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A73EF2CCDED660047C701 /* ActivityClassCell.swift */; };
 		4AB16F182CDC768E00706F8B /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB17C372CD6DE7F0045B34C /* TimerManager.swift */; };
@@ -146,6 +148,7 @@
 		4A8F50382CED41730096327C /* ActObjStatusCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActObjStatusCircleView.swift; sourceTree = "<group>"; };
 		4A8F503E2CED64AE0096327C /* ActClassFullEditableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActClassFullEditableView.swift; sourceTree = "<group>"; };
 		4A8F50402CED72A70096327C /* EditableTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableTimer.swift; sourceTree = "<group>"; };
+		4A8F50422CED99150096327C /* ActClassSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActClassSearchView.swift; sourceTree = "<group>"; };
 		4A9A73EF2CCDED660047C701 /* ActivityClassCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityClassCell.swift; sourceTree = "<group>"; };
 		4AB17C342CD3465B0045B34C /* ActiveObjectCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveObjectCellView.swift; sourceTree = "<group>"; };
 		4AB17C372CD6DE7F0045B34C /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
@@ -369,6 +372,7 @@
 				4A8F50322CE7F1560096327C /* ActivityObjectWaitCountDown.swift */,
 				4A8F50352CE80C840096327C /* ActObjStartWaitButton.swift */,
 				4A8F50382CED41730096327C /* ActObjStatusCircleView.swift */,
+				4A8F50422CED99150096327C /* ActClassSearchView.swift */,
 			);
 			path = ModelUI;
 			sourceTree = "<group>";
@@ -607,6 +611,7 @@
 			files = (
 				4AF6B8E32CE28ABA0016811F /* NotificationManager.swift in Sources */,
 				4AB16F182CDC768E00706F8B /* TimerManager.swift in Sources */,
+				4A8F50442CED99150096327C /* ActClassSearchView.swift in Sources */,
 				4A4473852CAB3B8A00C07982 /* NewActivityListView.swift in Sources */,
 				4A8F503A2CED41730096327C /* ActObjStatusCircleView.swift in Sources */,
 				4A90D7A02C5D9C400036BAED /* ActivityObjectSchema.swift in Sources */,
@@ -664,6 +669,7 @@
 				4A7F12212C3AE283005200F2 /* ContentView.swift in Sources */,
 				4AF6B8E62CE29BB30016811F /* TextToSpeech.swift in Sources */,
 				4A7F12D92C5AD4ED005200F2 /* HomeView.swift in Sources */,
+				4A8F50432CED99150096327C /* ActClassSearchView.swift in Sources */,
 				4A7F121F2C3AE283005200F2 /* TymeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
