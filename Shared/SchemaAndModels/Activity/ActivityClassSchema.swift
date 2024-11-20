@@ -114,7 +114,10 @@ extension ActivityClass {
 
 extension ActivityClass {
     static func dummyActivity() -> ActivityClass {
-        return ActivityClass(name: "DummyClass")
+        return ActivityClass(
+            name: "DummyClass",
+            detail: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
+        )
     }
     
     static func error() -> ActivityClass {
@@ -129,7 +132,7 @@ extension ActivityClass {
         
         var name: String
         var detail: String
-        var waitAfterStart: TimeInterval?
+        var waitAfterStart: TimeInterval
         var subClasses: [ActivityClass]
         var next: ActivityClass?
         
@@ -139,7 +142,7 @@ extension ActivityClass {
             
             name = activityClass.name
             detail = activityClass.detail ?? ""
-            waitAfterStart = activityClass.waitAfterCompletion
+            waitAfterStart = activityClass.waitAfterCompletion ?? 0
             subClasses = activityClass.subActivities
             next = activityClass.next
         }
