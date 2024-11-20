@@ -43,6 +43,7 @@
 		4A8F50372CE80C840096327C /* ActObjStartWaitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F50352CE80C840096327C /* ActObjStartWaitButton.swift */; };
 		4A8F50392CED41730096327C /* ActObjStatusCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F50382CED41730096327C /* ActObjStatusCircleView.swift */; };
 		4A8F503A2CED41730096327C /* ActObjStatusCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F50382CED41730096327C /* ActObjStatusCircleView.swift */; };
+		4A8F503F2CED64AE0096327C /* ActClassFullEditableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F503E2CED64AE0096327C /* ActClassFullEditableView.swift */; };
 		4A90D7A02C5D9C400036BAED /* ActivityObjectSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12D62C55D6CE005200F2 /* ActivityObjectSchema.swift */; };
 		4A9A73F02CCDED660047C701 /* ActivityClassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A73EF2CCDED660047C701 /* ActivityClassCell.swift */; };
 		4AB16F182CDC768E00706F8B /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB17C372CD6DE7F0045B34C /* TimerManager.swift */; };
@@ -142,6 +143,7 @@
 		4A8F50322CE7F1560096327C /* ActivityObjectWaitCountDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityObjectWaitCountDown.swift; sourceTree = "<group>"; };
 		4A8F50352CE80C840096327C /* ActObjStartWaitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActObjStartWaitButton.swift; sourceTree = "<group>"; };
 		4A8F50382CED41730096327C /* ActObjStatusCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActObjStatusCircleView.swift; sourceTree = "<group>"; };
+		4A8F503E2CED64AE0096327C /* ActClassFullEditableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActClassFullEditableView.swift; sourceTree = "<group>"; };
 		4A9A73EF2CCDED660047C701 /* ActivityClassCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityClassCell.swift; sourceTree = "<group>"; };
 		4AB17C342CD3465B0045B34C /* ActiveObjectCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveObjectCellView.swift; sourceTree = "<group>"; };
 		4AB17C372CD6DE7F0045B34C /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 			children = (
 				4A4473842CAB3B8A00C07982 /* NewActivityListView.swift */,
 				4A4473882CB5AB1100C07982 /* ActivityClassSmallCellView.swift */,
+				4A8F503E2CED64AE0096327C /* ActClassFullEditableView.swift */,
 			);
 			path = ActivityClass;
 			sourceTree = "<group>";
@@ -614,6 +617,7 @@
 				4A4473892CB5AB1100C07982 /* ActivityClassSmallCellView.swift in Sources */,
 				4A7F12582C3C55A2005200F2 /* ActivityDummyData.swift in Sources */,
 				4AF6B8E52CE29BB30016811F /* TextToSpeech.swift in Sources */,
+				4A8F503F2CED64AE0096327C /* ActClassFullEditableView.swift in Sources */,
 				4A4473922CB9B03D00C07982 /* ActivityObjectCellView.swift in Sources */,
 				4A7F11F72C3AE282005200F2 /* TymeApp.swift in Sources */,
 			);

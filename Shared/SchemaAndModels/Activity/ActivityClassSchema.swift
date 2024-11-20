@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 @preconcurrency import SwiftData
 
 typealias ActivityClass = ActivityClass0_0_0.ActivityClass
@@ -118,5 +119,29 @@ extension ActivityClass {
     
     static func error() -> ActivityClass {
         return ActivityClass(name: "error")
+    }
+}
+
+extension ActivityClass {
+    @MainActor
+    struct UIEditsManager : Observable {
+        @Query var actClass: [ActivityClass]
+        
+        var name: String
+        var detail: String
+        var waitAfterStart: TimeInterval?
+        var subClasses: [ActivityClass]
+        var next: ActivityClass?
+        
+        init(for activityClass: ActivityClass){
+            let id = activityClass.id
+            _actClass = Query(filter: #Predicate<ActivityClass>{$0.id == id})
+            
+            name = activityClass.name
+            detail = activityClass.detail ?? ""
+            waitAfterStart = activityClass.waitAfterCompletion
+            subClasses = activityClass.subActivities
+            next = activityClass.next
+        }
     }
 }
