@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ActClassFullEditableView: View {
+    @Environment(\.modelContext) var context
     let actClass: ActivityClass
     @State var editManager: ActivityClass.UIEditsManager
     
@@ -26,6 +27,11 @@ struct ActClassFullEditableView: View {
                 Text("Next: \(actClass.next?.name ?? "nil")")
             }
         }
+        .toolbar { ToolbarItem(placement: .topBarTrailing) {
+            Button("save"){
+                editManager.save(container: context.container)
+            }
+        }}
     }
 }
 
@@ -36,5 +42,13 @@ struct ActClassFullEditableView: View {
         return toReturn
     }()
     
+    let container = {
+        let toReturn = ModelHelper().getBasicContainer()
+        ActivityDummyData().insertQuickBreakfastRecepie(into: toReturn)
+        toReturn.mainContext.insert(sample)
+        return toReturn
+    }()
+    
     ActClassFullEditableView(actClass: sample)
+        .modelContainer(container)
 }

@@ -128,8 +128,7 @@ extension ActivityClass {
 extension ActivityClass {
     @MainActor
     struct UIEditsManager : Observable {
-        @Query var actClass: [ActivityClass]
-        
+        var id: UUID
         var name: String
         var detail: String
         var waitAfterStart: TimeInterval
@@ -137,14 +136,29 @@ extension ActivityClass {
         var next: ActivityClass?
         
         init(for activityClass: ActivityClass){
-            let id = activityClass.id
-            _actClass = Query(filter: #Predicate<ActivityClass>{$0.id == id})
-            
+            id = activityClass.id
             name = activityClass.name
             detail = activityClass.detail ?? ""
             waitAfterStart = activityClass.waitAfterCompletion ?? 0
             subClasses = activityClass.subActivities
             next = activityClass.next
+        }
+        
+        func save(container: ModelContainer){
+            var editableActClassFd = FetchDescriptor(predicate: #Predicate<ActivityClass>{$0.id == id})
+            
+            editableActClassFd.fetchLimit = 1
+            let editableActClass = try? container.mainContext.fetch(editableActClassFd)
+            
+            guard let toSave = editableActClass?.first else { return }
+            
+            toSave.name = name
+            toSave.detail = detail
+            toSave.waitAfterCompletion = waitAfterStart
+            //toSave.subclasses
+            toSave.next = next
+            
+            try? container.mainContext.save()
         }
     }
 }
