@@ -22,7 +22,6 @@ struct ActivityClassSmallCellView: View {
                 Spacer()
                 Button("Edit"){
                     onEditPressed(activityClass)
-                    print("edit pressed")
                 }
                 .buttonStyle(BorderlessButtonStyle())
                 Button("Start"){

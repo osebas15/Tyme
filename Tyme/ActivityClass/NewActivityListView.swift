@@ -14,14 +14,15 @@ struct NewActivityListView: View {
     
     @State var editingClass: ActivityClass?
     
+    @State var currentClassHistory: [ActivityClass] = []
+    
     var body: some View {
         if mainClass.count > 0 && homeObject.count > 0 {
             if let editingClass = editingClass {
                 ActClassFullEditableView(actClass: editingClass)
-                .navigationTitle(editingClass.name)
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
-                        Button("<-"){
+                        Button("Back"){
                             self.editingClass = nil
                         }
                     }
@@ -29,10 +30,14 @@ struct NewActivityListView: View {
             }
             else {
                 VStack{
-                    List(mainClass[0].orderedSubActivities){ activity in
+                    let classToDisplay = currentClassHistory.last ?? mainClass[0]
+                    List(classToDisplay.orderedSubActivities){ activity in
                         DisclosureGroup{
-                            ForEach(activity.orderedSubActivities){
-                                Text($0.name)
+                            ForEach(activity.orderedSubActivities){ subAct in
+                                Text(subAct.name)
+                                    .onTapGesture {
+                                        currentClassHistory += [activity]
+                                    }
                             }
                         } label: {
                             ActivityClassSmallCellView(
@@ -43,11 +48,18 @@ struct NewActivityListView: View {
                         }
                     }
                 }
-                .navigationTitle("Start Activity")
+                .navigationTitle(currentClassHistory.last?.name ?? "Start Activity")
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button("Add"){
                             print("add pressed")
+                        }
+                    }
+                    if let currentClass = currentClassHistory.last {
+                        ToolbarItem(placement: .topBarLeading) {
+                            Button("Back"){
+                                self.currentClassHistory = self.currentClassHistory.dropLast()
+                            }
                         }
                     }
                 }
@@ -66,7 +78,9 @@ struct NewActivityListView: View {
         return toReturn
     }()
     
-    NewActivityListView()
-        .modelContainer(container)
+    NavigationStack{
+        NewActivityListView()
+            .modelContainer(container)
+    }
 }
 
