@@ -8,9 +8,11 @@ an app to make and use timed todo list and recepies
     - seems to be mostly at beggining
 
 ## Scratch Pad
+- navigation stack
+    - navigation stack with enums
+
 - make edit/add view
-    - made editmanager 
-    - test edit manager
+    - make add view flow
 
 - make workable state for my burger/quick breakfast recepie
     - UI for Active activities

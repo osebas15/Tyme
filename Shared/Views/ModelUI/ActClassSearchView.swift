@@ -29,21 +29,25 @@ struct ActClassSearchView: View {
     }
     
     var body: some View {
-        ZStack{
-            if let selectedClass = selectedClass, searchText == "" {
-                HStack{
-                    Text(selectedClass.name)
-                        .foregroundStyle(.gray)
-                    Spacer()
+        VStack {
+            ZStack{
+                if let selectedClass = selectedClass, searchText == "" {
+                    HStack{
+                        Text(selectedClass.name)
+                            .foregroundStyle(.gray)
+                        Spacer()
+                    }
+                }
+                TextField("", text: $searchText)
+            }
+            if searchText != "" {
+                ForEach(orderedClasses(compareText: searchText, classes: actClasses)){ actClass in
+                    Text(actClass.name)
+                        .onTapGesture {
+                            selectedClass = actClass
+                        }
                 }
             }
-            TextField("", text: $searchText)
-        }
-        ForEach(orderedClasses(compareText: searchText, classes: actClasses)){ actClass in
-            Text(actClass.name)
-                .onTapGesture {
-                    selectedClass = actClass
-                }
         }
     }
     
@@ -88,11 +92,8 @@ extension ActClassSearchView {
         var toReturn = ModelHelper().getBasicContainer()
         ActivityDummyData().insertQuickBreakfastRecepie(into: toReturn)
         toReturn.mainContext.insert(dummyActivity!)
-        //try? toReturn.mainContext.save()
         return toReturn
     }()
-    
-    
     
     ActClassSearchView(
         selectedClass: $dummyActivity

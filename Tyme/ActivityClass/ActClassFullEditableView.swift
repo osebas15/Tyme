@@ -9,8 +9,11 @@ import SwiftUI
 
 struct ActClassFullEditableView: View {
     @Environment(\.modelContext) var context
-    let actClass: ActivityClass
+    
     @State var editManager: ActivityClass.UIEditsManager
+    @State var searching: Bool = false
+    
+    let actClass: ActivityClass
     
     init(actClass: ActivityClass) {
         self.actClass = actClass
@@ -19,13 +22,10 @@ struct ActClassFullEditableView: View {
     
     var body: some View {
         VStack {
-            TextEditor(text: $editManager.name)
-                .multilineTextAlignment(.center)
+            TextField("Do what?", text: $editManager.name).background(.clear)
             TextEditor(text: $editManager.detail)
             EditableTimer(time: $editManager.waitAfterStart)
-            HStack{
-                Text("Next: \(actClass.next?.name ?? "nil")")
-            }
+            ActClassSearchView(selectedClass: $editManager.next)
         }
         .toolbar { ToolbarItem(placement: .topBarTrailing) {
             Button("save"){
@@ -48,6 +48,8 @@ struct ActClassFullEditableView: View {
         toReturn.mainContext.insert(sample)
         return toReturn
     }()
+    
+    let notAdded = ActivityClass(name: "")
     
     ActClassFullEditableView(actClass: sample)
         .modelContainer(container)

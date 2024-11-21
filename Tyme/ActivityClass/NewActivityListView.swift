@@ -10,7 +10,7 @@ import SwiftData
 
 struct NewActivityListView: View {
     @Query(filter: ModelHelper().homeObjectPredicate) var homeObject: [ActivityObject]
-    @Query(filter: ModelHelper().homeActivityPredicate ) var mainClass: [ActivityClass]
+    @Query(filter: ModelHelper().homeActivityPredicate) var mainClass: [ActivityClass]
     
     @State var editingClass: ActivityClass?
     
@@ -45,6 +45,9 @@ struct NewActivityListView: View {
                                 parentObject: homeObject[0],
                                 onEditPressed: { editingClass = $0 }
                             )
+                            .onTapGesture {
+                                currentClassHistory += [activity]
+                            }
                         }
                     }
                 }
@@ -55,7 +58,7 @@ struct NewActivityListView: View {
                             print("add pressed")
                         }
                     }
-                    if let currentClass = currentClassHistory.last {
+                    if currentClassHistory.last != nil {
                         ToolbarItem(placement: .topBarLeading) {
                             Button("Back"){
                                 self.currentClassHistory = self.currentClassHistory.dropLast()
