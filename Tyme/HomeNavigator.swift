@@ -19,7 +19,7 @@ struct HomeNavigator: View {
             ActiveActivitiesView(activeActivities: currentActivities)
         }
         else if let homeActClass = homeActClasses.first{
-            NewActivityListView(currentClass: homeActClass)
+            //NewActivityListView(currentClass: homeActClass)
         }
         else {
             Text("error")

@@ -54,6 +54,7 @@
 		4AB17C392CD6FD5E0045B34C /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB17C382CD6E8F00045B34C /* NotificationManager.swift */; };
 		4AB17C3A2CD6FD5E0045B34C /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB17C372CD6DE7F0045B34C /* TimerManager.swift */; };
 		4AEAC5652CEFD3B8008CE9F4 /* HomeNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAC5642CEFD3B8008CE9F4 /* HomeNavigator.swift */; };
+		4AEAC5672CF008CE008CE9F4 /* ActivityFinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAC5662CF008CE008CE9F4 /* ActivityFinderView.swift */; };
 		4AF6B8E32CE28ABA0016811F /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB17C382CD6E8F00045B34C /* NotificationManager.swift */; };
 		4AF6B8E52CE29BB30016811F /* TextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF6B8E42CE29BB30016811F /* TextToSpeech.swift */; };
 		4AF6B8E62CE29BB30016811F /* TextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF6B8E42CE29BB30016811F /* TextToSpeech.swift */; };
@@ -155,6 +156,7 @@
 		4AB17C372CD6DE7F0045B34C /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
 		4AB17C382CD6E8F00045B34C /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		4AEAC5642CEFD3B8008CE9F4 /* HomeNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigator.swift; sourceTree = "<group>"; };
+		4AEAC5662CF008CE008CE9F4 /* ActivityFinderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFinderView.swift; sourceTree = "<group>"; };
 		4AF6B8E42CE29BB30016811F /* TextToSpeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToSpeech.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -272,6 +274,7 @@
 				4AEAC5642CEFD3B8008CE9F4 /* HomeNavigator.swift */,
 				4A7F11FA2C3AE283005200F2 /* Assets.xcassets */,
 				4A7F11FC2C3AE283005200F2 /* Preview Content */,
+				4AEAC5662CF008CE008CE9F4 /* ActivityFinderView.swift */,
 			);
 			path = Tyme;
 			sourceTree = "<group>";
@@ -613,6 +616,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AF6B8E32CE28ABA0016811F /* NotificationManager.swift in Sources */,
+				4AEAC5672CF008CE008CE9F4 /* ActivityFinderView.swift in Sources */,
 				4AB16F182CDC768E00706F8B /* TimerManager.swift in Sources */,
 				4A8F50442CED99150096327C /* ActClassSearchView.swift in Sources */,
 				4A4473852CAB3B8A00C07982 /* NewActivityListView.swift in Sources */,

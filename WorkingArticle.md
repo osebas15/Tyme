@@ -11,7 +11,21 @@ an app to make and use timed todo list and recepies
 - Have Find Activity View, use as HomeView
 
 - make edit/add view
+    - Views I need
+        - Activity Class
+            - find
+            - edit / add / detail
+            - add to home
+            
+    - find view
+        - document browser
+        - search functionality
+            - shows list 
+            
+    - edit view
     - make add view flow
+    
+
 
 - make workable state for my burger/quick breakfast recepie
     - UI for Active activities

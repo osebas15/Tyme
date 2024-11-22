@@ -45,6 +45,7 @@ struct ActClassSearchView: View {
                     Text(actClass.name)
                         .onTapGesture {
                             selectedClass = actClass
+                            searchText = ""
                         }
                 }
             }
