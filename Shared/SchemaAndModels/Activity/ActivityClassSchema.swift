@@ -114,10 +114,15 @@ extension ActivityClass {
 
 extension ActivityClass {
     static func dummyActivity() -> ActivityClass {
-        return ActivityClass(
+        let toReturn = ActivityClass(
             name: "DummyClass",
             detail: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
         )
+        
+        toReturn.addSubActivity(activity: ActivityClass(name: "sub1"))
+        toReturn.next = ActivityClass(name: "next")
+        
+        return toReturn
     }
     
     static func error() -> ActivityClass {

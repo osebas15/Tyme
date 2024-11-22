@@ -8,8 +8,7 @@ an app to make and use timed todo list and recepies
     - seems to be mostly at beggining
 
 ## Scratch Pad
-- navigation stack
-    - navigation stack with enums
+- Have Find Activity View, use as HomeView
 
 - make edit/add view
     - make add view flow

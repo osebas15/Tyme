@@ -7,83 +7,64 @@
 
 import SwiftUI
 import SwiftData
-
+/*
 struct NewActivityListView: View {
-    @Query(filter: ModelHelper().homeObjectPredicate) var homeObject: [ActivityObject]
-    @Query(filter: ModelHelper().homeActivityPredicate) var mainClass: [ActivityClass]
     
     @State var editingClass: ActivityClass?
     
-    @State var currentClassHistory: [ActivityClass] = []
+    var currentClass: ActivityClass
     
     var body: some View {
-        if mainClass.count > 0 && homeObject.count > 0 {
-            if let editingClass = editingClass {
-                ActClassFullEditableView(actClass: editingClass)
-                .toolbar {
-                    ToolbarItem(placement: .topBarLeading) {
-                        Button("Back"){
-                            self.editingClass = nil
-                        }
-                    }
-                }
-            }
-            else {
-                VStack{
-                    let classToDisplay = currentClassHistory.last ?? mainClass[0]
-                    List(classToDisplay.orderedSubActivities){ activity in
-                        DisclosureGroup{
-                            ForEach(activity.orderedSubActivities){ subAct in
-                                Text(subAct.name)
-                                    .onTapGesture {
-                                        currentClassHistory += [activity]
-                                    }
-                            }
-                        } label: {
-                            ActivityClassSmallCellView(
-                                activityClass: activity,
-                                parentObject: homeObject[0],
-                                onEditPressed: { editingClass = $0 }
-                            )
-                            .onTapGesture {
-                                currentClassHistory += [activity]
-                            }
-                        }
-                    }
-                }
-                .navigationTitle(currentClassHistory.last?.name ?? "Start Activity")
-                .toolbar {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button("Add"){
-                            print("add pressed")
-                        }
-                    }
-                    if currentClassHistory.last != nil {
-                        ToolbarItem(placement: .topBarLeading) {
-                            Button("Back"){
-                                self.currentClassHistory = self.currentClassHistory.dropLast()
-                            }
-                        }
-                    }
-                }
-            }
+        if let editingClass = editingClass {
+            ActClassFullEditableView(actClass: editingClass)
         }
         else {
-            Text("add new activities \(mainClass.count) \(homeObject.count)")
+            VStack{
+                List(currentClass.orderedSubActivities){ activity in
+                    DisclosureGroup{
+                        ForEach(activity.orderedSubActivities){ subAct in
+                            Text(subAct.name)
+                                .onTapGesture {
+                                    //currentClassHistory += [activity]
+                                }
+                        }
+                    } label: {
+                        ActivityClassSmallCellView(
+                            activityClass: activity,
+                            parentObject: homeObject[0],
+                            onEditPressed: { editingClass = $0 }
+                        )
+                        .onTapGesture {
+                            //currentClassHistory += [activity]
+                        }
+                    }
+                }
+            }
+            .navigationTitle(currentClass.name)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Add"){
+                        print("add pressed")
+                    }
+                }
+            }
         }
     }
 }
 
 #Preview {
+    let sample = ActivityClass.dummyActivity()
+    
     let container = {
         let toReturn = ModelHelper().getBasicContainer()
         ActivityDummyData().insertQuickBreakfastRecepie(into: toReturn)
+        toReturn.mainContext.insert(sample)
         return toReturn
     }()
     
     NavigationStack{
-        NewActivityListView()
+        NewActivityListView(currentClass: sample)
             .modelContainer(container)
     }
 }
-
+*/

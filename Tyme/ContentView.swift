@@ -15,7 +15,7 @@ struct ContentView: View {
             VStack {
                 if homeObjectResult.count > 0 {
                     if homeObjectResult[0].unOrderedActivities.isEmpty{
-                        NewActivityListView()
+                        //NewActivityListView()
                     }
                     else {
                         ActiveActivitiesView(activeActivities: homeObjectResult[0].lowestActivities)
