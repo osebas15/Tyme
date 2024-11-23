@@ -13,16 +13,14 @@ struct HomeNavigator: View {
     @Query(filter: ModelHelper().homeActivityPredicate) var homeActClasses: [ActivityClass]
     
     @State var navPath = NavigationPath()
+    @State var chosenActivity: ActivityClass?
     
     var body: some View {
         if let currentActivities = homeActObjs.first?.orderedActivities, !currentActivities.isEmpty {
             ActiveActivitiesView(activeActivities: currentActivities)
         }
-        else if let homeActClass = homeActClasses.first{
-            //NewActivityListView(currentClass: homeActClass)
-        }
         else {
-            Text("error")
+            ActivityFinderView(currentSelection: $chosenActivity)
         }
     }
 }

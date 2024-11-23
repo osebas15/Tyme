@@ -7,13 +7,15 @@
 
 import SwiftUI
 
-struct ActivityClassSmallCellView: View {
+struct ActivityClassSmallCellView: ActivityCell {
     @Environment(\.modelContext) private var context
     
     var activityClass: ActivityClass
-    var parentObject: ActivityObject
+    //var parentObject: ActivityObject
     
-    var onEditPressed: (ActivityClass) -> ()
+    //var onEditPressed: (ActivityClass) -> ()
+    
+    var onSelect: OnSelect
     
     var body: some View {
         VStack{
@@ -21,13 +23,16 @@ struct ActivityClassSmallCellView: View {
                 Text(activityClass.name)
                 Spacer()
                 Button("Edit"){
-                    onEditPressed(activityClass)
+                    //onEditPressed(activityClass)
                 }
                 .buttonStyle(BorderlessButtonStyle())
                 Button("Start"){
-                    activityClass.start(context: context, parentObject: parentObject, stepNumber: 0)
+                    //activityClass.start(context: context, parentObject: parentObject, stepNumber: 0)
                 }
                 .buttonStyle(BorderlessButtonStyle())
+            }
+            .onTapGesture {
+                onSelect(activityClass)
             }
         }
     }
@@ -43,6 +48,6 @@ struct ActivityClassSmallCellView: View {
         return toReturn
     }()
     
-    ActivityClassSmallCellView(activityClass: actClass, parentObject: actObj, onEditPressed: {_ in})
+    ActivityClassSmallCellView(activityClass: actClass, onSelect: {_ in})
         .modelContainer(container)
 }
