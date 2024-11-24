@@ -18,8 +18,6 @@ struct ActivityClassList<Content: ActivityCell>: View {
     var body: some View {
         VStack{
             let selectedClass = selectedClass ?? homeClassResult.first ?? ActivityClass.error()
-            Text(selectedClass.name)
-            Text("Test")
             content(selectedClass)
             List(selectedClass.orderedSubActivities) { actClass in
                 content(actClass)
@@ -28,7 +26,6 @@ struct ActivityClassList<Content: ActivityCell>: View {
     }
     
     init(selectedClass: Binding<ActivityClass?>, @ViewBuilder content: @escaping (ActivityClass) -> Content) {
-        
         _selectedClass = selectedClass
         self.content = content
     }

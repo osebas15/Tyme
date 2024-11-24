@@ -11,10 +11,6 @@ struct ActivityClassSmallCellView: ActivityCell {
     @Environment(\.modelContext) private var context
     
     var activityClass: ActivityClass
-    //var parentObject: ActivityObject
-    
-    //var onEditPressed: (ActivityClass) -> ()
-    
     var onSelect: OnSelect
     
     var body: some View {

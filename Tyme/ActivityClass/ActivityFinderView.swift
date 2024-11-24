@@ -19,7 +19,7 @@ struct ActivityFinderView: View {
         NavigationStack(path: $navPath) {
             ActivityClassList(selectedClass: $currentSelection) { actClass in
                 ActivityClassSmallCellView(activityClass: actClass) { actClass in
-                    print("selected")
+                    currentSelection = actClass
                 }
             }
         }
