@@ -9,6 +9,13 @@ an app to make and use timed todo list and recepies
 
 ## Scratch Pad
 - make main activityview (top of find activityView)
+    - name
+    - description
+    - wait after start
+    - next
+    - parent 
+    - subclasses
+
 - Have Find Activity View, use as HomeView
 
 - make edit/add view

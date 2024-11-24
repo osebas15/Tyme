@@ -27,11 +27,23 @@ struct ActClassFullEditableView: View {
             EditableTimer(time: $editManager.waitAfterStart)
             ActClassSearchView(selectedClass: $editManager.next)
         }
-        .toolbar { ToolbarItem(placement: .topBarTrailing) {
-            Button("save"){
-                editManager.save(container: context.container)
+        .toolbar {
+            if editManager.isEditing {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("save"){
+                        editManager.save(container: context.container)
+                        editManager.isEditing = false
+                    }
+                }
             }
-        }}
+            else {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("edit"){
+                        editManager.isEditing = true
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -51,6 +63,8 @@ struct ActClassFullEditableView: View {
     
     let notAdded = ActivityClass(name: "")
     
-    ActClassFullEditableView(actClass: sample)
-        .modelContainer(container)
+    NavigationStack{
+        ActClassFullEditableView(actClass: sample)
+            .modelContainer(container)
+    }
 }
