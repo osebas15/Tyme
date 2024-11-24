@@ -17,7 +17,7 @@ struct ActivityFinderView: View {
     var body: some View {
         ActClassSearchView(selectedClass: $currentSelection)
         NavigationStack(path: $navPath) {
-            ActivityClassList(selectedClass: $currentSelection) { actClass in
+            ActivityClassList(classesToShow: currentSelection?.orderedSubActivities) { actClass in
                 ActivityClassSmallCellView(activityClass: actClass) { actClass in
                     currentSelection = actClass
                 }

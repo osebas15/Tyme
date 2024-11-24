@@ -13,7 +13,7 @@ struct ActClassFullEditableView: View {
     @State var editManager: ActivityClass.UIEditsManager
     @State var searching: Bool = false
     
-    let actClass: ActivityClass
+    @State var actClass: ActivityClass?
     
     init(actClass: ActivityClass) {
         self.actClass = actClass
@@ -26,6 +26,10 @@ struct ActClassFullEditableView: View {
             TextEditor(text: $editManager.detail)
             EditableTimer(time: $editManager.waitAfterStart)
             ActClassSearchView(selectedClass: $editManager.next)
+            ActivityClassList(classesToShow: actClass?.orderedSubActivities){  ActivityClassSmallCellView(activityClass: $0) { selectedClass in
+                actClass = selectedClass
+            }
+            }
         }
         .toolbar {
             if editManager.isEditing {

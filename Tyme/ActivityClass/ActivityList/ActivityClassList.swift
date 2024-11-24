@@ -9,24 +9,27 @@ import SwiftUI
 import SwiftData
 
 struct ActivityClassList<Content: ActivityCell>: View {
-    @Query(filter: ModelHelper().homeActivityPredicate) var homeClassResult: [ActivityClass]
-    
-    @Binding var selectedClass: ActivityClass?
-    
+    //@Query(filter: ModelHelper().homeActivityPredicate) var homeClassResult: [ActivityClass]
+    var classesToShow: [ActivityClass]
     @ViewBuilder var content: (ActivityClass) -> Content
     
     var body: some View {
         VStack{
-            let selectedClass = selectedClass ?? homeClassResult.first ?? ActivityClass.error()
-            content(selectedClass)
-            List(selectedClass.orderedSubActivities) { actClass in
-                content(actClass)
+            /*if classesToShow.isEmpty, let homeClasses = homeClassResult.first?.orderedSubActivities {
+                List(homeClasses){ actClass in
+                    content(actClass)
+                }
             }
+            else {*/
+                List(classesToShow) { actClass in
+                    content(actClass)
+                }
+            //}
         }
     }
     
-    init(selectedClass: Binding<ActivityClass?>, @ViewBuilder content: @escaping (ActivityClass) -> Content) {
-        _selectedClass = selectedClass
+    init(classesToShow: [ActivityClass]?, @ViewBuilder content: @escaping (ActivityClass) -> Content) {
+        self.classesToShow = classesToShow ?? []
         self.content = content
     }
 }
@@ -47,7 +50,7 @@ protocol ActivityCell: View {
         return toReturn
     }()
     
-    ActivityClassList(selectedClass: $actClass){ actClass in
+    ActivityClassList(classesToShow: [actClass!]){ actClass in
         ActivityClassSmallCellView(
             activityClass: actClass,
             onSelect: {_ in print("other")})
