@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct ActivityFinderView: View {
+    @Query(filter: ModelHelper().homeActivityPredicate) var homeActRes: [ActivityClass]
     
     @Binding var currentSelection: ActivityClass?
     
@@ -17,9 +18,17 @@ struct ActivityFinderView: View {
     var body: some View {
         ActClassSearchView(selectedClass: $currentSelection)
         NavigationStack(path: $navPath) {
-            ActivityClassList(classesToShow: currentSelection?.orderedSubActivities) { actClass in
-                ActivityClassSmallCellView(activityClass: actClass) { actClass in
-                    currentSelection = actClass
+            if let bridgedBinding = Binding<ActivityClass>($currentSelection){
+                VStack{
+                    ActClassFullEditableView(actClass: bridgedBinding)
+                }
+                
+            }
+            else if let homeActClass = homeActRes.first {
+                ActivityClassList(classesToShow: homeActClass.orderedSubActivities) { actClass in
+                    ActivityClassSmallCellView(activityClass: actClass){ actClass in
+                        self.currentSelection = actClass
+                    }
                 }
             }
         }
@@ -32,6 +41,7 @@ struct ActivityFinderView: View {
     let container: ModelContainer = {
         let toReturn = ModelHelper().getBasicContainer()
         ActivityDummyData().insertQuickBreakfastRecepie(into: toReturn)
+        ActivityDummyData().insertSwissBurgerRecepie(into: toReturn)
         return toReturn
     }()
     

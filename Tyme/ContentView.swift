@@ -15,6 +15,12 @@ struct ContentView: View {
 }
 
 #Preview {
+    let container: ModelContainer = {
+        let toReturn = ModelHelper().getTestContainer()
+        ActivityDummyData().insertQuickBreakfastRecepie(into: toReturn)
+        return toReturn
+    }()
+    
     ContentView()
-        .modelContainer(ModelHelper().getBasicContainer())
+        .modelContainer(container)
 }

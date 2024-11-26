@@ -13,23 +13,34 @@ struct ActClassFullEditableView: View {
     @State var editManager: ActivityClass.UIEditsManager
     @State var searching: Bool = false
     
-    @State var actClass: ActivityClass?
+    @Binding var actClass: ActivityClass
     
-    init(actClass: ActivityClass) {
-        self.actClass = actClass
-        editManager = ActivityClass.UIEditsManager(for: actClass)
+    init(actClass: Binding<ActivityClass>) {
+        _actClass = actClass
+        editManager = ActivityClass.UIEditsManager(for: actClass.wrappedValue)
     }
     
     var body: some View {
         VStack {
-            TextField("Do what?", text: $editManager.name).background(.clear)
-            TextEditor(text: $editManager.detail)
-            EditableTimer(time: $editManager.waitAfterStart)
-            ActClassSearchView(selectedClass: $editManager.next)
-            ActivityClassList(classesToShow: actClass?.orderedSubActivities){  ActivityClassSmallCellView(activityClass: $0) { selectedClass in
-                actClass = selectedClass
+            if editManager.isEditing {
+                TextField("Do what?", text: $editManager.name)
+                TextEditor(text: $editManager.detail)
+                EditableTimer(time: $editManager.waitAfterStart)
+                ActClassSearchView(selectedClass: $editManager.next)
+                ActivityClassList(classesToShow: actClass.orderedSubActivities){  ActivityClassSmallCellView(activityClass: $0) { selectedClass in
+                    actClass = selectedClass
+                }}
             }
+            else {
+                Text(actClass.name)
+                Text(actClass.detail ?? "")
+                Text((actClass.waitAfterCompletion ?? Double(0)).formatted())
+                Text(actClass.next?.name ?? "done")
+                ActivityClassList(classesToShow: actClass.orderedSubActivities){  ActivityClassSmallCellView(activityClass: $0) { selectedClass in
+                    actClass = selectedClass
+                }}
             }
+            
         }
         .toolbar {
             if editManager.isEditing {
@@ -43,6 +54,7 @@ struct ActClassFullEditableView: View {
             else {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("edit"){
+                        editManager = ActivityClass.UIEditsManager(for: actClass)
                         editManager.isEditing = true
                     }
                 }
@@ -52,7 +64,7 @@ struct ActClassFullEditableView: View {
 }
 
 #Preview {
-    let sample = {
+    @Previewable @State var sample: ActivityClass = {
         let toReturn = ActivityClass.dummyActivity()
         toReturn.next = ActivityClass.dummyActivity()
         return toReturn
@@ -65,10 +77,8 @@ struct ActClassFullEditableView: View {
         return toReturn
     }()
     
-    let notAdded = ActivityClass(name: "")
-    
     NavigationStack{
-        ActClassFullEditableView(actClass: sample)
+        ActClassFullEditableView(actClass: $sample)
             .modelContainer(container)
     }
 }

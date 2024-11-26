@@ -10,7 +10,7 @@ import SwiftData
 
 struct HomeNavigator: View {
     @Query(filter: ModelHelper().homeObjectPredicate) var homeActObjs: [ActivityObject]
-    @Query(filter: ModelHelper().homeActivityPredicate) var homeActClasses: [ActivityClass]
+    //@Query(filter: ModelHelper().homeActivityPredicate) var homeActClasses: [ActivityClass]
     
     @State var navPath = NavigationPath()
     @State var chosenActivity: ActivityClass?
@@ -21,6 +21,7 @@ struct HomeNavigator: View {
         }
         else {
             ActivityFinderView(currentSelection: $chosenActivity)
+                .navigationTitle("Start")
         }
     }
 }
@@ -32,6 +33,8 @@ struct HomeNavigator: View {
         return toReturn
     }()
     
-    HomeNavigator()
-        .modelContainer(container)
+    NavigationStack{
+        HomeNavigator()
+            .modelContainer(container)
+    }
 }

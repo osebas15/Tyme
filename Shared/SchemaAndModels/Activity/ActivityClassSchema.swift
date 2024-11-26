@@ -137,9 +137,9 @@ extension ActivityClass {
         var name: String
         var detail: String
         var waitAfterStart: TimeInterval
-        var isEditing: Bool
         var subClasses: [ActivityClass]
         var next: ActivityClass?
+        var isEditing = false
         
         init(for activityClass: ActivityClass){
             id = activityClass.id
@@ -148,7 +148,6 @@ extension ActivityClass {
             waitAfterStart = activityClass.waitAfterCompletion ?? 0
             subClasses = activityClass.subActivities
             next = activityClass.next
-            isEditing = false
         }
         
         func save(container: ModelContainer){
