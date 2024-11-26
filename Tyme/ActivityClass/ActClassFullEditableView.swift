@@ -35,7 +35,18 @@ struct ActClassFullEditableView: View {
                 Text(actClass.name)
                 Text(actClass.detail ?? "")
                 Text((actClass.waitAfterCompletion ?? Double(0)).formatted())
-                Text(actClass.next?.name ?? "done")
+                
+                HStack{
+                    Spacer()
+                    Text("Next: ")
+                    Button(actClass.next?.name ?? "none"){
+                        if let next = actClass.next {
+                            actClass = next
+                        }
+                    }.disabled(actClass.next == nil)
+                }
+                
+        
                 ActivityClassList(classesToShow: actClass.orderedSubActivities){  ActivityClassSmallCellView(activityClass: $0) { selectedClass in
                     actClass = selectedClass
                 }}
