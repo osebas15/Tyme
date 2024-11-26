@@ -8,6 +8,8 @@ an app to make and use timed todo list and recepies
     - seems to be mostly at beggining
 
 ## Scratch Pad
+- When home only show its sublists
+    - 
 - make main activityview (top of find activityView)
     - wait after start
     - next
@@ -21,6 +23,10 @@ an app to make and use timed todo list and recepies
         - Activity Class
             - edit / add / detail
             - start activity
+            
+            
+            
+            
             
     - find view
         - document browser

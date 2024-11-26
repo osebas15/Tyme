@@ -10,14 +10,19 @@ import SwiftData
 
 struct HomeNavigator: View {
     @Query(filter: ModelHelper().homeObjectPredicate) var homeActObjs: [ActivityObject]
-    //@Query(filter: ModelHelper().homeActivityPredicate) var homeActClasses: [ActivityClass]
-    
-    @State var navPath = NavigationPath()
+    @Query(filter: ModelHelper().homeActivityPredicate) var homeActClasses: [ActivityClass]
     @State var chosenActivity: ActivityClass?
     
     var body: some View {
         if let currentActivities = homeActObjs.first?.orderedActivities, !currentActivities.isEmpty {
             ActiveActivitiesView(activeActivities: currentActivities)
+        }
+        else if let first = homeActClasses.first, chosenActivity == first {
+            ActivityClassList(classesToShow: first.orderedSubActivities) { actClass in
+                ActivityClassSmallCellView(activityClass: actClass) { actClass in
+                    chosenActivity = actClass
+                }
+            }
         }
         else {
             ActivityFinderView(currentSelection: $chosenActivity)
