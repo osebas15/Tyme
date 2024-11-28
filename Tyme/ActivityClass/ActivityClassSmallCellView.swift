@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ActivityClassSmallCellView: ActivityCell {
+    @Query(filter: ModelHelper().homeObjectPredicate) var homeObjRes: [ActivityObject]
     @Environment(\.modelContext) private var context
     
     var actClass: ActivityClass
@@ -22,10 +24,14 @@ struct ActivityClassSmallCellView: ActivityCell {
                     //onEditPressed(activityClass)
                 }
                 .buttonStyle(BorderlessButtonStyle())
-                Button("Start"){
-                    //activityClass.start(context: context, parentObject: parentObject, stepNumber: 0)
+                if let homeObj = homeObjRes.first {
+                    Button("Start"){
+                        actClass.start(context: context, parentObject: homeObj, stepNumber: 0)
+                    }
+                    .buttonStyle(BorderlessButtonStyle())
                 }
-                .buttonStyle(BorderlessButtonStyle())
+                
+                
             }
             .onTapGesture {
                 onSelect(actClass)

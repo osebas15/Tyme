@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ActClassFullEditableView: View {
     @Environment(\.modelContext) var context
+    
+    @Query(filter: ModelHelper().homeObjectPredicate) var homeObjRes: [ActivityObject]
     
     @State var editManager: ActivityClass.UIEditsManager
     @State var searching: Bool = false
@@ -32,7 +35,20 @@ struct ActClassFullEditableView: View {
                 }}
             }
             else {
-                Text(actClass.name)
+                HStack{
+                    Text(actClass.name)
+                    Spacer()
+                    if let homeObj = homeObjRes.first {
+                        Button("Start"){
+                            actClass.start(
+                                context: context,
+                                parentObject: homeObj,
+                                stepNumber: 0
+                            )
+                        }
+                    }
+                    
+                }
                 Text(actClass.detail ?? "")
                 Text((actClass.waitAfterCompletion ?? Double(0)).formatted())
                 
