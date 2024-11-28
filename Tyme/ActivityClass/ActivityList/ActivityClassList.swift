@@ -35,6 +35,7 @@ struct ActivityClassList<Content: ActivityCell>: View {
 }
 
 protocol ActivityCell: View {
+    var actClass: ActivityClass { get set }
     typealias OnSelect = (_ actClass: ActivityClass) -> ()
     var onSelect: OnSelect { get set }
 }
@@ -52,7 +53,7 @@ protocol ActivityCell: View {
     
     ActivityClassList(classesToShow: [actClass!]){ actClass in
         ActivityClassSmallCellView(
-            activityClass: actClass,
+            actClass: actClass,
             onSelect: {_ in print("other")})
     }
     .modelContainer(container)

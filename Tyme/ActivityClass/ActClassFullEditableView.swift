@@ -27,7 +27,7 @@ struct ActClassFullEditableView: View {
                 TextEditor(text: $editManager.detail)
                 EditableTimer(time: $editManager.waitAfterStart)
                 ActClassSearchView(selectedClass: $editManager.next)
-                ActivityClassList(classesToShow: actClass.orderedSubActivities){  ActivityClassSmallCellView(activityClass: $0) { selectedClass in
+                ActivityClassList(classesToShow: actClass.orderedSubActivities){  ActivityClassSmallCellView(actClass: $0) { selectedClass in
                     actClass = selectedClass
                 }}
             }
@@ -47,7 +47,7 @@ struct ActClassFullEditableView: View {
                 }
                 
         
-                ActivityClassList(classesToShow: actClass.orderedSubActivities){  ActivityClassSmallCellView(activityClass: $0) { selectedClass in
+                ActivityClassList(classesToShow: actClass.orderedSubActivities){  ActivityClassSmallCellView(actClass: $0) { selectedClass in
                     actClass = selectedClass
                 }}
             }

@@ -19,7 +19,7 @@ struct HomeNavigator: View {
         }
         else if let first = homeActClasses.first, chosenActivity == first {
             ActivityClassList(classesToShow: first.orderedSubActivities) { actClass in
-                ActivityClassSmallCellView(activityClass: actClass) { actClass in
+                ActivityClassSmallCellView(actClass: actClass) { actClass in
                     chosenActivity = actClass
                 }
             }

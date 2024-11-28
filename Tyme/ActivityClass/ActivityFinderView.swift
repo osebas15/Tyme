@@ -26,7 +26,7 @@ struct ActivityFinderView: View {
             }
             else if let homeActClass = homeActRes.first {
                 ActivityClassList(classesToShow: homeActClass.orderedSubActivities) { actClass in
-                    ActivityClassSmallCellView(activityClass: actClass){ actClass in
+                    ActivityClassSmallCellView(actClass: actClass){ actClass in
                         self.currentSelection = actClass
                     }
                 }
