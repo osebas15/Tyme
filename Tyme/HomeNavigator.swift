@@ -14,7 +14,7 @@ struct HomeNavigator: View {
     @State var chosenActivity: ActivityClass?
     
     var body: some View {
-        if let currentActivities = homeActObjs.first?.orderedActivities, !currentActivities.isEmpty {
+        if let currentActivities = homeActObjs.first?.lowestActivities, currentActivities.count > 1 {
             ActiveActivitiesView(activeActivities: currentActivities)
         }
         else if let first = homeActClasses.first, chosenActivity == first {

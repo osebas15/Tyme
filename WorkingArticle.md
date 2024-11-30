@@ -8,6 +8,9 @@ an app to make and use timed todo list and recepies
     - seems to be mostly at beggining
 
 ## Scratch Pad
+- Now its time to be able to add activities to other activities
+    - add it to the editmanager
+        - its there, now connect bound variable to it
 - Home screen
     - favorites: Home subActivities
     
@@ -17,25 +20,13 @@ an app to make and use timed todo list and recepies
     - parent 
     - subclasses
 
-- Have Find Activity View, use as HomeView
-
 - make edit/add view
     - Views I need
         - Activity Class
             - edit / add / detail
-            - start activity
-            
-            
-            
-            
-            
-    - find view
-        - document browser
-        - search functionality
-            - shows list 
-            
-    - edit view
-    - make add view flow
+                - add classes where necessary
+                - make add view flow
+    
     
 
 
