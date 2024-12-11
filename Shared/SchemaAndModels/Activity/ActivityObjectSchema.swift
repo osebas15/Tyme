@@ -33,13 +33,18 @@ enum ActivityObject0_0_0: VersionedSchema {
             get{ subActivities }
         }
         
+        var currentStep: Int
+        
+        @Relationship(inverse: \ActivityObject.firstStep) var currentStep2: ActivityObject?
+        var firstStep: ActivityObject?
+        
         var activityClass : ActivityClass?
         var completionDate: Date?
         var onOffTimes: [TimeRange]?
         
         var priorityOrder: Int
         
-        var currentStep: Int
+        
         
         private var storedFocus: Int
         @Transient var focus: FocusState{
@@ -223,12 +228,40 @@ extension ActivityObject {
         try? context.save()
     }
     
+    func getNextClassIfInChain(context: ModelContext) -> ActivityClass? {
+        //get current order, get next
+        guard
+            let firstStep = firstStep
+        else { return nil }
+        
+        guard
+            let orderedSteps = firstStep.activityClass?.orderedSteps,
+            let myOrder = orderedSteps.firstIndex(where: { $0.id == self.id }),
+            orderedSteps.count > myOrder + 1
+        else {
+            return ActivityClass.error()
+        }
+        
+        return orderedSteps[myOrder]
+    }
+    
     //make it simple end function rn
     func complete(context: ModelContext){
-        //check this step or subactivity off, if parent just complete,
+        //check this step or subactivity of, if parent just complete,
         //have guard clause for now but consider response for state management
         
-        //I need to know (object im completing), if object is part of a next chain, o
+        guard
+            let actClass = activityClass
+        else {
+            return
+        }
+        
+        if !actClass.orderedSteps.isEmpty {
+            //self.currentStep = a
+        }
+        
+        //I need to know (object im completing), if object starts a chain, is part of a next chain, or if its subobject
+        
     }
     
     func done(context: ModelContext){

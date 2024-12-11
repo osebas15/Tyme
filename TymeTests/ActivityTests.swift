@@ -27,6 +27,11 @@ struct ActivityTests {
             container.mainContext.insert(dummyActivity)
             sampleActivities.forEach { container.mainContext.insert($0) }
         }
+        
+        func startDummyClassAndGetResultingObject() -> ActivityObject {
+            dummyActivity.start(context: container.mainContext, parentObject: parentObj, stepNumber: 0)
+            return parentObj.unOrderedActivities.first!
+        }
     }
     
     @Test("Home Object loads")
@@ -35,14 +40,15 @@ struct ActivityTests {
         
         #expect(test.activityClass?.name ?? "empty actClass" == "Home")
     }
-
+    
+    @Test("Object creation works")
+    func startasdf() async throws {}
     
     @Test("Start test activity and its subactivities")
     func start() async throws {
         let setup = SetupManager()
         
-        setup.dummyActivity.start(context: setup.container.mainContext, parentObject: setup.parentObj, stepNumber: 0)
-        let startedActivity = setup.parentObj.unOrderedActivities.first!
+        let startedActivity = setup.startDummyClassAndGetResultingObject()
         
         #expect(startedActivity.activityClass!.id == setup.dummyActivity.id)
         #expect(startedActivity.unOrderedActivities.first!.activityClass!.id == setup.dummyActivity.unOrderedSubActivities.first!.id)
@@ -58,6 +64,17 @@ struct ActivityTests {
         //class model has steps: [Class], instead of next
     }
     
+    @Test("get next object in steps")
+    func getNext() async throws {
+        let setup = SetupManager()
+        setup.dummyActivity.addSteps(activities: setup.sampleActivities)
+        
+        let processObj = setup.startDummyClassAndGetResultingObject()
+        let next = processObj.getNextClassIfInChain(context: setup.container.mainContext)
+
+        #expect(next == setup.sampleActivities.first!)
+        //let testObj = processObj.getNextIfInChain()
+    }
 
     @Test("completes object to a done state")
     func completeObject() async throws {
