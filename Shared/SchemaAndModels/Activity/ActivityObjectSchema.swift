@@ -19,7 +19,7 @@ enum ActivityObject0_0_0: VersionedSchema {
     @Model
     class ActivityObject: Identifiable {
         
-        @Attribute(.unique) var id = UUID()
+        @Attribute(.unique) var id: UUID
         
         var parent: ActivityObject?
         @Relationship(
@@ -54,7 +54,8 @@ enum ActivityObject0_0_0: VersionedSchema {
             subActivities: [ActivityObject] = [],
             focus: FocusState = .none,
             priorityOrder: Int,
-            currentStep: Int = 0
+            currentStep: Int = 0,
+            id: UUID? = nil
         ) {
             self.activityClass = activityClass
             self.completionDate = completionDate
@@ -63,6 +64,7 @@ enum ActivityObject0_0_0: VersionedSchema {
             self.storedFocus = focus.rawValue
             self.priorityOrder = priorityOrder
             self.currentStep = currentStep
+            self.id = id ?? UUID()
         }
     }
 }
@@ -318,10 +320,10 @@ extension ActivityObject {
 
 extension ActivityObject {
     static func dummyObject() -> ActivityObject {
-        return ActivityObject(activityClass: ActivityClass.dummyActivity(), priorityOrder: 0)
+        return ActivityObject(activityClass: ActivityClass.dummyActivity(), priorityOrder: 0, id: UUID(uuidString: "ef2a0677-920b-4011-831a-e39f898d2b93"))
     }
     
     static func error() -> ActivityObject {
-        return ActivityObject(activityClass: ActivityClass.error(), priorityOrder: 0)
+        return ActivityObject(activityClass: ActivityClass.error(), priorityOrder: 0, id: UUID(uuidString:"91802742-c4de-4170-bbe1-ec780981ca7a"))
     }
 }

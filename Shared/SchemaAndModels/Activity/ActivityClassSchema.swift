@@ -19,18 +19,26 @@ enum ActivityClass0_0_0: VersionedSchema {
     @Model
     class ActivityClass: Identifiable{
         
-        @Attribute(.unique) var id = UUID()
+        @Attribute(.unique) var id: UUID
         
         @Relationship(
             deleteRule: .cascade,
             inverse: \ActivityObject.activityClass
         ) var objects: [ActivityObject] = []
+        var next: ActivityClass?
         
-        @Relationship(
-            deleteRule: .nullify,
-            inverse: \ActivityClass.previous
-        ) var next: ActivityClass?
-        var previous: ActivityClass?
+        private var steps: [ActivityClass]
+        private var stepsOrder: [Int: UUID]
+        @Transient var orderedSteps: [ActivityClass] {
+            get {
+                var toReturn = [ActivityClass]()
+                for index in 0..<steps.count {
+                    let actClass = steps.first { $0.id == stepsOrder[index] }!
+                    toReturn.append(actClass)
+                }
+                return toReturn
+            }
+        }
         
         private var subActivities: [ActivityClass]
         var subActivityOrder: [Int: UUID]
@@ -65,16 +73,20 @@ enum ActivityClass0_0_0: VersionedSchema {
             timeToComplete: TimeInterval? = nil,
             waitAfterCompletion: TimeInterval? = nil,
             detail: String? = nil,
-            priority: Priority = .null
+            priority: Priority = .null,
+            id: UUID? = nil
         ){
             self.name = name ?? ""
             self.detail = detail
             self.next = next
             self.subActivities = []
             self.subActivityOrder = [:]
+            self.steps = []
+            self.stepsOrder = [:]
             self.waitAfterCompletion = waitAfterCompletion
             self.timeToComplete = timeToComplete
             self.storedPriority = priority.rawValue
+            self.id = id ?? UUID()
         }
     }
 }
@@ -90,10 +102,9 @@ extension ActivityClass {
     }
     
     func addSteps(activities: [ActivityClass]){
-        let _ = activities.reduce(self) { current, next in
-            current.next = next
-            return next
-        }
+        self.steps = activities
+        
+        activities.enumerated().forEach({ self.stepsOrder[$0.offset] = $0.element.id })
     }
     
     @MainActor
@@ -116,19 +127,30 @@ extension ActivityClass {
     static func dummyActivity() -> ActivityClass {
         let toReturn = ActivityClass(
             name: "DummyClass",
-            detail: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
+            detail: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+            id: UUID(uuidString: "396f24d5-096c-4edd-a2d8-e7fc46d70011")!
         )
         
-        toReturn.addSubActivity(activity: ActivityClass(name: "sub1"))
-        toReturn.next = ActivityClass(name: "next")
+        toReturn.addSubActivity(activity: ActivityClass(name: "sub1", id: UUID(uuidString: "45d1d273-6c4d-47a0-90fe-f7de8165088c")!))
+        
+        return toReturn
+    }
+    
+    static func sampleActivitySteps() -> [ActivityClass] {
+        let toReturn = [
+            ActivityClass(name: "step 1", id: UUID(uuidString: "b9f99643-77db-4e9c-94f4-474300b5787f")),
+            ActivityClass(name: "step 2", id: UUID(uuidString: "2d7bcba8-228d-46ce-9858-4acc5f2269b3")),
+            ActivityClass(name: "step 3", id: UUID(uuidString: "31d441b6-c262-4976-b961-0f6b1c2c49dd"))
+        ]
         
         return toReturn
     }
     
     static func error() -> ActivityClass {
-        return ActivityClass(name: "error")
+        return ActivityClass(name: "error", id: UUID(uuidString: "8c39f05e-c0db-48b1-a112-44d088c1cef4"))
     }
 }
+
 
 extension ActivityClass {
     @MainActor

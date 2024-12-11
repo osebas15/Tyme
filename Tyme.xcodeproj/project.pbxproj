@@ -280,6 +280,13 @@
 			path = Activity;
 			sourceTree = "<group>";
 		};
+		4A76242D2D0971D50096877E /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
 		4A7F11EA2C3AE282005200F2 = {
 			isa = PBXGroup;
 			children = (
@@ -412,6 +419,7 @@
 		4A8F50302CE7F0010096327C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4A76242D2D0971D50096877E /* Navigation */,
 				4A8F50312CE7F0250096327C /* ModelUI */,
 			);
 			path = Views;

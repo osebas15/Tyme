@@ -38,4 +38,35 @@ struct ActivityTests {
         #expect(startedActivity.activityClass!.id == dummyActivity.id)
         #expect(startedActivity.unOrderedActivities.first!.activityClass!.id == dummyActivity.unOrderedSubActivities.first!.id)
     }
+    
+    @Test("add steps adds correctly")
+    func addStepsToDummyAct() async throws {
+        let container = newContainer
+        let dummyActivity = ActivityClass.dummyActivity()
+        let sampleActivities = ActivityClass.sampleActivitySteps()
+        //let parentObj = ModelHelper().getHomeObject(container: container)
+        
+        container.mainContext.insert(dummyActivity)
+        dummyActivity.addSteps(activities: sampleActivities)
+        
+        #expect(dummyActivity.orderedSteps.elementsEqual(sampleActivities))
+        
+        //class model has steps: [Class], instead of next
+    }
+    
+    @Test("Moving through steps: object currentStep shows the correct step in the process")
+    func moveThroughStep() async throws {
+        let container = newContainer
+        let dummyActivity = ActivityClass.dummyActivity()
+        let sampleActivities = ActivityClass.sampleActivitySteps()
+        let parentObj = ModelHelper().getHomeObject(container: container)
+        container.mainContext.insert(dummyActivity)
+        
+        dummyActivity.addSteps(activities: sampleActivities)
+        dummyActivity.start(context: container.mainContext, parentObject: parentObj, stepNumber: 0)
+        let processObj = parentObj.unOrderedActivities.first!
+        
+        #expect(processObj.currentStep.activityClass == dummyActivity.currentStep.activityClass)
+        //object model has currentStep: [Object] instead of currentStep: Int
+    }
 }

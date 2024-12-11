@@ -12,6 +12,6 @@ struct NavigationTest {
     
     @Test("Navigates to active view when there are active activities")
     func startActivity() async throws {
-        
+        #expect(true)
     }
 }
