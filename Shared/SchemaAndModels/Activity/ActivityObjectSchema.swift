@@ -223,6 +223,14 @@ extension ActivityObject {
         try? context.save()
     }
     
+    //make it simple end function rn
+    func complete(context: ModelContext){
+        //check this step or subactivity off, if parent just complete,
+        //have guard clause for now but consider response for state management
+        
+        //I need to know (object im completing), if object is part of a next chain, o
+    }
+    
     func done(context: ModelContext){
         guard let parent = parent else { return }
         
