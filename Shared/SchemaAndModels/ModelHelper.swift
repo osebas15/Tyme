@@ -79,6 +79,19 @@ struct ModelHelper {
         return basicContainer
     }
     
+    func getHomeObject(container: ModelContainer) -> ActivityObject {
+        var fd = FetchDescriptor(predicate: homeObjectPredicate)
+        fd.fetchLimit = 1
+        let result = try? container.mainContext.fetch(fd)
+        
+        if let result = result, result.count == 1 {
+            return result[0]
+        }
+        else {
+            return ActivityObject.error()
+        }
+    }
+    
     @MainActor
     func queriedCopy(container: ModelContainer, id: PersistentIdentifier) -> ActivityObject {
         var fd = FetchDescriptor<ActivityObject>(predicate: #Predicate{ obj in

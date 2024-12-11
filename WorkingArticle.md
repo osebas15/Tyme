@@ -11,6 +11,7 @@ an app to make and use timed todo list and recepies
 - Now its time to be able to add activities to other activities
     - add it to the editmanager
         - its there, now connect bound variable to it
+        
 - Home screen
     - favorites: Home subActivities
     

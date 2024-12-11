@@ -11,11 +11,11 @@
 		4A4473892CB5AB1100C07982 /* ActivityClassSmallCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4473882CB5AB1100C07982 /* ActivityClassSmallCellView.swift */; };
 		4A44738B2CB74CAD00C07982 /* ActiveActivitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A44738A2CB74CAD00C07982 /* ActiveActivitiesView.swift */; };
 		4A4473922CB9B03D00C07982 /* ActivityObjectCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4473912CB9B03D00C07982 /* ActivityObjectCellView.swift */; };
+		4A76242C2D09702E0096877E /* NavigationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A76242B2D09702E0096877E /* NavigationTest.swift */; };
 		4A7F11F72C3AE282005200F2 /* TymeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F11F62C3AE282005200F2 /* TymeApp.swift */; };
 		4A7F11F92C3AE282005200F2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F11F82C3AE282005200F2 /* ContentView.swift */; };
 		4A7F11FB2C3AE283005200F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A7F11FA2C3AE283005200F2 /* Assets.xcassets */; };
 		4A7F11FE2C3AE283005200F2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A7F11FD2C3AE283005200F2 /* Preview Assets.xcassets */; };
-		4A7F12082C3AE283005200F2 /* TymeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12072C3AE283005200F2 /* TymeTests.swift */; };
 		4A7F12122C3AE283005200F2 /* TymeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12112C3AE283005200F2 /* TymeUITests.swift */; };
 		4A7F12142C3AE283005200F2 /* TymeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12132C3AE283005200F2 /* TymeUITestsLaunchTests.swift */; };
 		4A7F121A2C3AE283005200F2 /* Tyme Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 4A7F12192C3AE283005200F2 /* Tyme Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -59,6 +59,42 @@
 		4AF6B8E32CE28ABA0016811F /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB17C382CD6E8F00045B34C /* NotificationManager.swift */; };
 		4AF6B8E52CE29BB30016811F /* TextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF6B8E42CE29BB30016811F /* TextToSpeech.swift */; };
 		4AF6B8E62CE29BB30016811F /* TextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF6B8E42CE29BB30016811F /* TextToSpeech.swift */; };
+		4AFA2DFE2D08E8D1009C2A44 /* ActivityActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFA2DFD2D08E8D1009C2A44 /* ActivityActions.swift */; };
+		4AFA2DFF2D08E8D1009C2A44 /* ActivityActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFA2DFD2D08E8D1009C2A44 /* ActivityActions.swift */; };
+		4AFA2E012D08EA20009C2A44 /* ActivityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFA2E002D08EA20009C2A44 /* ActivityTests.swift */; };
+		4AFA2E022D08EC29009C2A44 /* ActivityClassSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12532C3AE30E005200F2 /* ActivityClassSchema.swift */; };
+		4AFA2E032D08EC29009C2A44 /* ActivityObjectSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12D62C55D6CE005200F2 /* ActivityObjectSchema.swift */; };
+		4AFA2E042D08EC29009C2A44 /* ActivityDummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12572C3C55A2005200F2 /* ActivityDummyData.swift */; };
+		4AFA2E052D08EC29009C2A44 /* ActivityActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFA2DFD2D08E8D1009C2A44 /* ActivityActions.swift */; };
+		4AFA2E062D08EC29009C2A44 /* TimeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12552C3AEB3F005200F2 /* TimeRange.swift */; };
+		4AFA2E072D08EC29009C2A44 /* ModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12652C3F29F9005200F2 /* ModelHelper.swift */; };
+		4AFA2E082D08EFD4009C2A44 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB17C372CD6DE7F0045B34C /* TimerManager.swift */; };
+		4AFA2E092D08EFD9009C2A44 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB17C382CD6E8F00045B34C /* NotificationManager.swift */; };
+		4AFA2E0C2D08FE9C009C2A44 /* ActivityObjectWaitCountDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F50322CE7F1560096327C /* ActivityObjectWaitCountDown.swift */; };
+		4AFA2E0D2D08FE9C009C2A44 /* ActObjStartWaitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F50352CE80C840096327C /* ActObjStartWaitButton.swift */; };
+		4AFA2E0E2D08FE9C009C2A44 /* ActObjStatusCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F50382CED41730096327C /* ActObjStatusCircleView.swift */; };
+		4AFA2E0F2D08FE9C009C2A44 /* ActClassSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F50422CED99150096327C /* ActClassSearchView.swift */; };
+		4AFA2E102D08FE9C009C2A44 /* ActivityClassSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12532C3AE30E005200F2 /* ActivityClassSchema.swift */; };
+		4AFA2E112D08FE9C009C2A44 /* ActivityObjectSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12D62C55D6CE005200F2 /* ActivityObjectSchema.swift */; };
+		4AFA2E122D08FE9C009C2A44 /* ActivityDummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12572C3C55A2005200F2 /* ActivityDummyData.swift */; };
+		4AFA2E132D08FE9C009C2A44 /* ActivityActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFA2DFD2D08E8D1009C2A44 /* ActivityActions.swift */; };
+		4AFA2E142D08FE9C009C2A44 /* TimeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12552C3AEB3F005200F2 /* TimeRange.swift */; };
+		4AFA2E152D08FE9C009C2A44 /* ModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F12652C3F29F9005200F2 /* ModelHelper.swift */; };
+		4AFA2E162D08FE9C009C2A44 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB17C382CD6E8F00045B34C /* NotificationManager.swift */; };
+		4AFA2E172D08FE9C009C2A44 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB17C372CD6DE7F0045B34C /* TimerManager.swift */; };
+		4AFA2E182D08FE9C009C2A44 /* TextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF6B8E42CE29BB30016811F /* TextToSpeech.swift */; };
+		4AFA2E192D08FE9C009C2A44 /* ActiveActivitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A44738A2CB74CAD00C07982 /* ActiveActivitiesView.swift */; };
+		4AFA2E1A2D08FE9C009C2A44 /* ActivityObjectCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4473912CB9B03D00C07982 /* ActivityObjectCellView.swift */; };
+		4AFA2E1B2D08FE9C009C2A44 /* NewActivityListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4473842CAB3B8A00C07982 /* NewActivityListView.swift */; };
+		4AFA2E1C2D08FE9C009C2A44 /* ActivityClassList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAC5692CF1115F008CE9F4 /* ActivityClassList.swift */; };
+		4AFA2E1D2D08FE9C009C2A44 /* ActivityClassSmallCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4473882CB5AB1100C07982 /* ActivityClassSmallCellView.swift */; };
+		4AFA2E1E2D08FE9C009C2A44 /* ActivityFinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAC5662CF008CE008CE9F4 /* ActivityFinderView.swift */; };
+		4AFA2E1F2D08FE9C009C2A44 /* ActClassFullEditableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F503E2CED64AE0096327C /* ActClassFullEditableView.swift */; };
+		4AFA2E202D08FE9C009C2A44 /* EditableTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F50402CED72A70096327C /* EditableTimer.swift */; };
+		4AFA2E212D08FE9C009C2A44 /* TymeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F11F62C3AE282005200F2 /* TymeApp.swift */; };
+		4AFA2E222D08FE9C009C2A44 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F11F82C3AE282005200F2 /* ContentView.swift */; };
+		4AFA2E232D08FE9C009C2A44 /* HomeNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAC5642CEFD3B8008CE9F4 /* HomeNavigator.swift */; };
+		4AFA2E262D0900CA009C2A44 /* Testing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AFA2E252D0900CA009C2A44 /* Testing.framework */; platformFilter = ios; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,13 +154,13 @@
 		4A4473882CB5AB1100C07982 /* ActivityClassSmallCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityClassSmallCellView.swift; sourceTree = "<group>"; };
 		4A44738A2CB74CAD00C07982 /* ActiveActivitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveActivitiesView.swift; sourceTree = "<group>"; };
 		4A4473912CB9B03D00C07982 /* ActivityObjectCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityObjectCellView.swift; sourceTree = "<group>"; };
+		4A76242B2D09702E0096877E /* NavigationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTest.swift; sourceTree = "<group>"; };
 		4A7F11F32C3AE282005200F2 /* Tyme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tyme.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A7F11F62C3AE282005200F2 /* TymeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TymeApp.swift; sourceTree = "<group>"; };
 		4A7F11F82C3AE282005200F2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4A7F11FA2C3AE283005200F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4A7F11FD2C3AE283005200F2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4A7F12032C3AE283005200F2 /* TymeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TymeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4A7F12072C3AE283005200F2 /* TymeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TymeTests.swift; sourceTree = "<group>"; };
 		4A7F120D2C3AE283005200F2 /* TymeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TymeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A7F12112C3AE283005200F2 /* TymeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TymeUITests.swift; sourceTree = "<group>"; };
 		4A7F12132C3AE283005200F2 /* TymeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TymeUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -160,6 +196,9 @@
 		4AEAC5662CF008CE008CE9F4 /* ActivityFinderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFinderView.swift; sourceTree = "<group>"; };
 		4AEAC5692CF1115F008CE9F4 /* ActivityClassList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityClassList.swift; sourceTree = "<group>"; };
 		4AF6B8E42CE29BB30016811F /* TextToSpeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToSpeech.swift; sourceTree = "<group>"; };
+		4AFA2DFD2D08E8D1009C2A44 /* ActivityActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityActions.swift; sourceTree = "<group>"; };
+		4AFA2E002D08EA20009C2A44 /* ActivityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTests.swift; sourceTree = "<group>"; };
+		4AFA2E252D0900CA009C2A44 /* Testing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Testing.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/Testing.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +220,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AFA2E262D0900CA009C2A44 /* Testing.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +275,7 @@
 				4A7F12532C3AE30E005200F2 /* ActivityClassSchema.swift */,
 				4A7F12D62C55D6CE005200F2 /* ActivityObjectSchema.swift */,
 				4A7F12572C3C55A2005200F2 /* ActivityDummyData.swift */,
+				4AFA2DFD2D08E8D1009C2A44 /* ActivityActions.swift */,
 			);
 			path = Activity;
 			sourceTree = "<group>";
@@ -250,6 +291,7 @@
 				4A7F121D2C3AE283005200F2 /* Tyme Watch App */,
 				4A7F122E2C3AE284005200F2 /* Tyme Watch AppTests */,
 				4A7F12382C3AE284005200F2 /* Tyme Watch AppUITests */,
+				4AFA2E242D0900CA009C2A44 /* Frameworks */,
 				4A7F11F42C3AE282005200F2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -292,7 +334,8 @@
 		4A7F12062C3AE283005200F2 /* TymeTests */ = {
 			isa = PBXGroup;
 			children = (
-				4A7F12072C3AE283005200F2 /* TymeTests.swift */,
+				4AFA2E002D08EA20009C2A44 /* ActivityTests.swift */,
+				4A76242B2D09702E0096877E /* NavigationTest.swift */,
 			);
 			path = TymeTests;
 			sourceTree = "<group>";
@@ -402,6 +445,14 @@
 				4AEAC5692CF1115F008CE9F4 /* ActivityClassList.swift */,
 			);
 			path = ActivityList;
+			sourceTree = "<group>";
+		};
+		4AFA2E242D0900CA009C2A44 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4AFA2E252D0900CA009C2A44 /* Testing.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -632,6 +683,7 @@
 				4A8F50442CED99150096327C /* ActClassSearchView.swift in Sources */,
 				4A4473852CAB3B8A00C07982 /* NewActivityListView.swift in Sources */,
 				4AEAC5652CEFD3B8008CE9F4 /* HomeNavigator.swift in Sources */,
+				4AFA2DFF2D08E8D1009C2A44 /* ActivityActions.swift in Sources */,
 				4A8F503A2CED41730096327C /* ActObjStatusCircleView.swift in Sources */,
 				4A90D7A02C5D9C400036BAED /* ActivityObjectSchema.swift in Sources */,
 				4A7F12542C3AE30E005200F2 /* ActivityClassSchema.swift in Sources */,
@@ -656,7 +708,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A7F12082C3AE283005200F2 /* TymeTests.swift in Sources */,
+				4AFA2E022D08EC29009C2A44 /* ActivityClassSchema.swift in Sources */,
+				4AFA2E032D08EC29009C2A44 /* ActivityObjectSchema.swift in Sources */,
+				4AFA2E042D08EC29009C2A44 /* ActivityDummyData.swift in Sources */,
+				4AFA2E052D08EC29009C2A44 /* ActivityActions.swift in Sources */,
+				4AFA2E062D08EC29009C2A44 /* TimeRange.swift in Sources */,
+				4AFA2E092D08EFD9009C2A44 /* NotificationManager.swift in Sources */,
+				4AFA2E072D08EC29009C2A44 /* ModelHelper.swift in Sources */,
+				4A76242C2D09702E0096877E /* NavigationTest.swift in Sources */,
+				4AFA2E082D08EFD4009C2A44 /* TimerManager.swift in Sources */,
+				4AFA2E012D08EA20009C2A44 /* ActivityTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -664,6 +725,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AFA2E0C2D08FE9C009C2A44 /* ActivityObjectWaitCountDown.swift in Sources */,
+				4AFA2E0D2D08FE9C009C2A44 /* ActObjStartWaitButton.swift in Sources */,
+				4AFA2E0E2D08FE9C009C2A44 /* ActObjStatusCircleView.swift in Sources */,
+				4AFA2E0F2D08FE9C009C2A44 /* ActClassSearchView.swift in Sources */,
+				4AFA2E102D08FE9C009C2A44 /* ActivityClassSchema.swift in Sources */,
+				4AFA2E112D08FE9C009C2A44 /* ActivityObjectSchema.swift in Sources */,
+				4AFA2E122D08FE9C009C2A44 /* ActivityDummyData.swift in Sources */,
+				4AFA2E132D08FE9C009C2A44 /* ActivityActions.swift in Sources */,
+				4AFA2E142D08FE9C009C2A44 /* TimeRange.swift in Sources */,
+				4AFA2E152D08FE9C009C2A44 /* ModelHelper.swift in Sources */,
+				4AFA2E162D08FE9C009C2A44 /* NotificationManager.swift in Sources */,
+				4AFA2E172D08FE9C009C2A44 /* TimerManager.swift in Sources */,
+				4AFA2E182D08FE9C009C2A44 /* TextToSpeech.swift in Sources */,
+				4AFA2E192D08FE9C009C2A44 /* ActiveActivitiesView.swift in Sources */,
+				4AFA2E1A2D08FE9C009C2A44 /* ActivityObjectCellView.swift in Sources */,
+				4AFA2E1B2D08FE9C009C2A44 /* NewActivityListView.swift in Sources */,
+				4AFA2E1C2D08FE9C009C2A44 /* ActivityClassList.swift in Sources */,
+				4AFA2E1D2D08FE9C009C2A44 /* ActivityClassSmallCellView.swift in Sources */,
+				4AFA2E1E2D08FE9C009C2A44 /* ActivityFinderView.swift in Sources */,
+				4AFA2E1F2D08FE9C009C2A44 /* ActClassFullEditableView.swift in Sources */,
+				4AFA2E202D08FE9C009C2A44 /* EditableTimer.swift in Sources */,
+				4AFA2E212D08FE9C009C2A44 /* TymeApp.swift in Sources */,
+				4AFA2E222D08FE9C009C2A44 /* ContentView.swift in Sources */,
+				4AFA2E232D08FE9C009C2A44 /* HomeNavigator.swift in Sources */,
 				4A7F12122C3AE283005200F2 /* TymeUITests.swift in Sources */,
 				4A7F12142C3AE283005200F2 /* TymeUITestsLaunchTests.swift in Sources */,
 			);
@@ -683,6 +768,7 @@
 				4A7F12632C3F18BF005200F2 /* ActivityDummyData.swift in Sources */,
 				4A9A73F02CCDED660047C701 /* ActivityClassCell.swift in Sources */,
 				4A8F50362CE80C840096327C /* ActObjStartWaitButton.swift in Sources */,
+				4AFA2DFE2D08E8D1009C2A44 /* ActivityActions.swift in Sources */,
 				4A7F125E2C3F1790005200F2 /* ActiveView.swift in Sources */,
 				4A8F50342CE7F1560096327C /* ActivityObjectWaitCountDown.swift in Sources */,
 				4A7F12672C3F29F9005200F2 /* ModelHelper.swift in Sources */,
