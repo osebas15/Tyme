@@ -33,18 +33,18 @@ enum ActivityObject0_0_0: VersionedSchema {
             get{ subActivities }
         }
         
-        var currentStep: Int
-        private var innerCurrentStep2: ActivityObject?
-        @Transient var currentStep2: ActivityObject?{
+        //var currentStep: Int
+        private var innerCurrentStep: ActivityObject?
+        @Transient var currentStep: ActivityObject?{
             get{
-                return innerCurrentStep2 ?? firstStep?.innerCurrentStep2 ?? self
+                return innerCurrentStep ?? firstStep?.innerCurrentStep ?? self
             }
             set {
                 if let firstStep = firstStep {
-                    firstStep.innerCurrentStep2 = newValue
+                    firstStep.innerCurrentStep = newValue
                 }
                 else {
-                    innerCurrentStep2 = newValue
+                    innerCurrentStep = newValue
                 }
             }
         }
@@ -69,7 +69,6 @@ enum ActivityObject0_0_0: VersionedSchema {
             subActivities: [ActivityObject] = [],
             focus: FocusState = .none,
             priorityOrder: Int,
-            currentStep: Int = 0,
             firstStep: ActivityObject? = nil,
             id: UUID? = nil
         ) {
@@ -79,7 +78,6 @@ enum ActivityObject0_0_0: VersionedSchema {
             self.subActivities = subActivities
             self.storedFocus = focus.rawValue
             self.priorityOrder = priorityOrder
-            self.currentStep = currentStep
             self.firstStep = firstStep
             self.id = id ?? UUID()
         }
@@ -146,11 +144,11 @@ extension ActivityObject {
 
 @MainActor
 extension ActivityObject {
+    
     func createSubActivity(
         context: ModelContext,
         activityClass: ActivityClass,
-        priorityIndex: Int? = nil,
-        stepNumber: Int
+        priorityIndex: Int? = nil
     ){
         if let priorityIndex = priorityIndex {
             unOrderedActivities
@@ -161,8 +159,7 @@ extension ActivityObject {
         let newObject = ActivityObject(
             activityClass: activityClass,
             focus: .actionable,
-            priorityOrder: priorityIndex ?? self.subActivities.count,
-            currentStep: stepNumber
+            priorityOrder: priorityIndex ?? self.subActivities.count
         )
         
         context.insert(newObject)
@@ -172,11 +169,11 @@ extension ActivityObject {
         if let activityClass = newObject.activityClass, activityClass.unOrderedSubActivities.count > 0 {
             if activityClass.unOrderedSubActivities.count > 1 {
                 activityClass.orderedSubActivities.enumerated().forEach {
-                    $1.start(context: context, parentObject: newObject, priorityIndex: $0, stepNumber: 0)
+                    $1.start(context: context, parentObject: newObject, priorityIndex: $0)
                 }
             }
             else {
-                activityClass.unOrderedSubActivities[0].start(context: context, parentObject: newObject, stepNumber: 0)
+                activityClass.unOrderedSubActivities[0].start(context: context, parentObject: newObject)
             }
         }
     }
@@ -243,7 +240,7 @@ extension ActivityObject {
     func startNextStep(context: ModelContext, nextStep: ActivityClass? = nil){
         let refStep = self.firstStep ?? self
         
-        let currentStepClass = refStep.currentStep2?.activityClass
+        let currentStepClass = refStep.currentStep?.activityClass
         
         let nextClass = nextStep ??
             (
@@ -254,7 +251,7 @@ extension ActivityObject {
         
         if let next = nextClass {
             let nextObj = ActivityObject(activityClass: next, priorityOrder: 0, firstStep: refStep)
-            refStep.currentStep2 = nextObj
+            refStep.currentStep = nextObj
         }
     }
     
@@ -282,7 +279,7 @@ extension ActivityObject {
         
         if let next = activityClass?.next {
             parent.removeSubActivity(context: context, activity: self)
-            next.start(context: context, parentObject: parent, priorityIndex: self.priorityOrder, stepNumber: self.currentStep + 1)
+            next.start(context: context, parentObject: parent, priorityIndex: self.priorityOrder)
         }
         else if isPartOfMultiPick {
             self.focus = .done

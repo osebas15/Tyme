@@ -29,7 +29,7 @@ struct ActivityTests {
         }
         
         func startDummyClassAndGetResultingObject() -> ActivityObject {
-            dummyActivity.start(context: container.mainContext, parentObject: parentObj, stepNumber: 0)
+            dummyActivity.start(context: container.mainContext, parentObject: parentObj)
             return parentObj.unOrderedActivities.first!
         }
     }
@@ -54,8 +54,7 @@ struct ActivityTests {
         setup.dummyActivity.addSteps(activities: setup.sampleActivities)
         setup.parentObj.createSubActivity(
             context: setup.container.mainContext,
-            activityClass: setup.dummyActivity,
-            stepNumber: 0
+            activityClass: setup.dummyActivity
         )
         let createdObject = setup.parentObj.unOrderedActivities.first!
         
@@ -92,12 +91,12 @@ struct ActivityTests {
         #expect(processObj.activityClass == setup.dummyActivity)
         
         processObj.startNextStep(context: setup.container.mainContext)
-        #expect(processObj.currentStep2?.activityClass == setup.dummyActivity.orderedSteps.first)
+        #expect(processObj.currentStep?.activityClass == setup.dummyActivity.orderedSteps.first)
         
         processObj.startNextStep(context: setup.container.mainContext)
-        let currentClass = processObj.currentStep2?.activityClass
+        let currentClass = processObj.currentStep?.activityClass
         #expect(currentClass == setup.sampleActivities[1])
-        #expect(processObj.currentStep2?.firstStep?.activityClass?.name == processObj.activityClass?.name)
+        #expect(processObj.currentStep?.firstStep?.activityClass?.name == processObj.activityClass?.name)
     }
     
     @Test("START: activity and its subactivities are started correctly")

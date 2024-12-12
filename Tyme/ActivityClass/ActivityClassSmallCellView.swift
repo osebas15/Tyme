@@ -26,7 +26,7 @@ struct ActivityClassSmallCellView: ActivityCell {
                 .buttonStyle(BorderlessButtonStyle())
                 if let homeObj = homeObjRes.first {
                     Button("Start"){
-                        actClass.start(context: context, parentObject: homeObj, stepNumber: 0)
+                        actClass.start(context: context, parentObject: homeObj)
                     }
                     .buttonStyle(BorderlessButtonStyle())
                 }

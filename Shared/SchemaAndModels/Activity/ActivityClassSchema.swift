@@ -120,14 +120,12 @@ extension ActivityClass {
     func start(
         context: ModelContext,
         parentObject: ActivityObject,
-        priorityIndex: Int? = nil,
-        stepNumber: Int
+        priorityIndex: Int? = nil
     ){
         parentObject.createSubActivity(
             context: context,
             activityClass: self,
-            priorityIndex: priorityIndex,
-            stepNumber: stepNumber
+            priorityIndex: priorityIndex
         )
     }
 }

@@ -42,8 +42,7 @@ struct ActClassFullEditableView: View {
                         Button("Start"){
                             actClass.start(
                                 context: context,
-                                parentObject: homeObj,
-                                stepNumber: 0
+                                parentObject: homeObj
                             )
                         }
                     }
