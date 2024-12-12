@@ -11,14 +11,36 @@ import SwiftData
 @MainActor
 class NavigationRedux: ObservableObject {
     
-    @State var navStack: [Action] = []
+    var navStack: [Action] = []
     
-    enum Action {
-        case Landed(active: Bool)
-        case Error(error: Error)
+    enum Action: Equatable {
+        static func == (lhs: NavigationRedux.Action, rhs: NavigationRedux.Action) -> Bool {
+            return lhs.toString() == rhs.toString()
+        }
+        
+        func toString() -> String {
+            switch self {
+            case .landed(let active):
+                return ".landed(\(active))"
+            case .goToLanding:
+                return ".goToLanding"
+            case .empty:
+                return ".empty"
+            case .error(let error):
+                return ".error(\(error))"
+            }
+        }
+        
+        case landed(active: Bool), goToLanding
+        case empty, error(error: Error)
     }
     
-    func reducer(navStack: [Action], action: Action, context: ModelContext) -> [Action]{
+    init(context: ModelContext) {
+        let initStack = reduce(context: context, action: .empty)
+        self.navStack = initStack
+    }
+    
+    func reduce(context: ModelContext, action: Action) -> [Action]{
         guard !navStack.isEmpty else {
             return [getLandingAction(context: context)]
         }
@@ -29,8 +51,9 @@ class NavigationRedux: ObservableObject {
     func getLandingAction(context: ModelContext) -> Action {
         let homeObj = ModelHelper().getHomeObject(container: context.container)
         
-        return .Landed(active:
-            homeObj.unOrderedActivities.count > 0 ? true :false
+        print("inner: \(homeObj.unOrderedActivities.count)")
+        return .landed(active:
+            homeObj.unOrderedActivities.count > 0 ? true : false
         )
     }
 }

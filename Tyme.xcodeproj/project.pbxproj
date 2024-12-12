@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4A1159D32D0B6FF700BA79F4 /* NavigationRedux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1159D22D0B6FF700BA79F4 /* NavigationRedux.swift */; };
 		4A1159D42D0B6FF700BA79F4 /* NavigationRedux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1159D22D0B6FF700BA79F4 /* NavigationRedux.swift */; };
+		4A1159D52D0B750300BA79F4 /* NavigationRedux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1159D22D0B6FF700BA79F4 /* NavigationRedux.swift */; };
 		4A4473852CAB3B8A00C07982 /* NewActivityListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4473842CAB3B8A00C07982 /* NewActivityListView.swift */; };
 		4A4473892CB5AB1100C07982 /* ActivityClassSmallCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4473882CB5AB1100C07982 /* ActivityClassSmallCellView.swift */; };
 		4A44738B2CB74CAD00C07982 /* ActiveActivitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A44738A2CB74CAD00C07982 /* ActiveActivitiesView.swift */; };
@@ -721,6 +722,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A1159D52D0B750300BA79F4 /* NavigationRedux.swift in Sources */,
 				4AFA2E022D08EC29009C2A44 /* ActivityClassSchema.swift in Sources */,
 				4AFA2E032D08EC29009C2A44 /* ActivityObjectSchema.swift in Sources */,
 				4AFA2E042D08EC29009C2A44 /* ActivityDummyData.swift in Sources */,

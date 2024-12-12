@@ -9,7 +9,7 @@ import Testing
 import SwiftData
 
 @MainActor
-struct SetupManager {
+struct ActivityTestManager {
     let container = {
         let container = ModelHelper().getTestContainer()
         return container
@@ -35,7 +35,7 @@ struct SetupManager {
 struct ActivityTests {
     @Test("HOME OBJECT: loads")
     func homeObject() async throws {
-        let setup = SetupManager()
+        let setup = ActivityTestManager()
         let test = ModelHelper().getHomeObject(container: setup.container)
         
         #expect(test.activityClass?.name ?? "empty actClass" == "Home")
@@ -49,7 +49,7 @@ struct ActivityTests {
     ])
     func objectStart(arg: String) async throws {
         //start object directly from create function
-        let setup = SetupManager()
+        let setup = ActivityTestManager()
         setup.dummyActivity.addSteps(activities: setup.sampleActivities)
         setup.parentObj.createSubActivity(
             context: setup.container.mainContext,
@@ -73,7 +73,7 @@ struct ActivityTests {
     
     @Test("STEPS: add steps in correct order")
     func addStepsToDummyAct() async throws {
-        let setup = SetupManager()
+        let setup = ActivityTestManager()
         
         setup.dummyActivity.addSteps(activities: setup.sampleActivities)
         
@@ -83,7 +83,7 @@ struct ActivityTests {
     
     @Test("STEPS: creates next object in steps")
     func getNext() async throws {
-        let setup = SetupManager()
+        let setup = ActivityTestManager()
         setup.dummyActivity.addSteps(activities: setup.sampleActivities)
         
         let processObj = setup.startDummyClassAndGetResultingObject()
@@ -100,7 +100,7 @@ struct ActivityTests {
     
     @Test("START: activity and its subactivities are started correctly")
     func start() async throws {
-        let setup = SetupManager()
+        let setup = ActivityTestManager()
         
         let startedActivity = setup.startDummyClassAndGetResultingObject()
         
