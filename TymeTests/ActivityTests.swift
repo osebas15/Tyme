@@ -9,31 +9,30 @@ import Testing
 import SwiftData
 
 @MainActor
-struct ActivityTests {
+struct SetupManager {
+    let container = {
+        let container = ModelHelper().getTestContainer()
+        return container
+    }()
     
-    @MainActor
-    struct SetupManager {
-        let container = {
-            let container = ModelHelper().getTestContainer()
-            return container
-        }()
-        
-        let dummyActivity = ActivityClass.dummyActivity()
-        let sampleActivities = ActivityClass.sampleActivitySteps()
-        let parentObj: ActivityObject
-        
-        init(){
-            parentObj = ModelHelper().getHomeObject(container: container)
-            container.mainContext.insert(dummyActivity)
-            sampleActivities.forEach { container.mainContext.insert($0) }
-        }
-        
-        func startDummyClassAndGetResultingObject() -> ActivityObject {
-            dummyActivity.start(context: container.mainContext, parentObject: parentObj)
-            return parentObj.unOrderedActivities.first!
-        }
+    let dummyActivity = ActivityClass.dummyActivity()
+    let sampleActivities = ActivityClass.sampleActivitySteps()
+    let parentObj: ActivityObject
+    
+    init(){
+        parentObj = ModelHelper().getHomeObject(container: container)
+        container.mainContext.insert(dummyActivity)
+        sampleActivities.forEach { container.mainContext.insert($0) }
     }
     
+    func startDummyClassAndGetResultingObject() -> ActivityObject {
+        dummyActivity.start(context: container.mainContext, parentObject: parentObj)
+        return parentObj.unOrderedActivities.first!
+    }
+}
+
+@MainActor
+struct ActivityTests {
     @Test("HOME OBJECT: loads")
     func homeObject() async throws {
         let setup = SetupManager()

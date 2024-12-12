@@ -144,7 +144,6 @@ extension ActivityObject {
 
 @MainActor
 extension ActivityObject {
-    
     func createSubActivity(
         context: ModelContext,
         activityClass: ActivityClass,

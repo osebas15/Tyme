@@ -10,6 +10,19 @@ an app to make and use timed todo list and recepies
 ### look out for circular referencing and automatic stuff
 
 ## Scratch Pad
+
+- basics testing
+    - home view
+        - if active
+            - show parent at the top with tabs at top for other parents and up arrow for navigating levels
+            - show lowest subactivities within parents
+        - if none active
+            - show possible activities, start with favorites
+      
+    - stable diffusion model code
+        - Active Activity
+        - Possible Activity
+
 - Now its time to be able to add activities to other activities
     - add it to the editmanager
         - its there, now connect bound variable to it
