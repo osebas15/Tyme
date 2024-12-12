@@ -10,8 +10,12 @@ import Testing
 
 struct NavigationTest {
     
-    @Test("Navigates to active view when there are active activities")
-    func startActivity() async throws {
-        #expect(true)
+    @Suite("Landing")
+    struct landingTestSuite {
+        
+        @Test("ACTIVE START: Start in active view if home object has subactivities")
+        func startActivity() async throws {
+            #expect(true)
+        }
     }
 }

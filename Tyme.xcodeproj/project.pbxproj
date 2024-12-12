@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A1159D32D0B6FF700BA79F4 /* NavigationRedux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1159D22D0B6FF700BA79F4 /* NavigationRedux.swift */; };
+		4A1159D42D0B6FF700BA79F4 /* NavigationRedux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1159D22D0B6FF700BA79F4 /* NavigationRedux.swift */; };
 		4A4473852CAB3B8A00C07982 /* NewActivityListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4473842CAB3B8A00C07982 /* NewActivityListView.swift */; };
 		4A4473892CB5AB1100C07982 /* ActivityClassSmallCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4473882CB5AB1100C07982 /* ActivityClassSmallCellView.swift */; };
 		4A44738B2CB74CAD00C07982 /* ActiveActivitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A44738A2CB74CAD00C07982 /* ActiveActivitiesView.swift */; };
@@ -150,6 +152,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4A1159D22D0B6FF700BA79F4 /* NavigationRedux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRedux.swift; sourceTree = "<group>"; };
 		4A4473842CAB3B8A00C07982 /* NewActivityListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityListView.swift; sourceTree = "<group>"; };
 		4A4473882CB5AB1100C07982 /* ActivityClassSmallCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityClassSmallCellView.swift; sourceTree = "<group>"; };
 		4A44738A2CB74CAD00C07982 /* ActiveActivitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveActivitiesView.swift; sourceTree = "<group>"; };
@@ -326,6 +329,7 @@
 				4AEAC5642CEFD3B8008CE9F4 /* HomeNavigator.swift */,
 				4A7F11FA2C3AE283005200F2 /* Assets.xcassets */,
 				4A7F11FC2C3AE283005200F2 /* Preview Content */,
+				4A1159D22D0B6FF700BA79F4 /* NavigationRedux.swift */,
 			);
 			path = Tyme;
 			sourceTree = "<group>";
@@ -701,6 +705,7 @@
 				4A7F12562C3AEB3F005200F2 /* TimeRange.swift in Sources */,
 				4A8F50372CE80C840096327C /* ActObjStartWaitButton.swift in Sources */,
 				4A8F50412CED72A70096327C /* EditableTimer.swift in Sources */,
+				4A1159D42D0B6FF700BA79F4 /* NavigationRedux.swift in Sources */,
 				4A7F12662C3F29F9005200F2 /* ModelHelper.swift in Sources */,
 				4A8F50332CE7F1560096327C /* ActivityObjectWaitCountDown.swift in Sources */,
 				4A4473892CB5AB1100C07982 /* ActivityClassSmallCellView.swift in Sources */,
@@ -750,6 +755,7 @@
 				4AFA2E1A2D08FE9C009C2A44 /* ActivityObjectCellView.swift in Sources */,
 				4AFA2E1B2D08FE9C009C2A44 /* NewActivityListView.swift in Sources */,
 				4AFA2E1C2D08FE9C009C2A44 /* ActivityClassList.swift in Sources */,
+				4A1159D32D0B6FF700BA79F4 /* NavigationRedux.swift in Sources */,
 				4AFA2E1D2D08FE9C009C2A44 /* ActivityClassSmallCellView.swift in Sources */,
 				4AFA2E1E2D08FE9C009C2A44 /* ActivityFinderView.swift in Sources */,
 				4AFA2E1F2D08FE9C009C2A44 /* ActClassFullEditableView.swift in Sources */,
