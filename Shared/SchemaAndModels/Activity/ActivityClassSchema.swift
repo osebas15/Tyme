@@ -94,10 +94,7 @@ extension ActivityClass {
             return orderedSteps.first
         }
         guard
-            let index = orderedSteps.firstIndex(where: {
-                print($0.name)
-                return $0 == origClass
-            }),
+            let index = orderedSteps.firstIndex(where: { $0 == origClass }),
             self.steps.count > index + 1
         else {
             return nil

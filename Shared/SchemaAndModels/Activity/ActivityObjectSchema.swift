@@ -252,8 +252,6 @@ extension ActivityObject {
                 nil
             )
         
-        print("first: \(String(describing: refStep.activityClass?.name)), next: \(String(describing: nextClass?.name))")
-        
         if let next = nextClass {
             let nextObj = ActivityObject(activityClass: next, priorityOrder: 0, firstStep: refStep)
             refStep.currentStep2 = nextObj

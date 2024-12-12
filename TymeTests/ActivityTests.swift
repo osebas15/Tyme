@@ -34,7 +34,7 @@ struct ActivityTests {
         }
     }
     
-    @Test("Home Object loads")
+    @Test("HOME OBJECT: loads")
     func homeObject() async throws {
         let setup = SetupManager()
         let test = ModelHelper().getHomeObject(container: setup.container)
@@ -42,7 +42,7 @@ struct ActivityTests {
         #expect(test.activityClass?.name ?? "empty actClass" == "Home")
     }
     
-    @Test("Object creation works", arguments: [
+    @Test("BASIC OBJECT CREATION", arguments: [
         "as a subact",
         "with subacts",
         "without steps",
@@ -73,7 +73,17 @@ struct ActivityTests {
         #expect(setup.dummyActivity.orderedSteps.elementsEqual(setup.sampleActivities))
     }
     
-    @Test("creates next object in steps")
+    @Test("STEPS: add steps in correct order")
+    func addStepsToDummyAct() async throws {
+        let setup = SetupManager()
+        
+        setup.dummyActivity.addSteps(activities: setup.sampleActivities)
+        
+        #expect(setup.dummyActivity.orderedSteps.elementsEqual(setup.sampleActivities))
+        //class model has steps: [Class], instead of next
+    }
+    
+    @Test("STEPS: creates next object in steps")
     func getNext() async throws {
         let setup = SetupManager()
         setup.dummyActivity.addSteps(activities: setup.sampleActivities)
@@ -90,7 +100,7 @@ struct ActivityTests {
         #expect(processObj.currentStep2?.firstStep?.activityClass?.name == processObj.activityClass?.name)
     }
     
-    @Test("Start test activity and its subactivities")
+    @Test("START: activity and its subactivities are started correctly")
     func start() async throws {
         let setup = SetupManager()
         
@@ -98,16 +108,6 @@ struct ActivityTests {
         
         #expect(startedActivity.activityClass!.id == setup.dummyActivity.id)
         #expect(startedActivity.unOrderedActivities.first!.activityClass!.id == setup.dummyActivity.unOrderedSubActivities.first!.id)
-    }
-    
-    @Test("add steps adds correctly")
-    func addStepsToDummyAct() async throws {
-        let setup = SetupManager()
-        
-        setup.dummyActivity.addSteps(activities: setup.sampleActivities)
-        
-        #expect(setup.dummyActivity.orderedSteps.elementsEqual(setup.sampleActivities))
-        //class model has steps: [Class], instead of next
     }
 
     @Test("completes object to a done state")
