@@ -34,8 +34,20 @@ enum ActivityObject0_0_0: VersionedSchema {
         }
         
         var currentStep: Int
-        
-        @Relationship(inverse: \ActivityObject.firstStep) var currentStep2: ActivityObject?
+        private var innerCurrentStep2: ActivityObject?
+        @Transient var currentStep2: ActivityObject?{
+            get{
+                return innerCurrentStep2 ?? firstStep?.innerCurrentStep2 ?? self
+            }
+            set {
+                if let firstStep = firstStep {
+                    firstStep.innerCurrentStep2 = newValue
+                }
+                else {
+                    innerCurrentStep2 = newValue
+                }
+            }
+        }
         var firstStep: ActivityObject?
         
         var activityClass : ActivityClass?
@@ -43,8 +55,6 @@ enum ActivityObject0_0_0: VersionedSchema {
         var onOffTimes: [TimeRange]?
         
         var priorityOrder: Int
-        
-        
         
         private var storedFocus: Int
         @Transient var focus: FocusState{
@@ -60,6 +70,7 @@ enum ActivityObject0_0_0: VersionedSchema {
             focus: FocusState = .none,
             priorityOrder: Int,
             currentStep: Int = 0,
+            firstStep: ActivityObject? = nil,
             id: UUID? = nil
         ) {
             self.activityClass = activityClass
@@ -69,6 +80,7 @@ enum ActivityObject0_0_0: VersionedSchema {
             self.storedFocus = focus.rawValue
             self.priorityOrder = priorityOrder
             self.currentStep = currentStep
+            self.firstStep = firstStep
             self.id = id ?? UUID()
         }
     }
@@ -228,21 +240,24 @@ extension ActivityObject {
         try? context.save()
     }
     
-    func getNextClassIfInChain(context: ModelContext) -> ActivityClass? {
-        //get current order, get next
-        guard
-            let firstStep = firstStep
-        else { return nil }
+    func startNextStep(context: ModelContext, nextStep: ActivityClass? = nil){
+        let refStep = self.firstStep ?? self
         
-        guard
-            let orderedSteps = firstStep.activityClass?.orderedSteps,
-            let myOrder = orderedSteps.firstIndex(where: { $0.id == self.id }),
-            orderedSteps.count > myOrder + 1
-        else {
-            return ActivityClass.error()
+        let currentStepClass = refStep.currentStep2?.activityClass
+        
+        let nextClass = nextStep ??
+            (
+                currentStepClass != nil ?
+                refStep.activityClass?.stepAfter(origClass: currentStepClass!) :
+                nil
+            )
+        
+        print("first: \(String(describing: refStep.activityClass?.name)), next: \(String(describing: nextClass?.name))")
+        
+        if let next = nextClass {
+            let nextObj = ActivityObject(activityClass: next, priorityOrder: 0, firstStep: refStep)
+            refStep.currentStep2 = nextObj
         }
-        
-        return orderedSteps[myOrder]
     }
     
     //make it simple end function rn
@@ -292,7 +307,6 @@ extension ActivityObject {
     ){
         let persistantId = self.persistentModelID
         let waitTime = self.activityClass?.waitAfterCompletion
-        let name = self.activityClass?.name ?? ""
         let completionDate = self.completionDate
         
         Task{

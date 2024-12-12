@@ -20,11 +20,6 @@ enum ActivityClass0_0_0: VersionedSchema {
     class ActivityClass: Identifiable{
         
         @Attribute(.unique) var id: UUID
-        
-        @Relationship(
-            deleteRule: .cascade,
-            inverse: \ActivityObject.activityClass
-        ) var objects: [ActivityObject] = []
         var next: ActivityClass?
         
         private var steps: [ActivityClass]
@@ -93,6 +88,23 @@ enum ActivityClass0_0_0: VersionedSchema {
 
 extension ActivityClass {
     enum Priority: Int { case immidiate, high, medium, low, passive, null }
+    
+    func stepAfter(origClass: ActivityClass) -> ActivityClass?{
+        if origClass == self {
+            return orderedSteps.first
+        }
+        guard
+            let index = orderedSteps.firstIndex(where: {
+                print($0.name)
+                return $0 == origClass
+            }),
+            self.steps.count > index + 1
+        else {
+            return nil
+        }
+        
+        return orderedSteps[index + 1]
+    }
 }
 
 extension ActivityClass {

@@ -7,6 +7,8 @@ an app to make and use timed todo list and recepies
 ### Memory leaks
     - seems to be mostly at beggining
 
+### look out for circular referencing and automatic stuff
+
 ## Scratch Pad
 - Now its time to be able to add activities to other activities
     - add it to the editmanager
