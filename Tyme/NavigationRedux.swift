@@ -8,67 +8,110 @@
 import SwiftUI
 import SwiftData
 
+enum UserActions {
+    case goToLanding, error(Error), completeAction(ActivityObject)
+}
+    
+//#expect(manager.nav.currentView == .activeFocus(next))
+
+enum ViewNavigator: Equatable {
+    case landing(focus: ActivityClass? = nil, activeActivity: ActivityObject? = nil), error(Error)
+    
+    static func == (lhs: ViewNavigator, rhs: ViewNavigator) -> Bool {
+        return lhs.toString() == rhs.toString()
+    }
+    
+    func toString() -> String{
+        switch self {
+        case .landing(let actClass, let actObj):
+            return ".landing(\(actClass?.id.uuidString ?? "nil"), \(actObj?.id.uuidString ?? "nil")"
+        case .error(let error):
+            return ".error(\(error))"
+        }
+    }
+}
+
+enum NavigationError: Error {
+    case incorrectAction
+    case contextUnavailable
+}
+
+typealias NavigationReducer = (ModelContext, [UserActions]) -> ViewNavigator
+
 @MainActor
-class NavigationRedux: ObservableObject {
-    var navStack: [Action] = []
+class NavigationStore {
+    @Published var currentView: ViewNavigator = .landing()
+    @Published var actionStack: [UserActions] = []
     
-    enum Action: Equatable {
-        static func == (lhs: NavigationRedux.Action, rhs: NavigationRedux.Action) -> Bool {
-            return lhs.toString() == rhs.toString()
+    func consumeAction(action: UserActions, context: ModelContext? = nil) -> Error? {
+        var destination: ViewNavigator = ViewNavigator.error(NavigationError.incorrectAction)
+        switch action {
+        case .goToLanding:
+            actionStack = []
+            destination = .landing()
+        case .completeAction(let object):
+            actionStack.append(.completeAction(object))
+            destination = .error(NavigationError.contextUnavailable)
+        case .error:
+            return NavigationError.incorrectAction
         }
         
-        func toString() -> String {
-            switch self {
-            case .landed(let active):
-                return ".landed(\(active))"
-            case .goToLanding:
-                return ".goToLanding"
-            case .empty:
-                return ".empty"
-            case .error:
-                return ".error"
+        if let context = context {
+            destination = defaultReducer(context: context, actions: actionStack)
+        }
+        currentView = destination
+        
+        return nil
+    }
+    
+    func defaultReducer(context: ModelContext, actions: [UserActions]) -> ViewNavigator{
+        var actionsToBeProcessed = actions
+        let latestAction = actionsToBeProcessed.popLast()
+        
+        switch latestAction ?? .goToLanding{
+        case .goToLanding:
+            if let activity = ModelHelper().getHomeObject(container: context.container).unOrderedActivities.first {
+                return .landing(activeActivity: activity)
             }
-        }
-        
-        func isMainView() -> Bool {
-            switch self {
-            case .landed(active: _):
-                return true
-            default:
-                return false
+            else {
+                return .landing()
             }
-        }
-        
-        case landed(active: Bool), goToLanding
-        case empty, error
-    }
-    
-    func reduce(context: ModelContext, action: Action){
-        guard
-            !navStack.isEmpty
-        else {
-            navStack = [getLandingAction(context: context)]
-            return
-        }
-        
-        switch action{
-        case .landed(active: _), .goToLanding :
-            navStack = [getLandingAction(context: context)]
-        default:
-            navStack.append(.error)
+            
+        case .completeAction(let object):
+            object.complete(context: context)
+            
+            if let next = object.currentStep {
+                return .landing(activeActivity: next)
+            }
+            else {
+                return .landing()
+            }
+            
+        case .error:
+            return .error(NavigationError.incorrectAction)
         }
     }
-    
-    func getLandingAction(context: ModelContext) -> Action {
-        let homeObj = ModelHelper().getHomeObject(container: context.container)
-        
-        print("inner: \(homeObj.unOrderedActivities.count)")
-        return .landed(active:
-            homeObj.unOrderedActivities.count > 0 ? true : false
-        )
+}
+
+private struct NavigationStoreKey: @preconcurrency EnvironmentKey {
+    @MainActor static let defaultValue = NavigationStore()
+}
+
+extension EnvironmentValues {
+    var navStore: NavigationStore {
+        get { self[NavigationStoreKey.self] }
+        set { self[NavigationStoreKey.self] = newValue }
     }
-    
-    func getMainView() -> Action {
-        return navStack.reversed().first(where: { $0.isMainView() }) ?? .error
+}
+
+extension Scene {
+    func navigationRedux(_ store: NavigationStore) -> some Scene {
+        environment(\.navStore, store)
+    }
+}
+
+extension View {
+    func navigationRedux(_ store: NavigationStore) -> some View {
+        environment(\.navStore, store)
     }
 }

@@ -9,24 +9,49 @@ import SwiftUI
 import SwiftData
 
 struct HomeNavigator: View {
+    @Environment(\.modelContext) var context: ModelContext
+    
     @Query(filter: ModelHelper().homeObjectPredicate) var homeActObjs: [ActivityObject]
     @Query(filter: ModelHelper().homeActivityPredicate) var homeActClasses: [ActivityClass]
-    @State var chosenActivity: ActivityClass?
+    
+    //@State var chosenActivity: ActivityClass?
+    @State var nav: NavigationStore
+    
+    init() {
+        self.nav = NavigationStore()
+        if let error = self.nav.consumeAction(action: .goToLanding, context: context){
+            print(error)
+        }
+    }
     
     var body: some View {
-        if let currentActivities = homeActObjs.first?.lowestActivities, currentActivities.count > 1 {
-            ActiveActivitiesView(activeActivities: currentActivities)
-        }
-        else if let first = homeActClasses.first, chosenActivity == first {
-            ActivityClassList(classesToShow: first.orderedSubActivities) { actClass in
-                ActivityClassSmallCellView(actClass: actClass) { actClass in
-                    chosenActivity = actClass
+        switch nav.currentView {
+        case .landing(focus: nil, activeActivity: let actObj) where actObj != nil:
+            Text(actObj?.activityClass?.name ?? "nil")
+            /*
+            ActivityClassList(classesToShow: homeActClasses.first?.orderedSubActivities ?? []) { actClass in
+                ActivityClassSmallCellView(actClass: actClass) { actClassInner in
+                    chosenActivity = actClassInner
                 }
-            }
-        }
-        else {
-            ActivityFinderView(currentSelection: $chosenActivity)
+            }*/
+        case .landing(focus: let actClass, activeActivity: let actObj):
+            
+            let selectionBinding = Binding<ActivityClass?> {
+                    actClass ?? homeActClasses.first!
+                }
+                set: { newVal in
+                    nav.currentView = .landing(focus: newVal, activeActivity: actObj )
+                }
+
+            
+            ActivityFinderView(currentSelection: selectionBinding)
                 .navigationTitle("Start")
+        default:
+            Text("error in Home Nav")
+                /*.onAppear{
+                    nav.navStack = [.landed(active: false)]
+                    //nav.reduce(context: context, action: .goToLanding)
+                }*/
         }
     }
 }

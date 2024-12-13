@@ -91,8 +91,10 @@ struct ModelHelper {
             return ActivityObject.error()
         }
     }
-    
-    @MainActor
+}
+
+@MainActor
+extension ModelHelper {
     func queriedCopy(container: ModelContainer, id: PersistentIdentifier) -> ActivityObject {
         var fd = FetchDescriptor<ActivityObject>(predicate: #Predicate{ obj in
             return obj.persistentModelID == id
@@ -106,5 +108,11 @@ struct ModelHelper {
         }
         
         return toReturn
+    }
+    
+    func isActive(context: ModelContext) -> Bool{
+        let home = getHomeObject(container: context.container)
+        
+        return home.numberOfSubActivities > 0
     }
 }
