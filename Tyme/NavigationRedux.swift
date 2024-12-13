@@ -10,7 +10,6 @@ import SwiftData
 
 @MainActor
 class NavigationRedux: ObservableObject {
-    
     var navStack: [Action] = []
     
     enum Action: Equatable {
@@ -26,26 +25,38 @@ class NavigationRedux: ObservableObject {
                 return ".goToLanding"
             case .empty:
                 return ".empty"
-            case .error(let error):
-                return ".error(\(error))"
+            case .error:
+                return ".error"
+            }
+        }
+        
+        func isMainView() -> Bool {
+            switch self {
+            case .landed(active: _):
+                return true
+            default:
+                return false
             }
         }
         
         case landed(active: Bool), goToLanding
-        case empty, error(error: Error)
+        case empty, error
     }
     
-    init(context: ModelContext) {
-        let initStack = reduce(context: context, action: .empty)
-        self.navStack = initStack
-    }
-    
-    func reduce(context: ModelContext, action: Action) -> [Action]{
-        guard !navStack.isEmpty else {
-            return [getLandingAction(context: context)]
+    func reduce(context: ModelContext, action: Action){
+        guard
+            !navStack.isEmpty
+        else {
+            navStack = [getLandingAction(context: context)]
+            return
         }
         
-        return navStack
+        switch action{
+        case .landed(active: _), .goToLanding :
+            navStack = [getLandingAction(context: context)]
+        default:
+            navStack.append(.error)
+        }
     }
     
     func getLandingAction(context: ModelContext) -> Action {
@@ -55,5 +66,9 @@ class NavigationRedux: ObservableObject {
         return .landed(active:
             homeObj.unOrderedActivities.count > 0 ? true : false
         )
+    }
+    
+    func getMainView() -> Action {
+        return navStack.reversed().first(where: { $0.isMainView() }) ?? .error
     }
 }

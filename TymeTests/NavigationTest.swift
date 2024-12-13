@@ -14,20 +14,13 @@ import SwiftData
 struct NavigationTestManager {
     
     var activity = ActivityTestManager()
-    var nav : NavigationRedux
+    var nav = NavigationRedux()
     
-    init() {
-        self.nav = NavigationRedux(context: activity.container.mainContext)
-    }
-    
-    init(active: Bool) {
-        let newAct = ActivityTestManager()
+    init(active: Bool = false) {
         if active {
-            let _ = newAct.startDummyClassAndGetResultingObject()
+            let _ = self.activity.startDummyClassAndGetResultingObject()
         }
-        
-        self.activity = newAct
-        self.nav = NavigationRedux(context: activity.container.mainContext)
+        nav.reduce(context: activity.container.mainContext, action: .goToLanding)
     }
 }
 
@@ -38,9 +31,9 @@ struct NavigationTest {
     @MainActor
     @Suite("Landing")
     struct LandingTestSuite {
-        @Test("INACTIVE START: Start in active view if home object has subactivities")
+        @Test("INACTIVE START: Start in select (Home) activity view")
         func startsInactive() async throws {
-            let manager = NavigationTestManager(active: false)
+            let manager = NavigationTestManager()
             
             #expect(manager.nav.navStack.last == NavigationRedux.Action.landed(active: false))
         }
