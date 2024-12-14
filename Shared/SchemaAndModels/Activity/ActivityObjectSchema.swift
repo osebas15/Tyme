@@ -259,15 +259,13 @@ extension ActivityObject {
         //check this step or subactivity of, if parent just complete,
         //have guard clause for now but consider response for state management
         
-        guard
+        /*guard
             let actClass = activityClass
         else {
             return
-        }
-        
-        if !actClass.orderedSteps.isEmpty {
-            //self.currentStep = a
-        }
+        }*/
+        startNextStep(context: context)
+
         
         //I need to know (object im completing), if object starts a chain, is part of a next chain, or if its subobject
         

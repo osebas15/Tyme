@@ -9,10 +9,8 @@ import SwiftUI
 import SwiftData
 
 enum UserActions {
-    case goToLanding, error(Error), completeAction(ActivityObject)
+    case goToLanding, error(Error), startAction(actClass: ActivityClass, parentObj: ActivityObject? = nil), completeAction(ActivityObject)
 }
-    
-//#expect(manager.nav.currentView == .activeFocus(next))
 
 enum ViewNavigator: Equatable {
     case landing(focus: ActivityClass? = nil, activeActivity: ActivityObject? = nil), error(Error)
@@ -49,8 +47,8 @@ class NavigationStore {
         case .goToLanding:
             actionStack = []
             destination = .landing()
-        case .completeAction(let object):
-            actionStack.append(.completeAction(object))
+        case .startAction(_, _), .completeAction(_):
+            actionStack.append(action)
             destination = .error(NavigationError.contextUnavailable)
         case .error:
             return NavigationError.incorrectAction
@@ -76,6 +74,13 @@ class NavigationStore {
             else {
                 return .landing()
             }
+        case .startAction(let actClass, let parentObj):
+            let parentObj = parentObj ?? ModelHelper().getHomeObject(container: context.container)
+            actClass.start(context: context, parentObject: parentObj)
+            
+            let newAct = parentObj.unOrderedActivities.first(where: { $0.activityClass == actClass })
+            
+            return .landing(focus: actClass, activeActivity: newAct)
             
         case .completeAction(let object):
             object.complete(context: context)

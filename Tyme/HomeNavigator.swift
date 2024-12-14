@@ -19,9 +19,7 @@ struct HomeNavigator: View {
     
     init() {
         self.nav = NavigationStore()
-        if let error = self.nav.consumeAction(action: .goToLanding, context: context){
-            print(error)
-        }
+        let _ = self.nav.consumeAction(action: .goToLanding, context: context)
     }
     
     var body: some View {

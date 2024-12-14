@@ -53,15 +53,39 @@ struct NavigationTest {
     @MainActor
     @Suite("Activity Flow")
     struct ActivityFlow {
-        @Test("ACTIVE: go to next") func goToNext() async throws {
+        @Test("ACTIVE: Initial start")
+        func startActivity() async throws {
             let manager = NavigationTestManager(active: true)
-            let sampleObj = manager.activity.startDummyClassAndGetResultingObject()
-            let sample = manager.activity.dummyActivity.orderedSubActivities.first!
+            let dummyAct = manager.activity.dummyActivity
+            let parentObj = manager.activity.parentObj
             
-            let _ = manager.nav.consumeAction(action: .completeAction(sampleObj))
-            
+            let _ = manager.nav.consumeAction(
+                action: .startAction(actClass: dummyAct, parentObj: parentObj),
+                context: manager.activity.container.mainContext)
                 
-            #expect(true)//manager.nav.currentView == .activeFocus(next))
+            let newAct = parentObj.unOrderedActivities.first(where: { $0.activityClass == dummyAct })
+            
+            #expect( manager.nav.currentView == .landing(focus: dummyAct, activeActivity: newAct) )
+        }
+        
+        @Test("ACTIVE: go to next")
+        func goToNext() async throws {
+            let manager = NavigationTestManager(active: true)
+            manager.activity.dummyActivity.addSteps(activities: manager.activity.sampleActivities)
+            
+            let sampleObj = manager.activity.startDummyClassAndGetResultingObject()
+            let nextClass = manager.activity.dummyActivity.orderedSteps.first
+            
+            let _ = manager.nav.consumeAction(action: .completeAction(sampleObj), context: manager.activity.container.mainContext)
+            
+            switch manager.nav.currentView {
+            case .landing(focus: _, activeActivity: let activeObj) where activeObj?.activityClass == nextClass:
+                #expect(true)
+            case .landing(focus: _, activeActivity: let activeObj):
+                #expect(Bool(false), "\(activeObj?.activityClass?.name) is not \(nextClass?.name)")
+            default :
+                #expect(Bool(false), "did not expect \(manager.nav.currentView.toString())")
+            }
         }
     }
 }
