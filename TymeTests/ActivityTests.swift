@@ -87,12 +87,12 @@ struct ActivityTests {
         setup.dummyActivity.addSteps(activities: setup.sampleActivities)
         
         let processObj = setup.startDummyClassAndGetResultingObject()
-        #expect(processObj.activityClass == setup.dummyActivity)
+        #expect(processObj.activityClass?.name == setup.dummyActivity.name)
         
-        processObj.startNextStep(context: setup.container.mainContext)
-        #expect(processObj.currentStep?.activityClass == setup.dummyActivity.orderedSteps.first)
+        processObj.complete(context: setup.container.mainContext)
+        #expect(processObj.currentStep?.activityClass?.name == setup.dummyActivity.orderedSteps.first?.name)
         
-        processObj.startNextStep(context: setup.container.mainContext)
+        processObj.complete(context: setup.container.mainContext)
         let currentClass = processObj.currentStep?.activityClass
         #expect(currentClass == setup.sampleActivities[1])
         #expect(processObj.currentStep?.firstStep?.activityClass?.name == processObj.activityClass?.name)

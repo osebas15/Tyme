@@ -41,7 +41,7 @@ struct ActivityFinderView: View {
     let container: ModelContainer = {
         let toReturn = ModelHelper().getBasicContainer()
         ActivityDummyData().insertQuickBreakfastRecepie(into: toReturn)
-        ActivityDummyData().insertSwissBurgerRecepie(into: toReturn)
+        //ActivityDummyData().insertSwissBurgerRecepie(into: toReturn)
         return toReturn
     }()
     

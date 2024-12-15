@@ -10,16 +10,13 @@ import SwiftData
 
 struct HomeNavigator: View {
     @Environment(\.modelContext) var context: ModelContext
+    @Environment(\.navStore) var nav: NavigationStore
     
     @Query(filter: ModelHelper().homeObjectPredicate) var homeActObjs: [ActivityObject]
     @Query(filter: ModelHelper().homeActivityPredicate) var homeActClasses: [ActivityClass]
     
-    //@State var chosenActivity: ActivityClass?
-    @State var nav: NavigationStore
-    
     init() {
-        self.nav = NavigationStore()
-        let _ = self.nav.consumeAction(action: .goToLanding, context: context)
+        let _ = self.nav.consumeAction(action: .goToLanding, context: self.context)
     }
     
     var body: some View {

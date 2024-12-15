@@ -183,7 +183,7 @@ struct ActivityDummyData {
             result![0].addSubActivity(activity: recepie)
         }
     }
-
+/*
     func insertSwissBurgerRecepie(into container: ModelContainer) {
         // Create dummy data for making a Swiss burger ActivityClass
         let swissBurger = ActivityClass(name: "Swiss Burger Recepie")
@@ -290,7 +290,7 @@ struct ActivityDummyData {
             result![0].addSubActivity(activity: swissBurger)//.subActivities.append(swissBurger)
             //swissBurger.createdFrom = result![0]
         }
-    }
+    }*/
 }
 
 extension ActivityDummyData{

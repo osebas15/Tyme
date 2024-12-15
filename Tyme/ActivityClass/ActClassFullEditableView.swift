@@ -29,7 +29,7 @@ struct ActClassFullEditableView: View {
                 TextField("Do what?", text: $editManager.name)
                 TextEditor(text: $editManager.detail)
                 EditableTimer(time: $editManager.waitAfterStart)
-                ActClassSearchView(selectedClass: $editManager.next)
+                //ActClassSearchView(selectedClass: $editManager.next)
                 ActivityClassList(classesToShow: actClass.orderedSubActivities){  ActivityClassSmallCellView(actClass: $0) { selectedClass in
                     actClass = selectedClass
                 }}
@@ -53,12 +53,12 @@ struct ActClassFullEditableView: View {
                 Divider()
                 HStack{
                     Text("Next: ")
-                    Spacer()
+                    Spacer()/*
                     Button(actClass.next?.name ?? "none"){
                         if let next = actClass.next {
                             actClass = next
                         }
-                    }.disabled(actClass.next == nil)
+                    }.disabled(actClass.next == nil)*/
                 }
                 ActivityClassList(classesToShow: actClass.orderedSubActivities){  ActivityClassSmallCellView(actClass: $0) { selectedClass in
                     actClass = selectedClass
@@ -90,7 +90,7 @@ struct ActClassFullEditableView: View {
 #Preview {
     @Previewable @State var sample: ActivityClass = {
         let toReturn = ActivityClass.dummyActivity()
-        toReturn.next = ActivityClass.dummyActivity()
+        //toReturn.next = ActivityClass.dummyActivity()
         return toReturn
     }()
     

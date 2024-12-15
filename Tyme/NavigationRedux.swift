@@ -84,13 +84,7 @@ class NavigationStore {
             
         case .completeAction(let object):
             object.complete(context: context)
-            
-            if let next = object.currentStep {
-                return .landing(activeActivity: next)
-            }
-            else {
-                return .landing()
-            }
+            return .landing(activeActivity: object.currentStep)
             
         case .error:
             return .error(NavigationError.incorrectAction)

@@ -20,7 +20,7 @@ enum ActivityClass0_0_0: VersionedSchema {
     class ActivityClass: Identifiable{
         
         @Attribute(.unique) var id: UUID
-        var next: ActivityClass?
+        //var next: ActivityClass?
         
         private var steps: [ActivityClass]
         private var stepsOrder: [Int: UUID]
@@ -64,7 +64,6 @@ enum ActivityClass0_0_0: VersionedSchema {
         
         init(
             name: String?,
-            next: ActivityClass? = nil,
             timeToComplete: TimeInterval? = nil,
             waitAfterCompletion: TimeInterval? = nil,
             detail: String? = nil,
@@ -73,7 +72,6 @@ enum ActivityClass0_0_0: VersionedSchema {
         ){
             self.name = name ?? ""
             self.detail = detail
-            self.next = next
             self.subActivities = []
             self.subActivityOrder = [:]
             self.steps = []
@@ -167,7 +165,6 @@ extension ActivityClass {
         var detail: String
         var waitAfterStart: TimeInterval
         var subClasses: [ActivityClass]
-        var next: ActivityClass?
         var isEditing = false
         
         init(for activityClass: ActivityClass){
@@ -176,7 +173,6 @@ extension ActivityClass {
             detail = activityClass.detail ?? ""
             waitAfterStart = activityClass.waitAfterCompletion ?? 0
             subClasses = activityClass.subActivities
-            next = activityClass.next
         }
         
         func save(container: ModelContainer){
@@ -191,7 +187,6 @@ extension ActivityClass {
             toSave.detail = detail
             toSave.waitAfterCompletion = waitAfterStart
             //toSave.subclasses
-            toSave.next = next
             
             try? container.mainContext.save()
         }

@@ -68,7 +68,7 @@ enum ActivityObject0_0_0: VersionedSchema {
             onOffTimes: [TimeRange]? = nil,
             subActivities: [ActivityObject] = [],
             focus: FocusState = .none,
-            priorityOrder: Int,
+            priorityOrder: Int? = nil,
             firstStep: ActivityObject? = nil,
             id: UUID? = nil
         ) {
@@ -77,8 +77,7 @@ enum ActivityObject0_0_0: VersionedSchema {
             self.onOffTimes = onOffTimes
             self.subActivities = subActivities
             self.storedFocus = focus.rawValue
-            self.priorityOrder = priorityOrder
-            self.firstStep = firstStep
+            self.priorityOrder = priorityOrder ?? 0
             self.id = id ?? UUID()
         }
     }
@@ -93,7 +92,14 @@ extension ActivityObject {
         get { return onOffTimes?.first?.start }
     }
     @Transient var hasNext: Bool{
-        get { return activityClass?.next != nil }
+        get {
+            if let actClass = self.activityClass {
+                return actClass.stepAfter(origClass: actClass) != nil
+            }
+            else {
+                return false
+            }
+        }
     }
     @Transient var numberOfSubActivities: Int {
         get { return activityClass?.unOrderedSubActivities.count ?? 0 }
@@ -220,7 +226,7 @@ extension ActivityObject {
         switch verifiedState{
         case .done:
             self.focus = .done
-            done(context: context)//TODO: make sure there are not timers for this class
+            //done(context: context)//TODO: make sure there are not timers for this class
         case .passive:
             self.focus = .passive
             createWaitOnCompletionTimer(container: context.container, timerManager: timerManager)
@@ -236,7 +242,7 @@ extension ActivityObject {
         try? context.save()
     }
     
-    func startNextStep(context: ModelContext, nextStep: ActivityClass? = nil){
+    func getNextStep(context: ModelContext, nextStep: ActivityClass? = nil) -> ActivityObject?{
         let refStep = self.firstStep ?? self
         
         let currentStepClass = refStep.currentStep?.activityClass
@@ -248,29 +254,25 @@ extension ActivityObject {
                 nil
             )
         
+       
         if let next = nextClass {
-            let nextObj = ActivityObject(activityClass: next, priorityOrder: 0, firstStep: refStep)
-            refStep.currentStep = nextObj
+            let newStep = ActivityObject(activityClass: next, priorityOrder: 0, firstStep: refStep)
+            return newStep
+        }
+        else {
+            return ActivityObject.error()
         }
     }
     
-    //make it simple end function rn
+    //make it simple end function fosr now
     func complete(context: ModelContext){
-        //check this step or subactivity of, if parent just complete,
-        //have guard clause for now but consider response for state management
-        
-        /*guard
-            let actClass = activityClass
-        else {
-            return
-        }*/
-        startNextStep(context: context)
-
-        
-        //I need to know (object im completing), if object starts a chain, is part of a next chain, or if its subobject
-        
+        let newStep = getNextStep(context: context)
+        let initialStep = self.firstStep ?? self
+        newStep?.firstStep = initialStep
+        initialStep.currentStep = newStep
     }
     
+    /*
     func done(context: ModelContext){
         guard let parent = parent else { return }
         
@@ -289,7 +291,7 @@ extension ActivityObject {
             parent.removeSubActivity(context: context, activity: self)
             parent.done(context: context)
         }
-    }
+    }*/
 }
 
 extension ActivityObject {
