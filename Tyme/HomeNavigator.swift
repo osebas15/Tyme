@@ -29,18 +29,22 @@ struct HomeNavigator: View {
                     chosenActivity = actClassInner
                 }
             }*/
-        case .landing(focus: let actClass, activeActivity: let actObj):
+        case .landing(focus: let actClass, activeActivity: _):
+            let classes = actClass?.orderedSubActivities ?? homeActClasses.first?.orderedSubActivities ?? []
             
-            let selectionBinding = Binding<ActivityClass?> {
-                    actClass ?? homeActClasses.first!
-                }
-                set: { newVal in
-                    nav.currentView = .landing(focus: newVal, activeActivity: actObj )
-                }
-
+            ActivityClassList(classesToShow: classes) { subClass in
+                //ActivityClassSmallCellView(actClass: subClass) { cellClass in
+                    
+                    //let _ = nav.consumeAction(action: .focusActClass(cellClass), context: context)
+                //}
+                Text(subClass.name)
+                    .onTapGesture {
+                        nav.currentView = .landing(focus: subClass, activeActivity: nil)
+                    }
+            }
             
-            ActivityFinderView(currentSelection: selectionBinding)
-                .navigationTitle("Start")
+            //ActivityFinderView(currentSelection: selectionBinding)
+                //.navigationTitle("Start")
         default:
             Text("error in Home Nav")
                 /*.onAppear{

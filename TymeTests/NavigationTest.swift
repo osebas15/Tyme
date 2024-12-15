@@ -88,4 +88,19 @@ struct NavigationTest {
             }
         }
     }
+    
+    @MainActor
+    @Suite("Activity Edit And Create")
+    struct ActivityEditAndCreate {
+        @Test("Focusing classes")
+        func focusActivities() async throws {
+            let manager = NavigationTestManager()
+            
+            for act in manager.activity.sampleActivities{
+                let err = manager.nav.consumeAction(action: .focusActClass(act), context: manager.activity.container.mainContext)
+                #expect(err == nil)
+                #expect(manager.nav.currentView == .landing(focus: act, activeActivity: nil))
+            }
+        }
+    }
 }

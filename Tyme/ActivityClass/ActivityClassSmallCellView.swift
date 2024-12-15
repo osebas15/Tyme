@@ -26,16 +26,14 @@ struct ActivityClassSmallCellView: ActivityCell {
                 .buttonStyle(BorderlessButtonStyle())
                 if let homeObj = homeObjRes.first {
                     Button("Start"){
-                        actClass.start(context: context, parentObject: homeObj)
+                        //actClass.start(context: context, parentObject: homeObj)
                     }
                     .buttonStyle(BorderlessButtonStyle())
                 }
-                
-                
             }
-            .onTapGesture {
-                onSelect(actClass)
-            }
+        }
+        .onTapGesture {
+            onSelect(actClass)
         }
     }
 }

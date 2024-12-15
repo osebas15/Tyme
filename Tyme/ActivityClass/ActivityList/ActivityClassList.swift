@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct ActivityClassList<Content: ActivityCell>: View {
+struct ActivityClassList: View {
     //@Query(filter: ModelHelper().homeActivityPredicate) var homeClassResult: [ActivityClass]
     var classesToShow: [ActivityClass]
     @ViewBuilder var content: (ActivityClass) -> Content
