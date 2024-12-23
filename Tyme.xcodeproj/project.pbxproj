@@ -11,7 +11,6 @@
 		4A1159D42D0B6FF700BA79F4 /* NavigationRedux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1159D22D0B6FF700BA79F4 /* NavigationRedux.swift */; };
 		4A1159D52D0B750300BA79F4 /* NavigationRedux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1159D22D0B6FF700BA79F4 /* NavigationRedux.swift */; };
 		4A4473852CAB3B8A00C07982 /* NewActivityListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4473842CAB3B8A00C07982 /* NewActivityListView.swift */; };
-		4A4473892CB5AB1100C07982 /* ActivityClassSmallCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4473882CB5AB1100C07982 /* ActivityClassSmallCellView.swift */; };
 		4A44738B2CB74CAD00C07982 /* ActiveActivitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A44738A2CB74CAD00C07982 /* ActiveActivitiesView.swift */; };
 		4A4473922CB9B03D00C07982 /* ActivityObjectCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4473912CB9B03D00C07982 /* ActivityObjectCellView.swift */; };
 		4A76242C2D09702E0096877E /* NavigationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A76242B2D09702E0096877E /* NavigationTest.swift */; };
@@ -90,7 +89,6 @@
 		4AFA2E1A2D08FE9C009C2A44 /* ActivityObjectCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4473912CB9B03D00C07982 /* ActivityObjectCellView.swift */; };
 		4AFA2E1B2D08FE9C009C2A44 /* NewActivityListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4473842CAB3B8A00C07982 /* NewActivityListView.swift */; };
 		4AFA2E1C2D08FE9C009C2A44 /* ActivityClassList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAC5692CF1115F008CE9F4 /* ActivityClassList.swift */; };
-		4AFA2E1D2D08FE9C009C2A44 /* ActivityClassSmallCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4473882CB5AB1100C07982 /* ActivityClassSmallCellView.swift */; };
 		4AFA2E1E2D08FE9C009C2A44 /* ActivityFinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAC5662CF008CE008CE9F4 /* ActivityFinderView.swift */; };
 		4AFA2E1F2D08FE9C009C2A44 /* ActClassFullEditableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F503E2CED64AE0096327C /* ActClassFullEditableView.swift */; };
 		4AFA2E202D08FE9C009C2A44 /* EditableTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F50402CED72A70096327C /* EditableTimer.swift */; };
@@ -155,7 +153,6 @@
 /* Begin PBXFileReference section */
 		4A1159D22D0B6FF700BA79F4 /* NavigationRedux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRedux.swift; sourceTree = "<group>"; };
 		4A4473842CAB3B8A00C07982 /* NewActivityListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityListView.swift; sourceTree = "<group>"; };
-		4A4473882CB5AB1100C07982 /* ActivityClassSmallCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityClassSmallCellView.swift; sourceTree = "<group>"; };
 		4A44738A2CB74CAD00C07982 /* ActiveActivitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveActivitiesView.swift; sourceTree = "<group>"; };
 		4A4473912CB9B03D00C07982 /* ActivityObjectCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityObjectCellView.swift; sourceTree = "<group>"; };
 		4A76242B2D09702E0096877E /* NavigationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTest.swift; sourceTree = "<group>"; };
@@ -256,7 +253,6 @@
 			isa = PBXGroup;
 			children = (
 				4AEAC5682CF110F6008CE9F4 /* ActivityList */,
-				4A4473882CB5AB1100C07982 /* ActivityClassSmallCellView.swift */,
 				4AEAC5662CF008CE008CE9F4 /* ActivityFinderView.swift */,
 				4A8F503E2CED64AE0096327C /* ActClassFullEditableView.swift */,
 				4A8F50402CED72A70096327C /* EditableTimer.swift */,
@@ -709,7 +705,6 @@
 				4A1159D42D0B6FF700BA79F4 /* NavigationRedux.swift in Sources */,
 				4A7F12662C3F29F9005200F2 /* ModelHelper.swift in Sources */,
 				4A8F50332CE7F1560096327C /* ActivityObjectWaitCountDown.swift in Sources */,
-				4A4473892CB5AB1100C07982 /* ActivityClassSmallCellView.swift in Sources */,
 				4A7F12582C3C55A2005200F2 /* ActivityDummyData.swift in Sources */,
 				4AF6B8E52CE29BB30016811F /* TextToSpeech.swift in Sources */,
 				4A8F503F2CED64AE0096327C /* ActClassFullEditableView.swift in Sources */,
@@ -758,7 +753,6 @@
 				4AFA2E1B2D08FE9C009C2A44 /* NewActivityListView.swift in Sources */,
 				4AFA2E1C2D08FE9C009C2A44 /* ActivityClassList.swift in Sources */,
 				4A1159D32D0B6FF700BA79F4 /* NavigationRedux.swift in Sources */,
-				4AFA2E1D2D08FE9C009C2A44 /* ActivityClassSmallCellView.swift in Sources */,
 				4AFA2E1E2D08FE9C009C2A44 /* ActivityFinderView.swift in Sources */,
 				4AFA2E1F2D08FE9C009C2A44 /* ActClassFullEditableView.swift in Sources */,
 				4AFA2E202D08FE9C009C2A44 /* EditableTimer.swift in Sources */,

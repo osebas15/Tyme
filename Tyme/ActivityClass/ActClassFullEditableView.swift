@@ -10,6 +10,7 @@ import SwiftData
 
 struct ActClassFullEditableView: View {
     @Environment(\.modelContext) var context
+    @Environment(\.navStore) var nav
     
     @Query(filter: ModelHelper().homeObjectPredicate) var homeObjRes: [ActivityObject]
     
@@ -30,9 +31,12 @@ struct ActClassFullEditableView: View {
                 TextEditor(text: $editManager.detail)
                 EditableTimer(time: $editManager.waitAfterStart)
                 //ActClassSearchView(selectedClass: $editManager.next)
-                ActivityClassList(classesToShow: actClass.orderedSubActivities){  ActivityClassSmallCellView(actClass: $0) { selectedClass in
-                    actClass = selectedClass
-                }}
+                ActivityClassList(classesToShow: actClass.orderedSubActivities){subClass in
+                    Text(subClass.name)
+                        .onTapGesture {
+                            nav.consumeAction(action: .focusActClass(subClass))
+                        }
+                }
             }
             else {
                 HStack{
@@ -60,9 +64,9 @@ struct ActClassFullEditableView: View {
                         }
                     }.disabled(actClass.next == nil)*/
                 }
-                ActivityClassList(classesToShow: actClass.orderedSubActivities){  ActivityClassSmallCellView(actClass: $0) { selectedClass in
-                    actClass = selectedClass
-                }}
+                ActivityClassList(classesToShow: actClass.orderedSubActivities){ actClass in
+                    Text("test")
+                }
             }
             
         }

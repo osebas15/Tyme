@@ -15,67 +15,51 @@ enum UserActions {
          completeAction(ActivityObject)
 }
 
-enum ViewNavigator: Equatable {
-    case landing(focus: ActivityClass? = nil, activeActivity: ActivityObject? = nil), error(Error)
-    
-    static func == (lhs: ViewNavigator, rhs: ViewNavigator) -> Bool {
-        return lhs.toString() == rhs.toString()
-    }
-    
-    func toString() -> String{
-        switch self {
-        case .landing(let actClass, let actObj):
-            return ".landing(\(actClass?.id.uuidString ?? "nil"), \(actObj?.id.uuidString ?? "nil")"
-        case .error(let error):
-            return ".error(\(error))"
-        }
-    }
-}
-
 enum NavigationError: Error {
     case incorrectAction
     case contextUnavailable
 }
 
-typealias NavigationReducer = (ModelContext, [UserActions]) -> ViewNavigator
-
-@MainActor
+@Observable
 class NavigationStore {
-    @Published var currentView: ViewNavigator = .landing()
-    @Published var actionStack: [UserActions] = []
+    var focusedActClass: ActivityClass?
+    var focusedActObj: ActivityObject?
+    var actionStack: [UserActions] = []
     
-    func consumeAction(action: UserActions, context: ModelContext? = nil) -> Error? {
-        var destination: ViewNavigator = ViewNavigator.error(NavigationError.incorrectAction)
+    @MainActor
+    func consumeAction(action: UserActions, context: ModelContext? = nil){
         switch action {
         case .goToLanding:
             actionStack = []
-            destination = .landing()
+            
         case .startAction(_, _), .completeAction(_), .focusActClass(_):
             actionStack.append(action)
-            destination = .error(NavigationError.contextUnavailable)
+            
         case .error:
-            return NavigationError.incorrectAction
+            return //NavigationError.incorrectAction
         }
         
         if let context = context {
-            destination = defaultReducer(context: context, actions: actionStack)
+            destinationReducer(context: context, actions: actionStack)
         }
-        currentView = destination
-        
-        return nil
     }
     
-    func defaultReducer(context: ModelContext, actions: [UserActions]) -> ViewNavigator{
+    @MainActor
+    func destinationReducer(context: ModelContext, actions: [UserActions]){
         var actionsToBeProcessed = actions
         let latestAction = actionsToBeProcessed.popLast()
         
         switch latestAction ?? .goToLanding{
         case .goToLanding:
             if let activity = ModelHelper().getHomeObject(container: context.container).unOrderedActivities.first {
-                return .landing(activeActivity: activity)
+                self.focusedActObj = activity
+                return
             }
             else {
-                return .landing()
+                self.focusedActObj = nil
+                self.focusedActClass = ModelHelper().getHomeActClass(container: context.container).orderedSubActivities.first
+                
+                return
             }
         case .startAction(let actClass, let parentObj):
             let parentObj = parentObj ?? ModelHelper().getHomeObject(container: context.container)
@@ -83,17 +67,23 @@ class NavigationStore {
             
             let newAct = parentObj.unOrderedActivities.first(where: { $0.activityClass == actClass })
             
-            return .landing(focus: actClass, activeActivity: newAct)
+            self.focusedActObj = newAct
+            self.focusedActClass = actClass
+            
+            return
             
         case .focusActClass(let actClass):
-            return .landing(focus: actClass, activeActivity: nil)
+            self.focusedActClass = actClass
+            self.focusedActObj = nil
+            return
             
         case .completeAction(let object):
             object.complete(context: context)
-            return .landing(activeActivity: object.currentStep)
+            self.focusedActObj = object.currentStep
+            return
             
         case .error:
-            return .error(NavigationError.incorrectAction)
+            return
         }
     }
 }

@@ -21,7 +21,7 @@ struct NavigationTestManager {
             let _ = self.activity.startDummyClassAndGetResultingObject()
         }
        
-        let _ = nav.consumeAction(action: .goToLanding, context: activity.container.mainContext)
+        //let _ = nav.consumeAction(action: .goToLanding, context: activity.container.mainContext)
     }
 }
 
@@ -34,9 +34,9 @@ struct NavigationTest {
         @Test("INACTIVE START: Start in select (Home) activity view")
         func startsInactive() async throws {
             let manager = NavigationTestManager()
-            let currentView = manager.nav.currentView
             
-            #expect(currentView == ViewNavigator.landing(focus: nil, activeActivity: nil))
+            #expect(manager.nav.focusedActClass == nil)
+            #expect(manager.nav.focusedActObj == nil)
         }
         
         @Test("ACTIVE START: Start in active view if home object has subactivities")
@@ -44,9 +44,9 @@ struct NavigationTest {
             let manager = NavigationTestManager()
             let sample = manager.activity.startDummyClassAndGetResultingObject()
             
-            let _ = manager.nav.consumeAction(action: .goToLanding, context: manager.activity.container.mainContext)
+            manager.nav.consumeAction(action: .goToLanding, context: manager.activity.container.mainContext)
             
-            #expect(manager.nav.currentView == ViewNavigator.landing(focus: nil, activeActivity: sample))
+            #expect(manager.nav.focusedActObj?.activityClass?.name == sample.activityClass?.name)
         }
     }
     
@@ -65,7 +65,7 @@ struct NavigationTest {
                 
             let newAct = parentObj.unOrderedActivities.first(where: { $0.activityClass == dummyAct })
             
-            #expect( manager.nav.currentView == .landing(focus: dummyAct, activeActivity: newAct) )
+            #expect( manager.nav.focusedActObj == newAct )
         }
         
         @Test("ACTIVE: go to next")
@@ -76,8 +76,11 @@ struct NavigationTest {
             let sampleObj = manager.activity.startDummyClassAndGetResultingObject()
             let nextClass = manager.activity.dummyActivity.orderedSteps.first
             
-            let _ = manager.nav.consumeAction(action: .completeAction(sampleObj), context: manager.activity.container.mainContext)
+            manager.nav.consumeAction(action: .completeAction(sampleObj), context: manager.activity.container.mainContext)
             
+            
+            #expect(manager.nav.focusedActObj?.activityClass == nextClass)
+            /*
             switch manager.nav.currentView {
             case .landing(focus: _, activeActivity: let activeObj) where activeObj?.activityClass == nextClass:
                 #expect(true)
@@ -86,6 +89,7 @@ struct NavigationTest {
             default :
                 #expect(Bool(false), "did not expect \(manager.nav.currentView.toString())")
             }
+             */
         }
     }
     
@@ -97,9 +101,8 @@ struct NavigationTest {
             let manager = NavigationTestManager()
             
             for act in manager.activity.sampleActivities{
-                let err = manager.nav.consumeAction(action: .focusActClass(act), context: manager.activity.container.mainContext)
-                #expect(err == nil)
-                #expect(manager.nav.currentView == .landing(focus: act, activeActivity: nil))
+                manager.nav.consumeAction(action: .focusActClass(act), context: manager.activity.container.mainContext)
+                #expect(manager.nav.focusedActClass == act)
             }
         }
     }

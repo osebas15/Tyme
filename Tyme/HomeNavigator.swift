@@ -15,42 +15,44 @@ struct HomeNavigator: View {
     @Query(filter: ModelHelper().homeObjectPredicate) var homeActObjs: [ActivityObject]
     @Query(filter: ModelHelper().homeActivityPredicate) var homeActClasses: [ActivityClass]
     
-    init() {
-        let _ = self.nav.consumeAction(action: .goToLanding, context: self.context)
-    }
-    
     var body: some View {
-        switch nav.currentView {
-        case .landing(focus: nil, activeActivity: let actObj) where actObj != nil:
-            Text(actObj?.activityClass?.name ?? "nil")
-            /*
-            ActivityClassList(classesToShow: homeActClasses.first?.orderedSubActivities ?? []) { actClass in
-                ActivityClassSmallCellView(actClass: actClass) { actClassInner in
-                    chosenActivity = actClassInner
-                }
-            }*/
-        case .landing(focus: let actClass, activeActivity: _):
-            let classes = actClass?.orderedSubActivities ?? homeActClasses.first?.orderedSubActivities ?? []
-            
-            ActivityClassList(classesToShow: classes) { subClass in
-                //ActivityClassSmallCellView(actClass: subClass) { cellClass in
-                    
-                    //let _ = nav.consumeAction(action: .focusActClass(cellClass), context: context)
-                //}
-                Text(subClass.name)
+        if homeActObjs.isEmpty || homeActClasses.isEmpty {
+            Text("error loading home models")
+        }
+        else if
+            nav.focusedActObj != nil ||
+            !homeActObjs[0].unOrderedActivities.isEmpty
+        {
+            let objsToShow = ([nav.focusedActObj] + homeActObjs[0].orderedActivities).compactMap({$0})
+            List(objsToShow){ obj in
+                Text(obj.activityClass?.name ?? "error finding name")
                     .onTapGesture {
-                        nav.currentView = .landing(focus: subClass, activeActivity: nil)
+                        print("tapped obj")
                     }
             }
-            
-            //ActivityFinderView(currentSelection: selectionBinding)
-                //.navigationTitle("Start")
-        default:
-            Text("error in Home Nav")
-                /*.onAppear{
-                    nav.navStack = [.landed(active: false)]
-                    //nav.reduce(context: context, action: .goToLanding)
-                }*/
+        }
+        else if let focusedClass = nav.focusedActClass ?? homeActClasses.first {
+            ActivityClassList(classesToShow: focusedClass.orderedSubActivities) { subClass in
+                HStack{
+                    Text(subClass.name)
+                        .onTapGesture {
+                            nav.consumeAction(action: .focusActClass(subClass), context: context)
+                        }
+                    Spacer()
+                    Button("start"){
+                        print("WHATRED")
+                        nav.consumeAction(
+                            action: .startAction(
+                                actClass: subClass,
+                                parentObj: !homeActObjs.isEmpty ? homeActObjs[0] : nil),
+                            context: context
+                        )
+                    }
+                }
+            }
+        }
+        else {
+            Text("Error in HomeNav")
         }
     }
 }
@@ -62,8 +64,11 @@ struct HomeNavigator: View {
         return toReturn
     }()
     
+    let nav = NavigationStore()
+    
     NavigationStack{
         HomeNavigator()
             .modelContainer(container)
+            .navigationRedux(nav)
     }
 }

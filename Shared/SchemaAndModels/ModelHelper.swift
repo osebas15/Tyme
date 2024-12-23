@@ -91,6 +91,19 @@ struct ModelHelper {
             return ActivityObject.error()
         }
     }
+    
+    func getHomeActClass(container: ModelContainer) -> ActivityClass {
+        var fd = FetchDescriptor(predicate: homeActivityPredicate)
+        fd.fetchLimit = 1
+        let result = try? container.mainContext.fetch(fd)
+        
+        if let result = result, result.count == 1 {
+            return result[0]
+        }
+        else {
+            return ActivityClass.error()
+        }
+    }
 }
 
 @MainActor

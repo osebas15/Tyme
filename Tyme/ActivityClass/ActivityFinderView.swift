@@ -9,6 +9,9 @@ import SwiftUI
 import SwiftData
 
 struct ActivityFinderView: View {
+    @Environment(\.navStore) var nav: NavigationStore
+    @Environment(\.modelContext) var context: ModelContext
+    
     @Query(filter: ModelHelper().homeActivityPredicate) var homeActRes: [ActivityClass]
     
     @Binding var currentSelection: ActivityClass?
@@ -20,15 +23,21 @@ struct ActivityFinderView: View {
         NavigationStack(path: $navPath) {
             if let bridgedBinding = Binding<ActivityClass>($currentSelection){
                 VStack{
-                    ActClassFullEditableView(actClass: bridgedBinding)
+                    Text("here")
+                    //ActClassFullEditableView(actClass: bridgedBinding)
                 }
                 
             }
             else if let homeActClass = homeActRes.first {
                 ActivityClassList(classesToShow: homeActClass.orderedSubActivities) { actClass in
-                    ActivityClassSmallCellView(actClass: actClass){ actClass in
-                        self.currentSelection = actClass
-                    }
+                    Text(actClass.name + " 7")
+                        /*.onTapGesture {
+                            print("print statement")
+                            let _ = nav.consumeAction(action: .focusActClass(actClass), context: context)
+                        }*/
+                }
+                .onTapGesture{
+                    print("pati is here")
                 }
             }
         }
@@ -45,6 +54,9 @@ struct ActivityFinderView: View {
         return toReturn
     }()
     
+    let nav = NavigationStore()
+    
     ActivityFinderView(currentSelection: $sample)
         .modelContainer(container)
+        .navigationRedux(nav)
 }

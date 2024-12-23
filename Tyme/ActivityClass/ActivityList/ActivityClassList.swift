@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct ActivityClassList: View {
+struct ActivityClassList<Content: View>: View {
     //@Query(filter: ModelHelper().homeActivityPredicate) var homeClassResult: [ActivityClass]
     var classesToShow: [ActivityClass]
     @ViewBuilder var content: (ActivityClass) -> Content
@@ -23,21 +23,13 @@ struct ActivityClassList: View {
             else {*/
                 List(classesToShow) { actClass in
                     content(actClass)
+                        /*.onTapGesture {
+                            print("pati")
+                        }*/
                 }
             //}
         }
     }
-    
-    init(classesToShow: [ActivityClass]?, @ViewBuilder content: @escaping (ActivityClass) -> Content) {
-        self.classesToShow = classesToShow ?? []
-        self.content = content
-    }
-}
-
-protocol ActivityCell: View {
-    var actClass: ActivityClass { get set }
-    typealias OnSelect = (_ actClass: ActivityClass) -> ()
-    var onSelect: OnSelect { get set }
 }
 
 #Preview {
@@ -52,9 +44,10 @@ protocol ActivityCell: View {
     }()
     
     ActivityClassList(classesToShow: [actClass!]){ actClass in
-        ActivityClassSmallCellView(
-            actClass: actClass,
-            onSelect: {_ in print("other")})
+        Text(actClass.name)
+            .onTapGesture {
+                print(actClass.name)
+            }
     }
     .modelContainer(container)
 }

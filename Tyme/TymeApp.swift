@@ -11,8 +11,8 @@ import SwiftData
 @main
 struct TymeApp: App {
     let modelContainer: ModelContainer = ModelHelper().getTestContainer()
-    
     let timerManager: TimerManager = TimerManager()
+    let navStore: NavigationStore = NavigationStore()
     
     var body: some Scene {
         WindowGroup {
@@ -20,5 +20,6 @@ struct TymeApp: App {
         }
         .modelContainer(modelContainer)
         .timerManager(timerManager)
+        .navigationRedux(navStore)
     }
 }
