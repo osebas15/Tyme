@@ -51,6 +51,7 @@ enum ActivityObject0_0_0: VersionedSchema {
         var firstStep: ActivityObject?
         
         var activityClass : ActivityClass?
+        var startDate: Date?
         var completionDate: Date?
         var onOffTimes: [TimeRange]?
         
@@ -64,7 +65,7 @@ enum ActivityObject0_0_0: VersionedSchema {
         
         init(
             activityClass: ActivityClass,
-            completionDate: Date? = nil,
+            startDate: Date? = nil,
             onOffTimes: [TimeRange]? = nil,
             subActivities: [ActivityObject] = [],
             focus: FocusState = .none,
@@ -73,7 +74,7 @@ enum ActivityObject0_0_0: VersionedSchema {
             id: UUID? = nil
         ) {
             self.activityClass = activityClass
-            self.completionDate = completionDate
+            self.startDate = startDate
             self.onOffTimes = onOffTimes
             self.subActivities = subActivities
             self.storedFocus = focus.rawValue
@@ -111,10 +112,10 @@ extension ActivityObject {
         get {
             guard
                 let waitTime = activityClass?.waitAfterCompletion,
-                let completionDate = completionDate
+                let startDate = startDate
             else { return nil }
             
-            return waitTime + completionDate.timeIntervalSinceNow
+            return waitTime + startDate.timeIntervalSinceNow
         }
     }
     @Transient var couldBeDone: Bool {
@@ -129,10 +130,10 @@ extension ActivityObject {
     }
     @Transient var waitUntilDate: Date? {
         if
-            let completionDate = self.completionDate,
+            let startDate = self.startDate,
             let waitUntil = self.activityClass?.waitAfterCompletion
         {
-            return completionDate.addingTimeInterval(waitUntil)
+            return startDate.addingTimeInterval(waitUntil)
         }
         else {
             return nil
@@ -196,17 +197,17 @@ extension ActivityObject {
     
     func verifyCurrentState() -> FocusState {
         if
-            let completionDate = self.completionDate,
+            let startDate = self.startDate,
             let waitTime = self.activityClass?.waitAfterCompletion
         {
-            if completionDate.addingTimeInterval(waitTime) <= Date(){
+            if startDate.addingTimeInterval(waitTime) <= Date(){
                 return .done
             }
             else {
                 return .passive
             }
         }
-        else if self.completionDate != nil
+        else if self.startDate != nil
         {
             return .done
         }
@@ -233,7 +234,7 @@ extension ActivityObject {
             sendWaitOnCompleteNotification()
         case .actionable, .main:
             if userAction {
-                completionDate = Date()
+                startDate = Date()
                 checkAndContinueState(context: context, timerManager: timerManager)
             }
         default:
@@ -301,7 +302,7 @@ extension ActivityObject {
     ){
         let persistantId = self.persistentModelID
         let waitTime = self.activityClass?.waitAfterCompletion
-        let completionDate = self.completionDate
+        let startDate = self.startDate
         
         Task{
             if await timerManager.timerExists(id: persistantId){
@@ -309,13 +310,13 @@ extension ActivityObject {
             }
             
             guard
-                let completionDate = completionDate,
+                let startDate = startDate,
                 let waitTime = waitTime
             else { return }
             
             Task {
                 await timerManager.createTimer(for: TimerManager.TimerVariables(
-                    fireInterval: waitTime - Date().timeIntervalSince(completionDate),
+                    fireInterval: waitTime - Date().timeIntervalSince(startDate),
                     id: persistantId,
                     action: {
                         Task {
