@@ -11,6 +11,18 @@ an app to make and use timed todo list and recepies
 
 ## Scratch Pad
 
+- timer and notifications
+    - wrap a state manager around a timer
+        - it should all be main actor accessible
+        - has on publish variable
+        - UI treats it as an evironment
+        
+    - Timer needs to hold a state thats observable by the UI
+        make timer 
+        
+    - there should be a context manager which is seperate to handle context stuff
+    - it should trigger an update every x seconds
+
 - basics testing
     - home view
         - if active

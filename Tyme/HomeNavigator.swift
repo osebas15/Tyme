@@ -23,11 +23,17 @@ struct HomeNavigator: View {
             nav.focusedActObj != nil ||
             !homeActObjs[0].unOrderedActivities.isEmpty
         {
-            let objsToShow = ([nav.focusedActObj] + homeActObjs[0].orderedActivities).compactMap({$0})
+            let objsToShow = ([nav.focusedActObj] + homeActObjs[0].orderedActivities)
+                .compactMap({$0})
+                .duplicatesRemoved()
+            
             List(objsToShow){ obj in
-                Text(obj.activityClass?.name ?? "error finding name")
-                    .onTapGesture {
-                        print("tapped obj")
+                Text(obj.activityClass!.name)
+                    .onTapGesture {/*
+                        nav.consumeAction(
+                            action: ,
+                            context:
+                        )*/
                     }
             }
         }
@@ -40,7 +46,6 @@ struct HomeNavigator: View {
                         }
                     Spacer()
                     Button("start"){
-                        print("WHATRED")
                         nav.consumeAction(
                             action: .startAction(
                                 actClass: subClass,
@@ -50,9 +55,6 @@ struct HomeNavigator: View {
                     }
                 }
             }
-        }
-        else {
-            Text("Error in HomeNav")
         }
     }
 }
