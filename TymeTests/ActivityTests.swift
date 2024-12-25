@@ -33,6 +33,7 @@ struct ActivityTestManager {
 
 @MainActor
 struct ActivityTests {
+    //case main, started, inSubsteps, done, error
     @Test("HOME OBJECT: loads")
     func homeObject() async throws {
         let setup = ActivityTestManager()
@@ -56,6 +57,8 @@ struct ActivityTests {
             activityClass: setup.dummyActivity
         )
         let createdObject = setup.parentObj.unOrderedActivities.first!
+        let initialState = createdObject.verifyCurrentState()
+        #expect(initialState == .waitingToStart)
         
         if arg == "as a subact"{
             #expect(createdObject.parent?.activityClass == setup.parentObj.activityClass)
@@ -71,6 +74,16 @@ struct ActivityTests {
         #expect(setup.dummyActivity.orderedSteps.elementsEqual(setup.sampleActivities))
     }
     
+    @Test("START: activity and its subactivities are started correctly")
+    func start() async throws {
+        let setup = ActivityTestManager()
+        
+        let startedActivity = setup.startDummyClassAndGetResultingObject()
+        
+        #expect(startedActivity.activityClass!.id == setup.dummyActivity.id)
+        #expect(startedActivity.unOrderedActivities.first!.activityClass!.id == setup.dummyActivity.unOrderedSubActivities.first!.id)
+    }
+    
     @Test("STEPS: add steps in correct order")
     func addStepsToDummyAct() async throws {
         let setup = ActivityTestManager()
@@ -78,7 +91,6 @@ struct ActivityTests {
         setup.dummyActivity.addSteps(activities: setup.sampleActivities)
         
         #expect(setup.dummyActivity.orderedSteps.elementsEqual(setup.sampleActivities))
-        //class model has steps: [Class], instead of next
     }
     
     @Test("STEPS: creates next object in steps")
@@ -90,26 +102,59 @@ struct ActivityTests {
         #expect(processObj.activityClass?.name == setup.dummyActivity.name)
         
         processObj.complete(context: setup.container.mainContext)
-        #expect(processObj.currentStep?.activityClass?.name == setup.dummyActivity.orderedSteps.first?.name)
+        #expect(processObj.currentStep.activityClass?.name == setup.dummyActivity.orderedSteps.first?.name)
         
         processObj.complete(context: setup.container.mainContext)
-        let currentClass = processObj.currentStep?.activityClass
-        #expect(currentClass == setup.sampleActivities[1])
-        #expect(processObj.currentStep?.firstStep?.activityClass?.name == processObj.activityClass?.name)
+        let currentClass = processObj.currentStep.activityClass
+        #expect(currentClass!.name == setup.sampleActivities[1].name)
+        #expect(processObj.currentStep.firstStep.activityClass?.name == processObj.activityClass?.name)
     }
     
-    @Test("START: activity and its subactivities are started correctly")
-    func start() async throws {
+    @Test("STEPS: objects in a step sequence show correct state based on currentStep, in the middle of one and at the end of one")
+    func stepSequenceStates() async throws {
+        let setup = ActivityTestManager()
+        setup.dummyActivity.addSteps(activities: setup.sampleActivities)
+        
+        let initialObj = setup.startDummyClassAndGetResultingObject()
+        
+        initialObj.start()
+        #expect(initialObj.verifyCurrentState() == .started)
+        
+        initialObj.complete(context: setup.container.mainContext)
+        #expect(initialObj.verifyCurrentState() == .inSubsteps)
+        
+        let currentStep = initialObj.currentStep
+        #expect(currentStep.verifyCurrentState() == .waitingToStart)
+        currentStep.complete(context: setup.container.mainContext)
+        
+        
+        //TODO: Move past final step and make sure it goes to done
+        
+        //TODO: ACTUAL focus state functionality modularized: start, complete
+        /*
+        #expect(Bool)
+        #expect(Bool)
+        #expect(Bool)
+         */
+    }
+    
+    @Test("COMPLETE: getNext returns nil if no substeps")
+    func getNextWhenNoSteps() async throws {
+        let setup = ActivityTestManager()
+        let obj = setup.startDummyClassAndGetResultingObject()
+        
+        let next = obj.getNextStep(context: setup.container.mainContext)
+        
+        #expect(next == nil)
+    }
+
+    @Test("COMPLETE: completes object to a done state")
+    func completeObject() async throws {
         let setup = ActivityTestManager()
         
         let startedActivity = setup.startDummyClassAndGetResultingObject()
+        startedActivity.complete(context: setup.container.mainContext)
         
-        #expect(startedActivity.activityClass!.id == setup.dummyActivity.id)
-        #expect(startedActivity.unOrderedActivities.first!.activityClass!.id == setup.dummyActivity.unOrderedSubActivities.first!.id)
-    }
-
-    @Test("completes object to a done state")
-    func completeObject() async throws {
-        #expect(Bool(true))
+        #expect(startedActivity.verifyCurrentState() == .done)
     }
 }
