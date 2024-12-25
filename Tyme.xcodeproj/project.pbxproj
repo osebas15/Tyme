@@ -59,6 +59,11 @@
 		4ACC3B272D19CC0000E5F6D1 /* ArrayUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC3B252D19CC0000E5F6D1 /* ArrayUtils.swift */; };
 		4ACC3B282D19CC0000E5F6D1 /* ArrayUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC3B252D19CC0000E5F6D1 /* ArrayUtils.swift */; };
 		4ACC3B292D19CC0000E5F6D1 /* ArrayUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC3B252D19CC0000E5F6D1 /* ArrayUtils.swift */; };
+		4ACC3B352D1B704E00E5F6D1 /* ContextTimeManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC3B342D1B704E00E5F6D1 /* ContextTimeManagerTests.swift */; };
+		4ACC3B372D1CCB7600E5F6D1 /* ContextTimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC3B362D1CCB7600E5F6D1 /* ContextTimeManager.swift */; };
+		4ACC3B382D1CCB7600E5F6D1 /* ContextTimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC3B362D1CCB7600E5F6D1 /* ContextTimeManager.swift */; };
+		4ACC3B392D1CCB7600E5F6D1 /* ContextTimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC3B362D1CCB7600E5F6D1 /* ContextTimeManager.swift */; };
+		4ACC3B3A2D1CCB7600E5F6D1 /* ContextTimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC3B362D1CCB7600E5F6D1 /* ContextTimeManager.swift */; };
 		4AEAC5652CEFD3B8008CE9F4 /* HomeNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAC5642CEFD3B8008CE9F4 /* HomeNavigator.swift */; };
 		4AEAC5672CF008CE008CE9F4 /* ActivityFinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAC5662CF008CE008CE9F4 /* ActivityFinderView.swift */; };
 		4AEAC56A2CF1115F008CE9F4 /* ActivityClassList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAC5692CF1115F008CE9F4 /* ActivityClassList.swift */; };
@@ -198,6 +203,8 @@
 		4AB17C372CD6DE7F0045B34C /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
 		4AB17C382CD6E8F00045B34C /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		4ACC3B252D19CC0000E5F6D1 /* ArrayUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayUtils.swift; sourceTree = "<group>"; };
+		4ACC3B342D1B704E00E5F6D1 /* ContextTimeManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextTimeManagerTests.swift; sourceTree = "<group>"; };
+		4ACC3B362D1CCB7600E5F6D1 /* ContextTimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextTimeManager.swift; sourceTree = "<group>"; };
 		4AEAC5642CEFD3B8008CE9F4 /* HomeNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigator.swift; sourceTree = "<group>"; };
 		4AEAC5662CF008CE008CE9F4 /* ActivityFinderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFinderView.swift; sourceTree = "<group>"; };
 		4AEAC5692CF1115F008CE9F4 /* ActivityClassList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityClassList.swift; sourceTree = "<group>"; };
@@ -349,6 +356,7 @@
 			children = (
 				4AFA2E002D08EA20009C2A44 /* ActivityTests.swift */,
 				4A76242B2D09702E0096877E /* NavigationTest.swift */,
+				4ACC3B342D1B704E00E5F6D1 /* ContextTimeManagerTests.swift */,
 			);
 			path = TymeTests;
 			sourceTree = "<group>";
@@ -449,6 +457,7 @@
 				4AB17C382CD6E8F00045B34C /* NotificationManager.swift */,
 				4AB17C372CD6DE7F0045B34C /* TimerManager.swift */,
 				4AF6B8E42CE29BB30016811F /* TextToSpeech.swift */,
+				4ACC3B362D1CCB7600E5F6D1 /* ContextTimeManager.swift */,
 			);
 			path = TimingAndNotifications;
 			sourceTree = "<group>";
@@ -720,6 +729,7 @@
 				4A7F12662C3F29F9005200F2 /* ModelHelper.swift in Sources */,
 				4ACC3B262D19CC0000E5F6D1 /* ArrayUtils.swift in Sources */,
 				4A8F50332CE7F1560096327C /* ActivityObjectWaitCountDown.swift in Sources */,
+				4ACC3B382D1CCB7600E5F6D1 /* ContextTimeManager.swift in Sources */,
 				4A7F12582C3C55A2005200F2 /* ActivityDummyData.swift in Sources */,
 				4AF6B8E52CE29BB30016811F /* TextToSpeech.swift in Sources */,
 				4A8F503F2CED64AE0096327C /* ActClassFullEditableView.swift in Sources */,
@@ -740,6 +750,8 @@
 				4AFA2E062D08EC29009C2A44 /* TimeRange.swift in Sources */,
 				4AFA2E092D08EFD9009C2A44 /* NotificationManager.swift in Sources */,
 				4ACC3B282D19CC0000E5F6D1 /* ArrayUtils.swift in Sources */,
+				4ACC3B3A2D1CCB7600E5F6D1 /* ContextTimeManager.swift in Sources */,
+				4ACC3B352D1B704E00E5F6D1 /* ContextTimeManagerTests.swift in Sources */,
 				4AFA2E072D08EC29009C2A44 /* ModelHelper.swift in Sources */,
 				4A76242C2D09702E0096877E /* NavigationTest.swift in Sources */,
 				4AFA2E082D08EFD4009C2A44 /* TimerManager.swift in Sources */,
@@ -773,6 +785,7 @@
 				4ACC3B292D19CC0000E5F6D1 /* ArrayUtils.swift in Sources */,
 				4AFA2E1F2D08FE9C009C2A44 /* ActClassFullEditableView.swift in Sources */,
 				4AFA2E202D08FE9C009C2A44 /* EditableTimer.swift in Sources */,
+				4ACC3B372D1CCB7600E5F6D1 /* ContextTimeManager.swift in Sources */,
 				4AFA2E212D08FE9C009C2A44 /* TymeApp.swift in Sources */,
 				4AFA2E222D08FE9C009C2A44 /* ContentView.swift in Sources */,
 				4AFA2E232D08FE9C009C2A44 /* HomeNavigator.swift in Sources */,
@@ -786,6 +799,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AB17C392CD6FD5E0045B34C /* NotificationManager.swift in Sources */,
+				4ACC3B392D1CCB7600E5F6D1 /* ContextTimeManager.swift in Sources */,
 				4AB17C3A2CD6FD5E0045B34C /* TimerManager.swift in Sources */,
 				4A7F12612C3F18BF005200F2 /* TimeRange.swift in Sources */,
 				4ACC3B272D19CC0000E5F6D1 /* ArrayUtils.swift in Sources */,
