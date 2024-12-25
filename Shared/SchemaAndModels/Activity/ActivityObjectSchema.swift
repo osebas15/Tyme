@@ -35,20 +35,24 @@ enum ActivityObject0_0_0: VersionedSchema {
         
         //var currentStep: Int
         private var innerCurrentStep: ActivityObject?
-        @Transient var currentStep: ActivityObject?{
+        @Transient var currentStep: ActivityObject{
             get{
-                return innerCurrentStep ?? firstStep?.innerCurrentStep ?? self
+                return firstStep.innerCurrentStep ?? firstStep
             }
             set {
-                if let firstStep = firstStep {
-                    firstStep.innerCurrentStep = newValue
-                }
-                else {
-                    innerCurrentStep = newValue
-                }
+                firstStep.innerCurrentStep = newValue
             }
         }
-        var firstStep: ActivityObject?
+        
+        private var _firstStep: ActivityObject?
+        @Transient var firstStep: ActivityObject {
+            get {
+                _firstStep ?? self
+            }
+            set {
+                _firstStep = newValue
+            }
+        }
         
         var activityClass : ActivityClass?
         var startDate: Date?
@@ -68,7 +72,7 @@ enum ActivityObject0_0_0: VersionedSchema {
             startDate: Date? = nil,
             onOffTimes: [TimeRange]? = nil,
             subActivities: [ActivityObject] = [],
-            focus: FocusState = .none,
+            focus: FocusState = .waitingToStart,
             priorityOrder: Int? = nil,
             firstStep: ActivityObject? = nil,
             id: UUID? = nil
@@ -79,13 +83,14 @@ enum ActivityObject0_0_0: VersionedSchema {
             self.subActivities = subActivities
             self.storedFocus = focus.rawValue
             self.priorityOrder = priorityOrder ?? 0
+            self._firstStep = firstStep
             self.id = id ?? UUID()
         }
     }
 }
 
 extension ActivityObject {
-    enum FocusState: Int { case main, actionable, passive, done, none, error }
+    enum FocusState: Int { case waitingToStart, started, inSubsteps, done, overdue, error }
 }
 
 extension ActivityObject {
@@ -164,7 +169,7 @@ extension ActivityObject {
         
         let newObject = ActivityObject(
             activityClass: activityClass,
-            focus: .actionable,
+            focus: .waitingToStart,
             priorityOrder: priorityIndex ?? self.subActivities.count
         )
         
@@ -196,27 +201,27 @@ extension ActivityObject {
     }
     
     func verifyCurrentState() -> FocusState {
-        if
-            let startDate = self.startDate,
-            let waitTime = self.activityClass?.waitAfterCompletion
-        {
-            if startDate.addingTimeInterval(waitTime) <= Date(){
-                return .done
+        if startDate != nil {
+            if completionDate != nil {
+                if firstStep == self && !activityClass!.orderedSteps.isEmpty{
+                    return .inSubsteps
+                }
+                else {
+                    return .done
+                }
             }
             else {
-                return .passive
+                if activityClass?.waitAfterCompletion == nil || timeLeftToWait! > 0 {
+                    return .started
+                }
+                return .overdue
             }
         }
-        else if self.startDate != nil
-        {
-            return .done
-        }
-        else
-        {
-            return .actionable
+        else {
+            return .waitingToStart
         }
     }
-    
+    /*
     func checkAndContinueState(
         context: ModelContext,
         timerManager: TimerManager,
@@ -224,8 +229,10 @@ extension ActivityObject {
     {
         let verifiedState = verifyCurrentState()
         
+        .inSubsteps.done.started.waitingToStart
+        
         switch verifiedState{
-        case .done:
+        case .inSubsteps:
             self.focus = .done
             //done(context: context)//TODO: make sure there are not timers for this class
         case .passive:
@@ -242,22 +249,23 @@ extension ActivityObject {
         }
         try? context.save()
     }
-    
+    */
     func getNextStep(context: ModelContext, nextStep: ActivityClass? = nil) -> ActivityObject?{
-        let refStep = self.firstStep ?? self
+        let isFirstStep = self == firstStep
+        guard isFirstStep, self.activityClass?.orderedSteps.count != 0 else {
+            return nil
+        }
         
-        let currentStepClass = refStep.currentStep?.activityClass
-        
+        let currentStepClass = firstStep.currentStep.activityClass
         let nextClass = nextStep ??
             (
                 currentStepClass != nil ?
-                refStep.activityClass?.stepAfter(origClass: currentStepClass!) :
+                firstStep.activityClass?.stepAfter(origClass: currentStepClass!) :
                 nil
             )
         
-       
         if let next = nextClass {
-            let newStep = ActivityObject(activityClass: next, priorityOrder: 0, firstStep: refStep)
+            let newStep = ActivityObject(activityClass: next, priorityOrder: 0, firstStep: firstStep)
             return newStep
         }
         else {
@@ -265,12 +273,22 @@ extension ActivityObject {
         }
     }
     
-    //make it simple end function fosr now
+    func start(){
+        startDate = Date()
+    }
+    
+    //make it simple end function for now
     func complete(context: ModelContext){
-        let newStep = getNextStep(context: context)
-        let initialStep = self.firstStep ?? self
-        newStep?.firstStep = initialStep
-        initialStep.currentStep = newStep
+        if startDate == nil {
+            start()
+        }
+        
+        completionDate = Date()
+        
+        if let newStep = getNextStep(context: context){
+            newStep.firstStep = firstStep
+            firstStep.currentStep = newStep
+        }
     }
     
     /*
@@ -296,6 +314,7 @@ extension ActivityObject {
 }
 
 extension ActivityObject {
+    /*
     func createWaitOnCompletionTimer(
         container: ModelContainer,
         timerManager: TimerManager
@@ -335,6 +354,7 @@ extension ActivityObject {
             }
         }
     }
+     */
     
     func sendWaitOnCompleteNotification(){
         guard
@@ -353,7 +373,6 @@ extension ActivityObject {
         Task {
             await manager.sendWaitAfterCompletionDoneNotification(info: notificationInfo)
         }
-        
     }
 }
 

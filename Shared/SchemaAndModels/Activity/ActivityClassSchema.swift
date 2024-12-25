@@ -109,7 +109,7 @@ extension ActivityClass {
     }
     
     func addSteps(activities: [ActivityClass]){
-        self.steps = activities
+        self.steps += activities
         
         activities.enumerated().forEach({ self.stepsOrder[$0.offset] = $0.element.id })
     }
