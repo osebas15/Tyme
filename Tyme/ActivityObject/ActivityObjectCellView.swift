@@ -21,7 +21,7 @@ struct ActivityObjectCellView: View {
                 Text(activityObject.activityClass?.name ?? "activityclass error")
                 HStack{
                     Button(activityObject.hasNext ? "next" : "done"){
-                        activityObject.checkAndContinueState(context: context, timerManager: timerManager)
+                        //activityObject.checkAndContinueState(context: context, timerManager: timerManager)
                     }
                     .buttonStyle(BorderlessButtonStyle())
                     ActivityObjectWaitCountDown(

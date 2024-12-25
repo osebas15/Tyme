@@ -25,7 +25,7 @@ struct ActiveObjectCellView: View {
     var body: some View {
         VStack{
             if let activity = activity.first {
-                HStack{
+                HStack{/*
                     if activity.focus == .done {
                         Image(systemName: "circle.fill")
                             .foregroundColor(Color(red: 0.2, green: 0.6, blue: 0.2))
@@ -38,13 +38,13 @@ struct ActiveObjectCellView: View {
                         Image(systemName: "circle")
                             .foregroundColor(.gray)
                     }
-                    Text(activity.activityClass?.name ?? "ERROR")
+                    Text(activity.activityClass?.name ?? "ERROR")*/
                 }
-                
+                /*
                 if let waitUntil = activity.waitUntilDate, activity.focus == .passive{
                     let time = waitUntil.timeIntervalSince(currentTime)
                     Text(time.description)
-                }
+                }*/
             }
             else {
                 Text("no object here")
@@ -52,12 +52,12 @@ struct ActiveObjectCellView: View {
         }
         .onAppear {
             if let activity = activity.first {
-                activity.checkAndContinueState(context: context, timerManager: timerManager, userAction: false)
+                //activity.checkAndContinueState(context: context, timerManager: timerManager, userAction: false)
             }
         }
         .onTapGesture {
             if let activity = activity.first {
-                activity.checkAndContinueState(context: context, timerManager: timerManager)
+                //activity.checkAndContinueState(context: context, timerManager: timerManager)
             }
         }
     }

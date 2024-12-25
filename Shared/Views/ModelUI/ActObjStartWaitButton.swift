@@ -23,18 +23,18 @@ struct ActObjStartWaitButton: View {
     
     var body: some View {
         Button("done"){
-            checkAndCountinueAction(actObj[0], context, timerManager)
+           // checkAndCountinueAction(actObj[0], context, timerManager)
         }
         .buttonStyle(BorderedButtonStyle())
     }
 }
-
+/*
 extension ActObjStartWaitButton{
     var checkAndCountinueAction: ((ActivityObject, ModelContext, TimerManager) ->()) {
         { $0.checkAndContinueState(context: $1, timerManager: $2) }
     }
 }
-
+*/
 /*
 #Preview {
     ActObjStartWaitButton()

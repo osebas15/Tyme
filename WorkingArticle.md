@@ -20,7 +20,6 @@ an app to make and use timed todo list and recepies
     - Timer needs to hold a state thats observable by the UI
         make timer 
         
-    - there should be a context manager which is seperate to handle context stuff
     - it should trigger an update every x seconds
 
 - basics testing

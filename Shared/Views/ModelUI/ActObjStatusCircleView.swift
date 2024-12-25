@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ActObjStatusCircleView: View {
     let obj: ActivityObject
-    var body: some View {
+    var body: some View {Text("test")/*
         if obj.focus == .done {
             Image(systemName: "circle.fill")
                 .foregroundColor(Color(red: 0.2, green: 0.6, blue: 0.2))
@@ -21,7 +21,7 @@ struct ActObjStatusCircleView: View {
         else {
             Image(systemName: "circle")
                 .foregroundColor(.gray)
-        }
+        }*/
     }
 }
 
@@ -30,10 +30,10 @@ struct ActObjStatusCircleView: View {
         var sample = ActivityObject.dummyObject()
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3){
-            sample.focus = .passive
+            //sample.focus = .passive
             
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3){
-                sample.focus = .done
+                //sample.focus = .done
             }
         }
         
