@@ -64,6 +64,8 @@
 		4ACC3B382D1CCB7600E5F6D1 /* ContextTimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC3B362D1CCB7600E5F6D1 /* ContextTimeManager.swift */; };
 		4ACC3B392D1CCB7600E5F6D1 /* ContextTimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC3B362D1CCB7600E5F6D1 /* ContextTimeManager.swift */; };
 		4ACC3B3A2D1CCB7600E5F6D1 /* ContextTimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC3B362D1CCB7600E5F6D1 /* ContextTimeManager.swift */; };
+		4ACC3B3C2D1DD03000E5F6D1 /* ActiveObjCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC3B3B2D1DD03000E5F6D1 /* ActiveObjCellButton.swift */; };
+		4ACC3B3D2D1DD03000E5F6D1 /* ActiveObjCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC3B3B2D1DD03000E5F6D1 /* ActiveObjCellButton.swift */; };
 		4AEAC5652CEFD3B8008CE9F4 /* HomeNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAC5642CEFD3B8008CE9F4 /* HomeNavigator.swift */; };
 		4AEAC5672CF008CE008CE9F4 /* ActivityFinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAC5662CF008CE008CE9F4 /* ActivityFinderView.swift */; };
 		4AEAC56A2CF1115F008CE9F4 /* ActivityClassList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAC5692CF1115F008CE9F4 /* ActivityClassList.swift */; };
@@ -205,6 +207,7 @@
 		4ACC3B252D19CC0000E5F6D1 /* ArrayUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayUtils.swift; sourceTree = "<group>"; };
 		4ACC3B342D1B704E00E5F6D1 /* ContextTimeManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextTimeManagerTests.swift; sourceTree = "<group>"; };
 		4ACC3B362D1CCB7600E5F6D1 /* ContextTimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextTimeManager.swift; sourceTree = "<group>"; };
+		4ACC3B3B2D1DD03000E5F6D1 /* ActiveObjCellButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveObjCellButton.swift; sourceTree = "<group>"; };
 		4AEAC5642CEFD3B8008CE9F4 /* HomeNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigator.swift; sourceTree = "<group>"; };
 		4AEAC5662CF008CE008CE9F4 /* ActivityFinderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFinderView.swift; sourceTree = "<group>"; };
 		4AEAC5692CF1115F008CE9F4 /* ActivityClassList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityClassList.swift; sourceTree = "<group>"; };
@@ -277,6 +280,7 @@
 			children = (
 				4A44738A2CB74CAD00C07982 /* ActiveActivitiesView.swift */,
 				4A4473912CB9B03D00C07982 /* ActivityObjectCellView.swift */,
+				4ACC3B3B2D1DD03000E5F6D1 /* ActiveObjCellButton.swift */,
 			);
 			path = ActivityObject;
 			sourceTree = "<group>";
@@ -727,6 +731,7 @@
 				4A8F50412CED72A70096327C /* EditableTimer.swift in Sources */,
 				4A1159D42D0B6FF700BA79F4 /* NavigationRedux.swift in Sources */,
 				4A7F12662C3F29F9005200F2 /* ModelHelper.swift in Sources */,
+				4ACC3B3C2D1DD03000E5F6D1 /* ActiveObjCellButton.swift in Sources */,
 				4ACC3B262D19CC0000E5F6D1 /* ArrayUtils.swift in Sources */,
 				4A8F50332CE7F1560096327C /* ActivityObjectWaitCountDown.swift in Sources */,
 				4ACC3B382D1CCB7600E5F6D1 /* ContextTimeManager.swift in Sources */,
@@ -764,6 +769,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AFA2E0C2D08FE9C009C2A44 /* ActivityObjectWaitCountDown.swift in Sources */,
+				4ACC3B3D2D1DD03000E5F6D1 /* ActiveObjCellButton.swift in Sources */,
 				4AFA2E0D2D08FE9C009C2A44 /* ActObjStartWaitButton.swift in Sources */,
 				4AFA2E0E2D08FE9C009C2A44 /* ActObjStatusCircleView.swift in Sources */,
 				4AFA2E0F2D08FE9C009C2A44 /* ActClassSearchView.swift in Sources */,

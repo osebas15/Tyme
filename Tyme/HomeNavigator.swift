@@ -37,6 +37,7 @@ struct HomeNavigator: View {
                     }
             }
         }
+        //select ActivityClass for nav and starting the activity
         else if let focusedClass = nav.focusedActClass ?? homeActClasses.first {
             ActivityClassList(classesToShow: focusedClass.orderedSubActivities) { subClass in
                 HStack{
