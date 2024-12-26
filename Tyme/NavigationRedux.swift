@@ -10,8 +10,9 @@ import SwiftData
 
 enum UserActions {
     case goToLanding, error(Error),
-         startAction(actClass: ActivityClass, parentObj: ActivityObject? = nil),
          focusActClass(ActivityClass),
+         initializeAction(actClass: ActivityClass, parentObj: ActivityObject? = nil),
+         startAction(ActivityObject),
          completeAction(ActivityObject)
 }
 
@@ -32,7 +33,7 @@ class NavigationStore {
         case .goToLanding:
             actionStack = []
             
-        case .startAction(_, _), .completeAction(_), .focusActClass(_):
+        case .initializeAction(_, _), .startAction(_), .completeAction(_), .focusActClass(_):
             actionStack.append(action)
             
         case .error:
@@ -61,7 +62,7 @@ class NavigationStore {
                 
                 return
             }
-        case .startAction(let actClass, let parentObj):
+        case .initializeAction(let actClass, let parentObj):
             let parentObj = parentObj ?? ModelHelper().getHomeObject(container: context.container)
             actClass.start(context: context, parentObject: parentObj)
             
@@ -75,6 +76,11 @@ class NavigationStore {
         case .focusActClass(let actClass):
             self.focusedActClass = actClass
             self.focusedActObj = nil
+            return
+            
+        case .startAction(let actObj):
+            self.focusedActObj = actObj
+            actObj.start()
             return
             
         case .completeAction(let object):

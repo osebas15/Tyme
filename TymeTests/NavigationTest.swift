@@ -53,19 +53,41 @@ struct NavigationTest {
     @MainActor
     @Suite("Activity Flow")
     struct ActivityFlow {
-        @Test("ACTIVE: Initial start")
-        func startActivity() async throws {
+        @Test("ACTIVE: Initialize")
+        func initializeActivity() async throws {
             let manager = NavigationTestManager(active: true)
             let dummyAct = manager.activity.dummyActivity
             let parentObj = manager.activity.parentObj
             
-            let _ = manager.nav.consumeAction(
-                action: .startAction(actClass: dummyAct, parentObj: parentObj),
+            /*let _ = manager.nav.consumeAction(
+                action: .initializeAction(actClass: dummyAct, parentObj: parentObj),
                 context: manager.activity.container.mainContext)
-                
+                */
             let newAct = parentObj.unOrderedActivities.first(where: { $0.activityClass == dummyAct })
             
-            #expect( manager.nav.focusedActObj == newAct )
+            #expect( newAct?.verifyCurrentState() == .waitingToStart )
+        }
+        
+        @Test("ACTIVE: Start")
+        func startActivity() async throws {
+            let manager = NavigationTestManager()
+            manager.activity.dummyActivity.waitAfterCompletion = 1
+            let dummyObj = manager.activity.startDummyClassAndGetResultingObject()
+            
+            manager.nav.consumeAction(action: .startAction(dummyObj), context: manager.activity.container.mainContext)
+            #expect(dummyObj.verifyCurrentState() == .started)
+        }
+        
+        @Test("ACTIVE: Complete")
+        func completeActivity() async throws {
+            let manager = NavigationTestManager()
+            manager.activity.dummyActivity.waitAfterCompletion = 1
+            let dummyObj = manager.activity.startDummyClassAndGetResultingObject()
+            
+            manager.nav.consumeAction(action: .startAction(dummyObj), context: manager.activity.container.mainContext)
+            manager.nav.consumeAction(action: .completeAction(dummyObj), context: manager.activity.container.mainContext)
+            
+            #expect(dummyObj.verifyCurrentState() == .done)
         }
         
         @Test("ACTIVE: go to next")

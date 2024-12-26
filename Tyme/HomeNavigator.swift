@@ -48,7 +48,7 @@ struct HomeNavigator: View {
                     Spacer()
                     Button("start"){
                         nav.consumeAction(
-                            action: .startAction(
+                            action: .initializeAction(
                                 actClass: subClass,
                                 parentObj: !homeActObjs.isEmpty ? homeActObjs[0] : nil),
                             context: context
