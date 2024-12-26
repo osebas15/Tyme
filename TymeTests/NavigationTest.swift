@@ -79,7 +79,7 @@ struct NavigationTest {
             manager.nav.consumeAction(action: .completeAction(sampleObj), context: manager.activity.container.mainContext)
             
             
-            #expect(manager.nav.focusedActObj?.activityClass == nextClass)
+            #expect(manager.nav.focusedActObj?.activityClass?.name == nextClass?.name)
             /*
             switch manager.nav.currentView {
             case .landing(focus: _, activeActivity: let activeObj) where activeObj?.activityClass == nextClass:

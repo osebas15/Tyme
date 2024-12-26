@@ -113,7 +113,9 @@ struct ActivityTests {
     @Test("STEPS: objects in a step sequence show correct state based on currentStep, in the middle of one and at the end of one")
     func stepSequenceStates() async throws {
         let setup = ActivityTestManager()
+        
         setup.dummyActivity.addSteps(activities: setup.sampleActivities)
+        setup.dummyActivity.waitAfterCompletion = 1
         
         let initialObj = setup.startDummyClassAndGetResultingObject()
         

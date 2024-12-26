@@ -44,6 +44,8 @@ struct ContextTimeManagerTests {
         let manager = manager
         let contextTimeManager = contextTimeManager
         
+        manager.dummyActivity.waitAfterCompletion = 1
+        
         let actObj = manager.startDummyClassAndGetResultingObject()
         actObj.start()
         

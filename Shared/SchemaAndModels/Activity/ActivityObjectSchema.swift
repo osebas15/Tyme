@@ -275,12 +275,16 @@ extension ActivityObject {
     
     func start(){
         startDate = Date()
+        
+        if activityClass?.waitAfterCompletion == nil, let context = modelContext {
+            complete(context: context)
+        }
     }
     
     //make it simple end function for now
     func complete(context: ModelContext){
         if startDate == nil {
-            start()
+            startDate = Date()
         }
         
         completionDate = Date()
