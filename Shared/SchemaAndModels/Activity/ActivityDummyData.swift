@@ -183,6 +183,59 @@ struct ActivityDummyData {
             result![0].addSubActivity(activity: recepie)
         }
     }
+    
+    func getFlowSamplesClassesAnObjects(container: ModelContainer, nav: NavigationStore) -> (actClasses: [ActivityClass], actObjects: [ActivityObject]){
+        let waitingToStartWithWait = ActivityClass(name: "waiting to start with wait", waitAfterCompletion: 1)
+        let waitingToStartWithoutWait = ActivityClass(name: "waiting to start without wait")
+        let startedWithWait = ActivityClass(name: "started with wait", waitAfterCompletion: 1)
+        let startedWithOutWait = ActivityClass(name: "started without wait")
+        let overdue = ActivityClass(name: "overdue", waitAfterCompletion: 1)
+        //let inSubsteps = ActivityClass(name: "inSubsteps")
+        let doneWithWait = ActivityClass(name: "done with wait", waitAfterCompletion: 1)
+        let doneWithOutWait = ActivityClass(name: "done without wait")
+        
+        let allClasses = [waitingToStartWithWait, waitingToStartWithoutWait, startedWithWait, startedWithOutWait, overdue, doneWithWait, doneWithOutWait]
+        
+        allClasses.forEach { container.mainContext.insert($0) }
+        
+        allClasses.forEach { actClass in
+            nav.consumeAction(
+                action: .initializeAction(
+                    actClass: actClass,
+                    parentObj: ModelHelper().getHomeObject(container: container)
+                ),
+                context: container.mainContext
+            )
+        }
+        
+        let allObj = ModelHelper().getHomeObject(container: container).orderedActivities
+        
+        let toStart = allObj.dropFirst(2)
+        toStart.forEach { actObj in
+            nav.consumeAction(
+                action: .startAction(actObj),
+                context: container.mainContext
+            )
+        }
+        
+        let toComplete = allObj.dropFirst(5)
+        toComplete.forEach { actObj in
+            nav.consumeAction(
+                action: .completeAction(actObj),
+                context: container.mainContext
+            )
+        }
+        
+        let objectsToSend = ModelHelper().getHomeObject(container: container).orderedActivities
+            .map({obj in
+                if obj.activityClass == overdue {
+                    obj.startDate = Date() - 10
+                }
+                return obj
+            })
+        
+        return (actClasses: Array(allClasses), actObjects: Array(objectsToSend))
+    }
 /*
     func insertSwissBurgerRecepie(into container: ModelContainer) {
         // Create dummy data for making a Swiss burger ActivityClass

@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4A1159D32D0B6FF700BA79F4 /* NavigationRedux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1159D22D0B6FF700BA79F4 /* NavigationRedux.swift */; };
-		4A1159D42D0B6FF700BA79F4 /* NavigationRedux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1159D22D0B6FF700BA79F4 /* NavigationRedux.swift */; };
-		4A1159D52D0B750300BA79F4 /* NavigationRedux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1159D22D0B6FF700BA79F4 /* NavigationRedux.swift */; };
 		4A4473852CAB3B8A00C07982 /* NewActivityListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4473842CAB3B8A00C07982 /* NewActivityListView.swift */; };
 		4A44738B2CB74CAD00C07982 /* ActiveActivitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A44738A2CB74CAD00C07982 /* ActiveActivitiesView.swift */; };
 		4A4473922CB9B03D00C07982 /* ActivityObjectCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4473912CB9B03D00C07982 /* ActivityObjectCellView.swift */; };
+		4A4613D22D1E1C7D00DE589B /* NavigationRedux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4613D12D1E1C7D00DE589B /* NavigationRedux.swift */; };
+		4A4613D32D1E1C7D00DE589B /* NavigationRedux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4613D12D1E1C7D00DE589B /* NavigationRedux.swift */; };
+		4A4613D42D1E1C7D00DE589B /* NavigationRedux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4613D12D1E1C7D00DE589B /* NavigationRedux.swift */; };
+		4A4613D52D1E1C7D00DE589B /* NavigationRedux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4613D12D1E1C7D00DE589B /* NavigationRedux.swift */; };
 		4A76242C2D09702E0096877E /* NavigationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A76242B2D09702E0096877E /* NavigationTest.swift */; };
 		4A7F11F72C3AE282005200F2 /* TymeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F11F62C3AE282005200F2 /* TymeApp.swift */; };
 		4A7F11F92C3AE282005200F2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F11F82C3AE282005200F2 /* ContentView.swift */; };
@@ -162,10 +163,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4A1159D22D0B6FF700BA79F4 /* NavigationRedux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRedux.swift; sourceTree = "<group>"; };
 		4A4473842CAB3B8A00C07982 /* NewActivityListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityListView.swift; sourceTree = "<group>"; };
 		4A44738A2CB74CAD00C07982 /* ActiveActivitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveActivitiesView.swift; sourceTree = "<group>"; };
 		4A4473912CB9B03D00C07982 /* ActivityObjectCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityObjectCellView.swift; sourceTree = "<group>"; };
+		4A4613D12D1E1C7D00DE589B /* NavigationRedux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRedux.swift; sourceTree = "<group>"; };
 		4A76242B2D09702E0096877E /* NavigationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTest.swift; sourceTree = "<group>"; };
 		4A7F11F32C3AE282005200F2 /* Tyme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tyme.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A7F11F62C3AE282005200F2 /* TymeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TymeApp.swift; sourceTree = "<group>"; };
@@ -342,7 +343,6 @@
 				4AEAC5642CEFD3B8008CE9F4 /* HomeNavigator.swift */,
 				4A7F11FA2C3AE283005200F2 /* Assets.xcassets */,
 				4A7F11FC2C3AE283005200F2 /* Preview Content */,
-				4A1159D22D0B6FF700BA79F4 /* NavigationRedux.swift */,
 			);
 			path = Tyme;
 			sourceTree = "<group>";
@@ -427,6 +427,7 @@
 		4A8F502F2CE7EF910096327C /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				4A4613D12D1E1C7D00DE589B /* NavigationRedux.swift */,
 				4ACC3B242D19CBD700E5F6D1 /* Utilities */,
 				4A8F50302CE7F0010096327C /* Views */,
 				4A7F12522C3AE2E4005200F2 /* SchemaAndModels */,
@@ -729,8 +730,8 @@
 				4A7F12562C3AEB3F005200F2 /* TimeRange.swift in Sources */,
 				4A8F50372CE80C840096327C /* ActObjStartWaitButton.swift in Sources */,
 				4A8F50412CED72A70096327C /* EditableTimer.swift in Sources */,
-				4A1159D42D0B6FF700BA79F4 /* NavigationRedux.swift in Sources */,
 				4A7F12662C3F29F9005200F2 /* ModelHelper.swift in Sources */,
+				4A4613D52D1E1C7D00DE589B /* NavigationRedux.swift in Sources */,
 				4ACC3B3C2D1DD03000E5F6D1 /* ActiveObjCellButton.swift in Sources */,
 				4ACC3B262D19CC0000E5F6D1 /* ArrayUtils.swift in Sources */,
 				4A8F50332CE7F1560096327C /* ActivityObjectWaitCountDown.swift in Sources */,
@@ -747,7 +748,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A1159D52D0B750300BA79F4 /* NavigationRedux.swift in Sources */,
 				4AFA2E022D08EC29009C2A44 /* ActivityClassSchema.swift in Sources */,
 				4AFA2E032D08EC29009C2A44 /* ActivityObjectSchema.swift in Sources */,
 				4AFA2E042D08EC29009C2A44 /* ActivityDummyData.swift in Sources */,
@@ -758,6 +758,7 @@
 				4ACC3B3A2D1CCB7600E5F6D1 /* ContextTimeManager.swift in Sources */,
 				4ACC3B352D1B704E00E5F6D1 /* ContextTimeManagerTests.swift in Sources */,
 				4AFA2E072D08EC29009C2A44 /* ModelHelper.swift in Sources */,
+				4A4613D22D1E1C7D00DE589B /* NavigationRedux.swift in Sources */,
 				4A76242C2D09702E0096877E /* NavigationTest.swift in Sources */,
 				4AFA2E082D08EFD4009C2A44 /* TimerManager.swift in Sources */,
 				4AFA2E012D08EA20009C2A44 /* ActivityTests.swift in Sources */,
@@ -786,7 +787,7 @@
 				4AFA2E1A2D08FE9C009C2A44 /* ActivityObjectCellView.swift in Sources */,
 				4AFA2E1B2D08FE9C009C2A44 /* NewActivityListView.swift in Sources */,
 				4AFA2E1C2D08FE9C009C2A44 /* ActivityClassList.swift in Sources */,
-				4A1159D32D0B6FF700BA79F4 /* NavigationRedux.swift in Sources */,
+				4A4613D42D1E1C7D00DE589B /* NavigationRedux.swift in Sources */,
 				4AFA2E1E2D08FE9C009C2A44 /* ActivityFinderView.swift in Sources */,
 				4ACC3B292D19CC0000E5F6D1 /* ArrayUtils.swift in Sources */,
 				4AFA2E1F2D08FE9C009C2A44 /* ActClassFullEditableView.swift in Sources */,
@@ -820,6 +821,7 @@
 				4A7F125E2C3F1790005200F2 /* ActiveView.swift in Sources */,
 				4A8F50342CE7F1560096327C /* ActivityObjectWaitCountDown.swift in Sources */,
 				4A7F12672C3F29F9005200F2 /* ModelHelper.swift in Sources */,
+				4A4613D32D1E1C7D00DE589B /* NavigationRedux.swift in Sources */,
 				4A7F12212C3AE283005200F2 /* ContentView.swift in Sources */,
 				4AF6B8E62CE29BB30016811F /* TextToSpeech.swift in Sources */,
 				4A7F12D92C5AD4ED005200F2 /* HomeView.swift in Sources */,
