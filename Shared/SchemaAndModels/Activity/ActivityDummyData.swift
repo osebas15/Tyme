@@ -185,7 +185,7 @@ struct ActivityDummyData {
     }
     
     func getFlowSamplesClassesAnObjects(container: ModelContainer, nav: NavigationStore) -> (actClasses: [ActivityClass], actObjects: [ActivityObject]){
-        let waitingToStartWithWait = ActivityClass(name: "waiting to start with wait", waitAfterCompletion: 1)
+        let waitingToStartWithWait = ActivityClass(name: "waiting to start with wait", waitAfterCompletion: 1, detail: "Lorem Ipsum is simply dummy text of the printing and typesetting industry")
         let waitingToStartWithoutWait = ActivityClass(name: "waiting to start without wait")
         let startedWithWait = ActivityClass(name: "started with wait", waitAfterCompletion: 1)
         let startedWithOutWait = ActivityClass(name: "started without wait")

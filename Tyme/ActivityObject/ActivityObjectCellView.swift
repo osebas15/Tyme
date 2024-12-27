@@ -14,37 +14,35 @@ struct ActivityObjectCellView: View {
     let currentTime: Date
     
     var body: some View {
-        HStack {
-            //ActObjStatusCircleView(obj: activityObject)
-            VStack{
+        VStack {
+            HStack{
                 Text(activityObject.activityClass?.name ?? "activityclass error")
-                HStack{
-                    Button(activityObject.hasNext ? "next" : "done"){
-                        //activityObject.checkAndContinueState(context: context, timerManager: timerManager)
-                    }
-                    .buttonStyle(BorderlessButtonStyle())
-                    ActivityObjectWaitCountDown(
-                        currentTime: currentTime, actObject: activityObject)
-                    Spacer()
-                }
+                    .font(.title)
+                Spacer()
+                ActiveObjCellButton(actObj: activityObject)
+                    .frame(maxWidth: 60)
             }
-            .frame(alignment: .leading)
+            Spacer()
+            Text(activityObject.activityClass?.detail ?? "")
         }
+        .padding()
     }
 }
 
 #Preview {
-    //we want to test
-    //  with wait time
-    //      .waitingToStart
-    //      .started
-    //      .inSubsteps
-    //      .done
-    //      .overdue
-    //      .error
-    //  without wait time
-    //      just have a checkmark
+    let container = ModelHelper().getBasicContainer()
+    let nav = NavigationStore()
     
-    let sample = ActivityObject.dummyObject()
-    ActivityObjectCellView(activityObject: sample, currentTime: Date())
+    let data = {
+        let toRet = ActivityDummyData().getFlowSamplesClassesAnObjects(container: container, nav: nav)
+        //toRet.actClasses.forEach({$0.name = $0.name + "just a long stinfgc asdfasd fas dfas dfsdf"})
+        return toRet
+    }()
+    VStack{
+        List(data.actObjects){ obj in
+            ActivityObjectCellView(activityObject: obj, currentTime: Date())
+        }
+    }
+    .modelContainer(container)
+    .environment(\.navStore, nav)
 }

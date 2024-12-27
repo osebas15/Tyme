@@ -14,6 +14,8 @@
 		4A4613D32D1E1C7D00DE589B /* NavigationRedux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4613D12D1E1C7D00DE589B /* NavigationRedux.swift */; };
 		4A4613D42D1E1C7D00DE589B /* NavigationRedux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4613D12D1E1C7D00DE589B /* NavigationRedux.swift */; };
 		4A4613D52D1E1C7D00DE589B /* NavigationRedux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4613D12D1E1C7D00DE589B /* NavigationRedux.swift */; };
+		4A4613D72D1E2A7C00DE589B /* ActivityObjectDetailsBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4613D62D1E2A7C00DE589B /* ActivityObjectDetailsBar.swift */; };
+		4A4613D82D1E2A7C00DE589B /* ActivityObjectDetailsBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4613D62D1E2A7C00DE589B /* ActivityObjectDetailsBar.swift */; };
 		4A76242C2D09702E0096877E /* NavigationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A76242B2D09702E0096877E /* NavigationTest.swift */; };
 		4A7F11F72C3AE282005200F2 /* TymeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F11F62C3AE282005200F2 /* TymeApp.swift */; };
 		4A7F11F92C3AE282005200F2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F11F82C3AE282005200F2 /* ContentView.swift */; };
@@ -167,6 +169,7 @@
 		4A44738A2CB74CAD00C07982 /* ActiveActivitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveActivitiesView.swift; sourceTree = "<group>"; };
 		4A4473912CB9B03D00C07982 /* ActivityObjectCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityObjectCellView.swift; sourceTree = "<group>"; };
 		4A4613D12D1E1C7D00DE589B /* NavigationRedux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRedux.swift; sourceTree = "<group>"; };
+		4A4613D62D1E2A7C00DE589B /* ActivityObjectDetailsBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityObjectDetailsBar.swift; sourceTree = "<group>"; };
 		4A76242B2D09702E0096877E /* NavigationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTest.swift; sourceTree = "<group>"; };
 		4A7F11F32C3AE282005200F2 /* Tyme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tyme.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A7F11F62C3AE282005200F2 /* TymeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TymeApp.swift; sourceTree = "<group>"; };
@@ -282,6 +285,7 @@
 				4A44738A2CB74CAD00C07982 /* ActiveActivitiesView.swift */,
 				4A4473912CB9B03D00C07982 /* ActivityObjectCellView.swift */,
 				4ACC3B3B2D1DD03000E5F6D1 /* ActiveObjCellButton.swift */,
+				4A4613D62D1E2A7C00DE589B /* ActivityObjectDetailsBar.swift */,
 			);
 			path = ActivityObject;
 			sourceTree = "<group>";
@@ -718,6 +722,7 @@
 				4AEAC5672CF008CE008CE9F4 /* ActivityFinderView.swift in Sources */,
 				4AB16F182CDC768E00706F8B /* TimerManager.swift in Sources */,
 				4A8F50442CED99150096327C /* ActClassSearchView.swift in Sources */,
+				4A4613D82D1E2A7C00DE589B /* ActivityObjectDetailsBar.swift in Sources */,
 				4A4473852CAB3B8A00C07982 /* NewActivityListView.swift in Sources */,
 				4AEAC5652CEFD3B8008CE9F4 /* HomeNavigator.swift in Sources */,
 				4AFA2DFF2D08E8D1009C2A44 /* ActivityActions.swift in Sources */,
@@ -797,6 +802,7 @@
 				4AFA2E222D08FE9C009C2A44 /* ContentView.swift in Sources */,
 				4AFA2E232D08FE9C009C2A44 /* HomeNavigator.swift in Sources */,
 				4A7F12122C3AE283005200F2 /* TymeUITests.swift in Sources */,
+				4A4613D72D1E2A7C00DE589B /* ActivityObjectDetailsBar.swift in Sources */,
 				4A7F12142C3AE283005200F2 /* TymeUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

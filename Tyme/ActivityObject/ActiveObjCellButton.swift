@@ -20,13 +20,17 @@ struct ActiveObjCellButton: View {
                 nav.consumeAction(action: .startAction(actObj), context: context)
             } label: {
                 Image(systemName: "circle")
-                    .foregroundColor(Color.black)
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundColor(Color.green)
             }
         case .waitingToStart:
             Button {
                 nav.consumeAction(action: .startAction(actObj), context: context)
             } label: {
                 Image(systemName: "play.circle.fill")
+                    .resizable()
+                    .scaledToFit()
                     .foregroundColor(Color.green)
             }
             
@@ -35,6 +39,8 @@ struct ActiveObjCellButton: View {
                 nav.consumeAction(action: .completeAction(actObj), context: context)
             } label: {
                 Image(systemName: "stop.circle.fill")
+                    .resizable()
+                    .scaledToFit()
                     .foregroundColor(Color.blue)
             }
         case .overdue:
@@ -42,6 +48,8 @@ struct ActiveObjCellButton: View {
                 nav.consumeAction(action: .completeAction(actObj), context: context)
             } label: {
                 Image(systemName: "stop.circle.fill")
+                    .resizable()
+                    .scaledToFit()
                     .foregroundColor(Color.orange)
             }
         case .done:
@@ -49,6 +57,8 @@ struct ActiveObjCellButton: View {
                 //nav.consumeAction(action: .completeAction(actObj), context: context)
             } label: {
                 Image(systemName: "checkmark.circle.fill")
+                    .resizable()
+                    .scaledToFit()
                     .foregroundColor(Color.green)
             }
         default:
