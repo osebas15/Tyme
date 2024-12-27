@@ -8,11 +8,28 @@
 import SwiftUI
 
 struct ActivityObjectDetailsBar: View {
+    var actObj: ActivityObject
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack{
+            if let timeToComp = actObj.activityClass!.waitAfterCompletion{
+                Text("\(Int(timeToComp / 60)) min")
+                    .font(.callout)
+                    .padding(5)
+                    .padding(.horizontal, 6)
+                    .foregroundStyle(.white)
+                    .background(.blue)
+                    .cornerRadius(17)
+            }
+            Spacer()
+        }
     }
 }
 
 #Preview {
-    ActivityObjectDetailsBar()
+    let obj = {
+        let obj = ActivityObject.dummyObject()
+        obj.activityClass?.waitAfterCompletion = 300
+        return obj
+    }()
+    ActivityObjectDetailsBar(actObj: obj)
 }
