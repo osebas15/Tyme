@@ -16,6 +16,9 @@
 		4A4613D52D1E1C7D00DE589B /* NavigationRedux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4613D12D1E1C7D00DE589B /* NavigationRedux.swift */; };
 		4A4613D72D1E2A7C00DE589B /* ActivityObjectDetailsBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4613D62D1E2A7C00DE589B /* ActivityObjectDetailsBar.swift */; };
 		4A4613D82D1E2A7C00DE589B /* ActivityObjectDetailsBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4613D62D1E2A7C00DE589B /* ActivityObjectDetailsBar.swift */; };
+		4A4613E32D20671500DE589B /* TimeLeftToWait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4613E22D20671500DE589B /* TimeLeftToWait.swift */; };
+		4A4613E42D20671500DE589B /* TimeLeftToWait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4613E22D20671500DE589B /* TimeLeftToWait.swift */; };
+		4A4613E52D20671500DE589B /* TimeLeftToWait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4613E22D20671500DE589B /* TimeLeftToWait.swift */; };
 		4A76242C2D09702E0096877E /* NavigationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A76242B2D09702E0096877E /* NavigationTest.swift */; };
 		4A7F11F72C3AE282005200F2 /* TymeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F11F62C3AE282005200F2 /* TymeApp.swift */; };
 		4A7F11F92C3AE282005200F2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F11F82C3AE282005200F2 /* ContentView.swift */; };
@@ -170,6 +173,7 @@
 		4A4473912CB9B03D00C07982 /* ActivityObjectCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityObjectCellView.swift; sourceTree = "<group>"; };
 		4A4613D12D1E1C7D00DE589B /* NavigationRedux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRedux.swift; sourceTree = "<group>"; };
 		4A4613D62D1E2A7C00DE589B /* ActivityObjectDetailsBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityObjectDetailsBar.swift; sourceTree = "<group>"; };
+		4A4613E22D20671500DE589B /* TimeLeftToWait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLeftToWait.swift; sourceTree = "<group>"; };
 		4A76242B2D09702E0096877E /* NavigationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTest.swift; sourceTree = "<group>"; };
 		4A7F11F32C3AE282005200F2 /* Tyme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tyme.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A7F11F62C3AE282005200F2 /* TymeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TymeApp.swift; sourceTree = "<group>"; };
@@ -456,6 +460,7 @@
 				4A8F50352CE80C840096327C /* ActObjStartWaitButton.swift */,
 				4A8F50382CED41730096327C /* ActObjStatusCircleView.swift */,
 				4A8F50422CED99150096327C /* ActClassSearchView.swift */,
+				4A4613E22D20671500DE589B /* TimeLeftToWait.swift */,
 			);
 			path = ModelUI;
 			sourceTree = "<group>";
@@ -745,6 +750,7 @@
 				4AF6B8E52CE29BB30016811F /* TextToSpeech.swift in Sources */,
 				4A8F503F2CED64AE0096327C /* ActClassFullEditableView.swift in Sources */,
 				4A4473922CB9B03D00C07982 /* ActivityObjectCellView.swift in Sources */,
+				4A4613E42D20671500DE589B /* TimeLeftToWait.swift in Sources */,
 				4A7F11F72C3AE282005200F2 /* TymeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -778,6 +784,7 @@
 				4ACC3B3D2D1DD03000E5F6D1 /* ActiveObjCellButton.swift in Sources */,
 				4AFA2E0D2D08FE9C009C2A44 /* ActObjStartWaitButton.swift in Sources */,
 				4AFA2E0E2D08FE9C009C2A44 /* ActObjStatusCircleView.swift in Sources */,
+				4A4613E32D20671500DE589B /* TimeLeftToWait.swift in Sources */,
 				4AFA2E0F2D08FE9C009C2A44 /* ActClassSearchView.swift in Sources */,
 				4AFA2E102D08FE9C009C2A44 /* ActivityClassSchema.swift in Sources */,
 				4AFA2E112D08FE9C009C2A44 /* ActivityObjectSchema.swift in Sources */,
@@ -826,6 +833,7 @@
 				4AFA2DFE2D08E8D1009C2A44 /* ActivityActions.swift in Sources */,
 				4A7F125E2C3F1790005200F2 /* ActiveView.swift in Sources */,
 				4A8F50342CE7F1560096327C /* ActivityObjectWaitCountDown.swift in Sources */,
+				4A4613E52D20671500DE589B /* TimeLeftToWait.swift in Sources */,
 				4A7F12672C3F29F9005200F2 /* ModelHelper.swift in Sources */,
 				4A4613D32D1E1C7D00DE589B /* NavigationRedux.swift in Sources */,
 				4A7F12212C3AE283005200F2 /* ContentView.swift in Sources */,
