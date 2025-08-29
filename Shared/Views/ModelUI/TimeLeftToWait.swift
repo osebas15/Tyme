@@ -9,14 +9,17 @@ import SwiftUI
 
 struct TimeLeftToWait: View {
     var totalTime: TimeInterval
-    var expectedTime: TimeInterval
+    var expectedTime: TimeInterval?
     
     private var formattedTotalTime: String {
         return formatTimeInterval(totalTime)
     }
     
-    private var formattedExpectedTime: String {
-        return formatTimeInterval(expectedTime)
+    private var formattedExpectedTime: String? {
+        guard let expTime = expectedTime else {
+            return nil
+        }
+        return formatTimeInterval(expTime)
     }
     
     private func formatTimeInterval(_ interval: TimeInterval) -> String {
@@ -37,6 +40,9 @@ struct TimeLeftToWait: View {
     }
     
     private func backgroundColor() -> Color {
+        guard let expectedTime = expectedTime else {
+            return .gray
+        }
         if totalTime < (expectedTime * 0.25){
             return .green
         }
@@ -57,8 +63,11 @@ struct TimeLeftToWait: View {
     var body: some View {
         HStack { // Use an HStack for better layout
             Text("\(formattedTotalTime)")
-            Text("/")
-            Text("\(formattedExpectedTime)")
+            if let expectedTime = formattedExpectedTime {
+                Text("/")
+                Text("\(expectedTime)")
+            }
+            
         }
         .foregroundColor(.white)
         .padding(.horizontal, 30)
@@ -70,6 +79,7 @@ struct TimeLeftToWait: View {
 
 #Preview {
     VStack{
+        TimeLeftToWait(totalTime: 2 * 60)
         TimeLeftToWait(totalTime: 45, expectedTime: (10 * 60))
         TimeLeftToWait(totalTime: (5 * 60), expectedTime: (10 * 60))
         TimeLeftToWait(totalTime: (8 * 60), expectedTime: (10 * 60))

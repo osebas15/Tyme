@@ -11,6 +11,9 @@ an app to make and use timed todo list and recepies
 
 ## Scratch Pad
 
+- add hip exercises and recover apple watch UI
+- tasks aren't completable
+
 - timer and notifications
     - wrap a state manager around a timer
         - it should all be main actor accessible

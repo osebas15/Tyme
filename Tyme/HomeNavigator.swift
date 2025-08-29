@@ -19,22 +19,17 @@ struct HomeNavigator: View {
         if homeActObjs.isEmpty || homeActClasses.isEmpty {
             Text("error loading home models")
         }
+        //ActiveObjects to show
         else if
             nav.focusedActObj != nil ||
             !homeActObjs[0].unOrderedActivities.isEmpty
         {
-            let objsToShow = ([nav.focusedActObj] + homeActObjs[0].orderedActivities)
+            let objsToShow = homeActObjs[0].lowestActivities
                 .compactMap({$0})
                 .duplicatesRemoved()
             
             List(objsToShow){ obj in
-                Text(obj.activityClass!.name)
-                    .onTapGesture {/*
-                        nav.consumeAction(
-                            action: ,
-                            context:
-                        )*/
-                    }
+                ActivityObjectCellView(activityObject: obj, currentTime: Date())
             }
         }
         //select ActivityClass for nav and starting the activity

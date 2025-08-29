@@ -16,11 +16,20 @@ struct ActivityObjectCellView: View {
     var body: some View {
         VStack {
             HStack{
-                Text(activityObject.activityClass?.name ?? "activityclass error")
-                    .font(.title)
+                VStack{
+                    Text(activityObject.activityClass?.name ?? "activityclass error")
+                        .font(.title)
+                        .multilineTextAlignment(.leading)
+                    Spacer()
+                }
+                .padding(.top)
                 Spacer()
                 ActiveObjCellButton(actObj: activityObject)
                     .frame(maxWidth: 60)
+            }
+            HStack{
+                TimeLeftToWait(totalTime: activityObject.timeFromStartTo(date: currentTime), expectedTime: activityObject.activityClass?.waitAfterCompletion)
+                Spacer()
             }
             Spacer()
             Text(activityObject.activityClass?.detail ?? "")
@@ -35,9 +44,17 @@ struct ActivityObjectCellView: View {
     
     let data = {
         let toRet = ActivityDummyData().getFlowSamplesClassesAnObjects(container: container, nav: nav)
-        //toRet.actClasses.forEach({$0.name = $0.name + "just a long stinfgc asdfasd fas dfas dfsdf"})
+        toRet.actObjects.enumerated().forEach({(index, obj) in
+            if index == 1 {
+                obj.creationDate = Date() - 60
+            }
+            if index == 2 {
+                obj.startDate = Date() - 60
+            }
+        })
         return toRet
     }()
+    
     VStack{
         List(data.actObjects){ obj in
             ActivityObjectCellView(activityObject: obj, currentTime: Date())

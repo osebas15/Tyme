@@ -73,8 +73,8 @@ struct ModelHelper {
     func getTestContainer() -> ModelContainer {
         let basicContainer = getBasicContainer()
         
+        ActivityDummyData().insertHipExercises(into: basicContainer)
         ActivityDummyData().insertQuickBreakfastRecepie(into: basicContainer)
-        ActivityDummyData().insertEasyTest(into: basicContainer)
         
         return basicContainer
     }

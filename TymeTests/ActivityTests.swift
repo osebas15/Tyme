@@ -125,10 +125,23 @@ struct ActivityTests {
         initialObj.complete(context: setup.container.mainContext)
         #expect(initialObj.verifyCurrentState() == .inSubsteps)
         
-        let currentStep = initialObj.currentStep
-        #expect(currentStep.verifyCurrentState() == .waitingToStart)
-        currentStep.complete(context: setup.container.mainContext)
+        #expect(initialObj.currentStep.verifyCurrentState() == .waitingToStart)
         
+        initialObj.currentStep.complete(context: setup.container.mainContext)
+        #expect(initialObj.currentStep.activityClass?.name == setup.sampleActivities[0].name)
+        #expect(initialObj.currentStep.getNextStep(context: setup.container.mainContext) == initialObj)
+        
+        initialObj.currentStep.complete(context: setup.container.mainContext)
+        #expect(initialObj.currentStep.activityClass?.name == setup.sampleActivities[1].name)
+        
+        //let nextStep = initialObj.currentStep
+        
+        //#expect(nextStep != currentStep)
+        
+        
+        //go from .waiting to .waiting and not the same the right number of times
+        
+        //currentStep.complete(context: ModelContext)
         
         //TODO: Move past final step and make sure it goes to done
         

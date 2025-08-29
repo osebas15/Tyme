@@ -185,13 +185,13 @@ struct ActivityDummyData {
     }
     
     func getFlowSamplesClassesAnObjects(container: ModelContainer, nav: NavigationStore) -> (actClasses: [ActivityClass], actObjects: [ActivityObject]){
-        let waitingToStartWithWait = ActivityClass(name: "waiting to start with wait", waitAfterCompletion: 1, detail: "Lorem Ipsum is simply dummy text of the printing and typesetting industry")
+        let waitingToStartWithWait = ActivityClass(name: "waiting to start with wait", waitAfterCompletion: 10 * 60, detail: "Lorem Ipsum is simply dummy text of the printing and typesetting industry")
         let waitingToStartWithoutWait = ActivityClass(name: "waiting to start without wait")
-        let startedWithWait = ActivityClass(name: "started with wait", waitAfterCompletion: 1)
+        let startedWithWait = ActivityClass(name: "started with wait", waitAfterCompletion: 10 * 60)
         let startedWithOutWait = ActivityClass(name: "started without wait")
         let overdue = ActivityClass(name: "overdue", waitAfterCompletion: 1)
         //let inSubsteps = ActivityClass(name: "inSubsteps")
-        let doneWithWait = ActivityClass(name: "done with wait", waitAfterCompletion: 1)
+        let doneWithWait = ActivityClass(name: "done with wait", waitAfterCompletion: 10 * 60)
         let doneWithOutWait = ActivityClass(name: "done without wait")
         
         let allClasses = [waitingToStartWithWait, waitingToStartWithoutWait, startedWithWait, startedWithOutWait, overdue, doneWithWait, doneWithOutWait]
@@ -344,6 +344,35 @@ struct ActivityDummyData {
             //swissBurger.createdFrom = result![0]
         }
     }*/
+}
+
+extension ActivityDummyData {
+    func makeAnklePumpsAP() -> ActivityClass{
+        return ActivityClass(
+            name: "Ankle Pumps AP",
+            detail: "Bend your foot up and down at your ankle joint as shown. Make sure you are bringing your foot as far back and as far down as you can")
+    }
+    
+    func insertHipExercises(into container: ModelContainer) {
+        let hipExercises = ActivityClass(
+            name: "Hip Exercises",
+            detail: "Physical therapy after hip surgery"
+        )
+        
+        var firstPump: ActivityClass = makeAnklePumpsAP()
+        firstPump.name += " 1"
+        let anklePumps = (2...10).map({ count in
+            let act = makeAnklePumpsAP()
+            act.name += " \(count)"
+            return act
+        })
+        
+        firstPump.addSteps(activities: anklePumps)
+            
+        hipExercises.addSubActivity(activity: firstPump)
+        
+        addToHomeActivity(container: container, activity: hipExercises)
+    }
 }
 
 extension ActivityDummyData{

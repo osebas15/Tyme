@@ -33,11 +33,11 @@ enum ActivityObject0_0_0: VersionedSchema {
             get{ subActivities }
         }
         
-        //var currentStep: Int
+        private var completedSteps: [ActivityObject] = []
         private var innerCurrentStep: ActivityObject?
         @Transient var currentStep: ActivityObject{
             get{
-                return firstStep.innerCurrentStep ?? firstStep
+                return innerCurrentStep ?? self
             }
             set {
                 firstStep.innerCurrentStep = newValue
@@ -55,6 +55,7 @@ enum ActivityObject0_0_0: VersionedSchema {
         }
         
         var activityClass : ActivityClass?
+        var creationDate: Date
         var startDate: Date?
         var completionDate: Date?
         var onOffTimes: [TimeRange]?
@@ -78,12 +79,12 @@ enum ActivityObject0_0_0: VersionedSchema {
             id: UUID? = nil
         ) {
             self.activityClass = activityClass
+            self.creationDate = Date()
             self.startDate = startDate
             self.onOffTimes = onOffTimes
             self.subActivities = subActivities
             self.storedFocus = focus.rawValue
             self.priorityOrder = priorityOrder ?? 0
-            self._firstStep = firstStep
             self.id = id ?? UUID()
         }
     }
@@ -94,9 +95,9 @@ extension ActivityObject {
 }
 
 extension ActivityObject {
-    @Transient var creationDate: Date?{
+    /*@Transient var creationDate: Date?{
         get { return onOffTimes?.first?.start }
-    }
+    }*/
     @Transient var hasNext: Bool{
         get {
             if let actClass = self.activityClass {
@@ -145,11 +146,11 @@ extension ActivityObject {
         }
     }
     @Transient var lowestActivities: [ActivityObject]{
-        if unOrderedActivities.isEmpty{
-            return [self]
+        if self.currentStep.unOrderedActivities.isEmpty{
+            return [self.currentStep]
         }
         else {
-            return orderedActivities.flatMap { $0.lowestActivities }
+            return self.currentStep.orderedActivities.flatMap { $0.lowestActivities }
         }
     }
 }
@@ -252,7 +253,9 @@ extension ActivityObject {
     */
     func getNextStep(context: ModelContext, nextStep: ActivityClass? = nil) -> ActivityObject?{
         let isFirstStep = self == firstStep
-        guard isFirstStep, self.activityClass?.orderedSteps.count != 0 else {
+        
+        //first check on the first activityClass in the steps
+        guard isFirstStep, self.firstStep.activityClass?.orderedSteps.count != 0 else {
             return nil
         }
         
@@ -288,10 +291,12 @@ extension ActivityObject {
         }
         
         completionDate = Date()
-        
+        print("\n\n\n\nnewstep outside")
         if let newStep = getNextStep(context: context){
             newStep.firstStep = firstStep
             firstStep.currentStep = newStep
+            
+            print("\n\n\n\nnewstep is \(newStep.activityClass!.name)")
         }
     }
     
@@ -381,6 +386,18 @@ extension ActivityObject {
 }
 
 extension ActivityObject {
+    func timeFromStartTo(date: Date) -> TimeInterval {
+        if activityClass?.waitAfterCompletion != nil{
+            if let startDate = startDate {
+                return date.timeIntervalSince(startDate)
+            }
+            return 0
+        }
+        else {
+            return date.timeIntervalSince(creationDate)
+        }
+    }
+    
     func getPlaceInPriorityHierarchy() -> String {
         if let parent = parent{
             return parent.getPlaceInPriorityHierarchy() + ", \(priorityOrder)"
